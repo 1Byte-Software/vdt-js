@@ -1,0 +1,35 @@
+{
+  "name": "vdt-js",
+  "description": "The Javascript package for VDT",
+  "version": "3.8.24.22",
+  "author": "1byte devteam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1Byte-Software/vdt-js/issues"
+  },
+  "homepage": "https://github.com/1Byte-Software/vdt-js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1Byte-Software/vdt-js.git"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c",
+    "watch": "npm run build -- --watch src",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "jfw-js": "^3.8.2-4.22",
+    "query-string": "^9.1.0",
+    "rollup": "^4.22.0",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.5",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.2"
+  }
+}
