@@ -34,7 +34,6 @@ export interface ICourse {
   timezoneValue?: string;
 }
 export interface IGetDashboardCoursesParams {
-  userId: JfwIdType;
   currentDate: string;
 }
 export interface IDashboardCourse {
@@ -49,8 +48,6 @@ export interface ICourseUserMutatePayload {
   status?: string;
 }
 export interface IGetListCoursesParams {
-  brandId: JfwIdType;
-  userId: JfwIdType;
   currentDate?: string;
   name?: string;
   categoryCode?: string | number;
@@ -62,7 +59,6 @@ export interface IGetListCoursesParams {
   languageCode?: string;
 }
 export interface IGetCoursesOfUser {
-  userId: JfwIdType;
   pageSize: number;
   pageNumber: number;
 }
@@ -105,7 +101,6 @@ export interface IClassroom {
   teacherId: JfwIdType | null;
 }
 export interface IGetUsersJoinClassParams {
-  userId?: JfwIdType;
   startDate: string;
   endDate: string;
   pageSize: number;
@@ -113,7 +108,6 @@ export interface IGetUsersJoinClassParams {
   classId?: IdType;
 }
 export interface IGetTimetableParams {
-  userId: JfwIdType;
   startDate: string;
   endDate: string;
   courseId?: IdType;

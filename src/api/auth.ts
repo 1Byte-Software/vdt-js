@@ -5,7 +5,7 @@ import { post } from '../utils/axiosHelper';
 const REST_TOKEN = 'token';
 const REFRESH_TOKEN = `${REST_TOKEN}/refresh-token`;
 
-export const getToken = async (
+export const getTokenAPI = async (
   payload: IGetTokenPayload,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<ITokenResponse> => {

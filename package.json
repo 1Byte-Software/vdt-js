@@ -1,7 +1,7 @@
 {
-  "name": "vdt-js",
-  "description": "The Javascript package for VDT",
-  "version": "3.8.24.22",
+  "name": "@vardytests/vdt-js",
+  "description": "The Javascript package for Vardytests",
+  "version": "3.8.25.1",
   "author": "1byte devteam",
   "license": "ISC",
   "bugs": {

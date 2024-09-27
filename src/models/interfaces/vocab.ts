@@ -70,13 +70,11 @@ export interface IVocab {
 }
 export interface IGetVocabUserParams {
   categoryId: IdType;
-  userId: JfwIdType;
   keyword?: string;
 }
 export interface ICreateVocabUserPayload {
   categoryId: IdType;
   vocabId: IdType;
-  userId: JfwIdType;
   definitionUser?: string;
   priority: number;
   exampleUser?: string;
