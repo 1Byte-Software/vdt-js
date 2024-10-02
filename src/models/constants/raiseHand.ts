@@ -3,7 +3,7 @@ export const COUNT_RAISE_HAND_KEYS = {
 };
 
 export const RAISE_HAND_STATUS = {
-  done: 'DONE',
-  queue: 'QUEUE',
-  supporting: 'SUPPORTING',
+  done: 'Done',
+  queue: 'Queue',
+  supporting: 'Supporting',
 };

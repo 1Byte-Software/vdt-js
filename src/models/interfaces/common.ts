@@ -11,3 +11,6 @@ export interface IBaseObject {
 export interface IById {
   id: IdType;
 }
+export interface IByCode {
+  code: string;
+}

@@ -1,10 +1,11 @@
 import { RawAxiosRequestHeaders } from 'axios';
 import { IPaginationParams } from 'jfw-js';
 import {
-  IById,
+  IByCode,
   IClassUser,
   ICourse,
   ICourseUser,
+  ICourseUserMutatePath,
   ICourseUserMutatePayload,
   IDashboardCourse,
   IEditCourseRolePath,
@@ -62,11 +63,12 @@ export const editCourseUserAPI = async (
 };
 
 export const deleteCourseUserAPI = async (
-  params: ICourseUserMutatePayload,
+  path: ICourseUserMutatePath,
   userHeaders?: RawAxiosRequestHeaders,
 ) => {
-  const url = `${REST_USER}`;
-  const response = await remove(url, userHeaders, { params });
+  const { userId, courseCode } = path;
+  const url = `${REST}/${courseCode}/users/${userId}`;
+  const response = await remove(url, userHeaders);
 
   return response.data;
 };
@@ -101,12 +103,12 @@ export const getCoursesOfUserAPI = async (
   };
 };
 
-export const getCourseByIdAPI = async (
-  path: IById,
+export const getCourseByCodeAPI = async (
+  path: IByCode,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<ICourse> => {
-  const { id } = path;
-  const url = `${REST}/${id}`;
+  const { code } = path;
+  const url = `${REST}/${code}`;
 
   const response = await get(url, null, userHeaders);
 
@@ -114,12 +116,12 @@ export const getCourseByIdAPI = async (
 };
 
 export const getListUsersOfCourseAPI = async (
-  path: IById,
+  path: IByCode,
   params: IPaginationParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<ICourseUser>> => {
-  const { id } = path;
-  const url = `${REST_USER}/${id}/${LEARNER}`;
+  const { code } = path;
+  const url = `${REST_USER}/${code}/${LEARNER}`;
 
   const response = await get(url, { params }, userHeaders);
 
