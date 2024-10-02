@@ -35,6 +35,7 @@ export const QUESTION_TYPE = {
   embedQuestionsEmptyBlank: 'EMBED-QUESTIONS-EMPTY-BLANK',
   fileUpload: 'FILE-UPLOAD',
   linearScale: 'LINEAR-SCALE',
+  multipleChoice: 'MULTIPLE-CHOICE',
   multipleChoiceGrid: 'MULTIPLE-CHOICE-GRID',
   paragraph: 'PARAGRAPH',
   reOrderParagraph: 'REORDER-PARAGRAPH',

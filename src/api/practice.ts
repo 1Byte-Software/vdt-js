@@ -77,8 +77,8 @@ export const getTestedList = async (
   path: IGetTestedListPath,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<ITested>> => {
-  const { lessonId, userId } = path;
-  const url = `${REST_TESTED}/${lessonId}/${userId}`;
+  const { lessonId } = path;
+  const url = `${REST_TESTED}/${lessonId}`;
   const response = await get(url, null, userHeaders);
   const { contents, ...rest } = response.data;
 
