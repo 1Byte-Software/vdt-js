@@ -1,9 +1,9 @@
 export const STATUS_COURSE_USER = {
-  banned: 'BANNED',
-  leave: 'LEAVE',
-  deny: 'DENY',
-  waiting: 'WAITING',
-  joined: 'JOINED',
+  banned: 'Banned',
+  leave: 'Leave',
+  deny: 'Deny',
+  waiting: 'Waiting',
+  joined: 'Joined',
   unJoin: null,
 };
 

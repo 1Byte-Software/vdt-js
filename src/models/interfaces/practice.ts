@@ -7,6 +7,7 @@ export interface IGetTestedCountPath {
 }
 export interface IGetTestedListPath {
   lessonId: IdType;
+  userId: JfwIdType;
 }
 export interface ITested {
   description: string;

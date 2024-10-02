@@ -43,9 +43,13 @@ export interface IDashboardCourse {
 }
 export interface ICourseUserMutatePayload {
   userId: JfwIdType;
-  courseId: number;
+  courseCode: string;
   approvedBy?: JfwIdType;
   status?: string;
+}
+export interface ICourseUserMutatePath {
+  userId: JfwIdType;
+  courseCode: string;
 }
 export interface IGetListCoursesParams {
   currentDate?: string;
@@ -63,12 +67,14 @@ export interface IGetCoursesOfUser {
   pageNumber: number;
 }
 export interface ICourseUser extends IUser {
-  status: string;
+  userStatus: string;
   dateOfJoin: DateType;
+  user: IUser;
 }
 export interface IClassUser extends IUser {
-  status: string;
   classId: number;
+  userStatus: string;
+  user: IUser;
 }
 export interface IEditCourseRolePath {
   courseId: IdType;
