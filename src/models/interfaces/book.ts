@@ -1,4 +1,4 @@
-import { DateType, IdType as JfwIdType } from 'jfw-js';
+import { DateType, IPaginationParams, IdType as JfwIdType } from 'jfw-js';
 import { IdType, Nullable } from '../types';
 import { IAnswer } from './answer';
 import { IChapter } from './chapter';
@@ -57,6 +57,7 @@ export interface ICreateBookExamPath {
 export interface IGetListBooksExamPath {
   userId: JfwIdType;
 }
+export interface IGetListBooksExamParams extends IPaginationParams {}
 export interface IBookExam {
   id: IdType;
   book: IBook;

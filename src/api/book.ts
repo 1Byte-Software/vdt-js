@@ -18,6 +18,7 @@ import {
   IFinishMockTestPath,
   IGetBookByIdPath,
   IGetContinueExamParams,
+  IGetListBooksExamParams,
   IGetListBooksExamPath,
   IGetListBooksParams,
   IGetScoreReportPath,
@@ -79,12 +80,13 @@ export const getBookByIdAPI = async (
 
 export const getListBooksExamAPI = async (
   path: IGetListBooksExamPath,
+  params: IGetListBooksExamParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<IBookExam>> => {
   const { userId } = path;
   const url = `${REST_BOOK_EXAM}/${userId}`;
 
-  const response = await get(url, null, userHeaders);
+  const response = await get(url, { params }, userHeaders);
 
   return response.data;
 };
