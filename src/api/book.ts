@@ -80,7 +80,7 @@ export const getBookByIdAPI = async (
 export const getListBooksExamAPI = async (
   path: IGetListBooksExamPath,
   userHeaders?: RawAxiosRequestHeaders,
-): Promise<IBookExam[]> => {
+): Promise<IListResponseVDT<IBookExam>> => {
   const { userId } = path;
   const url = `${REST_BOOK_EXAM}/${userId}`;
 
