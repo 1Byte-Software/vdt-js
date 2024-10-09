@@ -50,7 +50,7 @@ export const DROP_TYPE = {
 };
 
 export const TYPE_CATEGORY = {
-  menu: 'MENU',
+  menu: 'Menu',
 };
 
 export const PRIORITY_CODE = {

@@ -1,5 +1,5 @@
 import { RawAxiosRequestHeaders } from 'axios';
-import { IPaginationParams } from 'jfw-js';
+import { IPaginationParams, IResponse, IResponseNotPermission } from 'jfw-js';
 import {
   IAddChaptersIntoBookParams,
   IBook,
@@ -94,7 +94,7 @@ export const getListBooksExamAPI = async (
 export const createBookExamAPI = async (
   path: ICreateBookExamPath,
   userHeaders?: RawAxiosRequestHeaders,
-) => {
+): Promise<IResponse<IBookExam> | IResponseNotPermission> => {
   const { userId, bookId } = path;
   const url = `${REST_BOOK_EXAM}/${userId}/${bookId}`;
 
@@ -196,7 +196,7 @@ export const getResultOverallAPI = async (
 export const getScoreReportAPI = async (
   path: IGetScoreReportPath,
   userHeaders?: RawAxiosRequestHeaders,
-): Promise<IScoreReport> => {
+): Promise<IScoreReport[]> => {
   const { bookExamId } = path;
   const url = `${REST_BOOK_EXAM}/${bookExamId}/${BOOK_EXAM_REPORT}`;
 

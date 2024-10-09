@@ -126,14 +126,11 @@ export interface IGetScoreReportPath {
   bookExamId: IdType;
 }
 export interface IScoreReport {
-  value: string;
-}
-export interface IScoreFullData {
   actualListening: number | null;
   actualReading: number | null;
   actualSpeaking: number | null;
   actualWriting: number | null;
-  codeCategory: string;
+  categoryCode: string;
   correctRateListening: number | null;
   correctRateReading: number | null;
   correctRateSpeaking: number | null;
@@ -151,7 +148,11 @@ export interface IScoreFullData {
   scoreReading: number | null;
   scoreSpeaking: number | null;
   scoreWriting: number | null;
-  skillId: IdType;
+  skillName: string | null;
+  contributeListening: string | null;
+  contributeReading: string | null;
+  contributeSpeaking: string | null;
+  contributeWriting: string | null;
 }
 export interface ICheckCanStartParams {
   userId: IdType;
