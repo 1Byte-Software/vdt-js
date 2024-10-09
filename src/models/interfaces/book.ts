@@ -1,4 +1,4 @@
-import { DateType, IdType as JfwIdType } from 'jfw-js';
+import { DateType, IPaginationParams, IdType as JfwIdType } from 'jfw-js';
 import { IdType, Nullable } from '../types';
 import { IAnswer } from './answer';
 import { IChapter } from './chapter';
@@ -57,6 +57,7 @@ export interface ICreateBookExamPath {
 export interface IGetListBooksExamPath {
   userId: JfwIdType;
 }
+export interface IGetListBooksExamParams extends IPaginationParams {}
 export interface IBookExam {
   id: IdType;
   book: IBook;
@@ -125,14 +126,11 @@ export interface IGetScoreReportPath {
   bookExamId: IdType;
 }
 export interface IScoreReport {
-  value: string;
-}
-export interface IScoreFullData {
   actualListening: number | null;
   actualReading: number | null;
   actualSpeaking: number | null;
   actualWriting: number | null;
-  codeCategory: string;
+  categoryCode: string;
   correctRateListening: number | null;
   correctRateReading: number | null;
   correctRateSpeaking: number | null;
@@ -150,7 +148,11 @@ export interface IScoreFullData {
   scoreReading: number | null;
   scoreSpeaking: number | null;
   scoreWriting: number | null;
-  skillId: IdType;
+  skillName: string | null;
+  contributeListening: string | null;
+  contributeReading: string | null;
+  contributeSpeaking: string | null;
+  contributeWriting: string | null;
 }
 export interface ICheckCanStartParams {
   userId: IdType;

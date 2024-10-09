@@ -44,13 +44,8 @@ export const QUESTION_TYPE = {
   videoFileUpload: 'VIDEO-FILE-UPLOAD',
 };
 
-export const DROP_TYPE = {
-  sortOrder: 'SORT_ORDER',
-  match: 'MATCH',
-};
-
 export const TYPE_CATEGORY = {
-  menu: 'MENU',
+  menu: 'Menu',
 };
 
 export const PRIORITY_CODE = {
