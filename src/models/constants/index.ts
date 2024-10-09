@@ -7,7 +7,6 @@ export * from './config';
 export * from './course';
 export * from './dateTime';
 export * from './feature';
-export * from './issue';
 export * from './lesson';
 export * from './mockTest';
 export * from './organization';
