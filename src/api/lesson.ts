@@ -6,7 +6,7 @@ import {
   IdType,
   IGetLessonDetailByZOrderParams,
   IGetLessonDetailPath,
-  IGetListQuestionsParams,
+  IGetListLessonsParams,
   ILesson,
   ILessonForm,
   IListResponseVDT,
@@ -28,7 +28,7 @@ const UPDATE_LESSON_CATEGORY_PATH = `${REST_QUESTION}/category/{categoryId}/{les
 /* ========================================= */
 
 export const getListLessonsAPI = async (
-  params: IGetListQuestionsParams,
+  params: IGetListLessonsParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<ILesson>> => {
   const url = `${REST}/${FILTER}`;
