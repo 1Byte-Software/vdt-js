@@ -24,25 +24,25 @@ export const MARK_FILTER = {
   noMark: 'NO_MARK',
 };
 
-export const QUESTION_TYPE = {
-  audioFileUpload: 'AUDIO-FILE-UPLOAD',
-  checkboxes: 'CHECKBOXES',
-  date: 'DATE',
-  dropDown: 'DROPDOWN',
-  embedHighlightIncorrect: 'EMBED-HIGHLIGHT-INCORRECT',
-  embedQuestionsDragDrop: 'EMBED-QUESTIONS-DRAGDROP',
-  embedQuestionsDropbox: 'EMBED-QUESTIONS-DROPBOX',
-  embedQuestionsEmptyBlank: 'EMBED-QUESTIONS-EMPTY-BLANK',
-  fileUpload: 'FILE-UPLOAD',
-  linearScale: 'LINEAR-SCALE',
-  multipleChoice: 'MULTIPLE-CHOICE',
-  multipleChoiceGrid: 'MULTIPLE-CHOICE-GRID',
-  paragraph: 'PARAGRAPH',
-  reOrderParagraph: 'REORDER-PARAGRAPH',
-  shortAnswer: 'SHORT-ANSWER',
-  singleChoice: 'SINGLE-CHOICE',
-  videoFileUpload: 'VIDEO-FILE-UPLOAD',
-};
+export enum QUESTION_TYPE {
+  audioFileUpload = 'AUDIO-FILE-UPLOAD',
+  checkboxes = 'CHECKBOXES',
+  date = 'DATE',
+  dropDown = 'DROPDOWN',
+  embedHighlightIncorrect = 'EMBED-HIGHLIGHT-INCORRECT',
+  embedQuestionsDragDrop = 'EMBED-QUESTIONS-DRAGDROP',
+  embedQuestionsDropbox = 'EMBED-QUESTIONS-DROPBOX',
+  embedQuestionsEmptyBlank = 'EMBED-QUESTIONS-EMPTY-BLANK',
+  fileUpload = 'FILE-UPLOAD',
+  linearScale = 'LINEAR-SCALE',
+  multipleChoice = 'MULTIPLE-CHOICE',
+  multipleChoiceGrid = 'MULTIPLE-CHOICE-GRID',
+  paragraph = 'PARAGRAPH',
+  reOrderParagraph = 'REORDER-PARAGRAPH',
+  shortAnswer = 'SHORT-ANSWER',
+  singleChoice = 'SINGLE-CHOICE',
+  videoFileUpload = 'VIDEO-FILE-UPLOAD',
+}
 
 export const TYPE_CATEGORY = {
   menu: 'Menu',
