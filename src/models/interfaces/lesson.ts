@@ -1,6 +1,7 @@
 import { DateType, IMedia, IdType as JfwIdType } from 'jfw-js';
 import { IdType } from '../types';
 import { ICategory } from './category';
+import { QUESTION_TYPE } from '../constants';
 
 export interface ILessonType {
   code: string;
@@ -21,7 +22,7 @@ export interface ILessonSolution {
 export interface ILessonOption {
   code: string;
   description: string | null;
-  id: IdType;
+  id?: IdType | null;
   name: string;
   zOrder?: number;
 }
@@ -38,13 +39,13 @@ export interface IInnerLesson {
   code: string;
   description: string | null;
   explanation: string;
-  id: IdType;
+  id?: IdType | null;
   name: string;
   zOrder: number;
   questionOptions: ILessonOption[];
   questionSolutions: ILessonSolution[];
   questionType?: ILessonType;
-  userResponseType: string;
+  userResponseType: QUESTION_TYPE;
   medias?: IMedia[];
 }
 export interface ILessonGroup {
@@ -59,7 +60,7 @@ export interface ILessonGroup {
   modifiedBy?: number;
   modifiedDate?: string;
   questions: IInnerLesson[];
-  title: string | null;
+  title?: string | null;
   mediaSegmentFrom?: '';
   zOrder?: number;
 }
@@ -91,7 +92,7 @@ export interface ILesson {
   questionGroups: ILessonGroup[];
   shared: boolean;
   source?: ISource;
-  status: string;
+  status: LESSON_STATUS;
   statusValue: string;
   title: string;
   userIdAsAppover?: JfwIdType;
@@ -108,13 +109,76 @@ export interface ILesson {
   privateNotes: string;
 }
 
+export interface ILessonFilter
+  extends Partial<
+    Omit<
+      ILesson,
+      | 'id'
+      | 'createdDate'
+      | 'modifiedDate'
+      | 'categories'
+      | 'medias'
+      | 'translations'
+      | 'lessonsSeeAlso'
+      | 'lessonOriginalSourceLink'
+      | 'lessonOriginalSourceMediaLink'
+      | 'userIdAsAppover'
+    >
+  > {
+  ids?: string;
+  categoryIds?: string;
+  groupCategoryCode?: string;
+  // UserId?: number;
+  // LanguageCode?: string;
+  // Title?: string;
+  // Content?: string;
+  // Description?: string;
+  // Transcript?: string;
+  // PrivateNotes?: string;
+  // PreparationTime?: number;
+  // AllowSkipPreparationTime?: boolean;
+  // Duration?: number;
+  // AllowSkipDuration?: boolean;
+  // AllowSkipAnswer?: boolean;
+  // SoundBeep?: boolean;
+  // Shared?: boolean;
+  // SourceId?: number;
+  // ReviewedBy?: number;
+  // ApprovedBy?: number;
+  // IsSystem?: boolean;
+  // Status?: string;
+  // ZOrder?: number;
+  // IsFree?: boolean;
+  // IsPracticed?: boolean;
+  // Keyword?: string;
+  // Uncategorized?: boolean;
+  // BothPracticed?: boolean;
+  // ModifiedBy?: string;
+  // CreatedBy?: string;
+  // CreatedDateFilter?: string;
+  // ParamPageNumber?: string;
+  // ParamePageSize?: string;
+  // ParamSortDataField?: string;
+  // ParamSortDirection?: string;
+  // PageNumber?: string;
+  // PageSize?: string;
+  // SortDataField?: string;
+  // SortOrder?: string;
+}
+
+export enum LESSON_STATUS {
+  DRAFT = 'Draft',
+  ACTIVE = 'Active',
+  INACTIVE = 'Inactive',
+}
+
 export interface ILessonForm {
   id?: IdType;
 
   soundBeep: boolean;
 
-  categoryId?: IdType;
-  // categories?: ICategory[];
+  // categoryId?: IdType;
+  categories?: ICategory[];
 
   content?: string;
   duration: number;
@@ -130,11 +194,11 @@ export interface ILessonForm {
   questionGroups: ILessonGroup[];
   // shared: boolean;
   // source?: ISource;
-  status: string;
+  status: LESSON_STATUS;
   // statusValue: string;
   title?: string;
   // userIdAsAppover?: IdType;
-  zorder: number;
+  zOrder?: number | null;
   allowSkipAnswer: boolean;
   allowSkipPreparationTime: boolean;
   allowSkipDuration: boolean;
@@ -147,7 +211,7 @@ export interface ILessonForm {
   privateNotes?: string;
 }
 
-export interface IGetListQuestionsParams {
+export interface IGetListLessonsParams {
   categoryIds?: string;
   title?: string;
   content?: string;
