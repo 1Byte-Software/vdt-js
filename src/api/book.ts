@@ -1,5 +1,10 @@
 import { RawAxiosRequestHeaders } from 'axios';
-import { IPaginationParams, IResponse, IResponseNotPermission } from 'jfw-js';
+import {
+  IPaginationParams,
+  IResponse,
+  IResponseNotPermission,
+  IdType as JfwIdType,
+} from 'jfw-js';
 import {
   IAddChaptersIntoBookParams,
   IBook,
@@ -79,11 +84,10 @@ export const getBookByIdAPI = async (
 };
 
 export const getListBooksExamAPI = async (
-  path: IGetListBooksExamPath,
-  params: IGetListBooksExamParams,
+  userId: JfwIdType,
+  params?: IGetListBooksExamParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<IBookExam>> => {
-  const { userId } = path;
   const url = `${REST_BOOK_EXAM}/${userId}`;
 
   const response = await get(url, { params }, userHeaders);
@@ -207,7 +211,7 @@ export const getScoreReportAPI = async (
 
 export const getUserResultAPI = async (
   path: IGetUserResultPath,
-  params: IPaginationParams,
+  params?: IPaginationParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<IUserResult>> => {
   const { bookExamRecordId, userId, categoryId } = path;
@@ -234,11 +238,11 @@ export const checkCanStartAPI = async (
   return response.data;
 };
 
+// #DUPLICATED: Duplicated with getLessonsOfChapterAPI
 export const getListQuestionsOfChapterAPI = async (
-  path: IById,
+  id: IdType,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<ILesson[]> => {
-  const { id } = path;
   const url = `${REST_CHAPTER}/${id}/${LESSON}`;
 
   const response = await get(url, null, userHeaders);
@@ -268,11 +272,11 @@ export const createBookAPI = async (
 };
 
 export const getChaptersOfBookAPI = async (
-  path: IById,
+  id: IdType,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IChapter[]> => {
   const url = formatStringByObj(REST_CHAPTERS_OF_BOOK, {
-    id: path.id,
+    id,
   });
 
   const response = await get(url, null, userHeaders);
