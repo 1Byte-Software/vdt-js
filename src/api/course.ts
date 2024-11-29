@@ -8,6 +8,7 @@ import {
   ICourseUserMutatePath,
   ICourseUserMutatePayload,
   IDashboardCourse,
+  IdType,
   IEditCourseRolePath,
   IEditCourseRolePayload,
   IGetCoursesOfUser,
@@ -74,7 +75,7 @@ export const deleteCourseUserAPI = async (
 };
 
 export const getListCoursesAPI = async (
-  params: IGetListCoursesParams,
+  params?: IGetListCoursesParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<ICourse>> => {
   const url = `${REST}/${SEARCH}`;
@@ -89,7 +90,7 @@ export const getListCoursesAPI = async (
 };
 
 export const getCoursesOfUserAPI = async (
-  params: IGetCoursesOfUser,
+  params?: IGetCoursesOfUser,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<ICourse>> => {
   const url = `${REST_USER}/${COURSE}`;
@@ -104,11 +105,10 @@ export const getCoursesOfUserAPI = async (
 };
 
 export const getCourseByCodeAPI = async (
-  path: IByCode,
+  id: IdType,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<ICourse> => {
-  const { code } = path;
-  const url = `${REST}/${code}`;
+  const url = `${REST}/${id}`;
 
   const response = await get(url, null, userHeaders);
 
@@ -116,12 +116,11 @@ export const getCourseByCodeAPI = async (
 };
 
 export const getListUsersOfCourseAPI = async (
-  path: IByCode,
-  params: IPaginationParams,
+  id: IdType,
+  params?: IPaginationParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<ICourseUser>> => {
-  const { code } = path;
-  const url = `${REST_USER}/${code}/${LEARNER}`;
+  const url = `${REST_USER}/${id}/${LEARNER}`;
 
   const response = await get(url, { params }, userHeaders);
 
@@ -146,7 +145,7 @@ export const editCourseRoleAPI = async (
 };
 
 export const getUsersJoinClassAPI = async (
-  params: IGetUsersJoinClassParams,
+  params?: IGetUsersJoinClassParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<IClassUser>> => {
   const url = `${REST_JOIN}`;
@@ -156,7 +155,7 @@ export const getUsersJoinClassAPI = async (
 };
 
 export const getTimetableAPI = async (
-  params: IGetTimetableParams,
+  params?: IGetTimetableParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<ITimetable> => {
   const url = `${REST_CLASS}`;

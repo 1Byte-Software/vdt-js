@@ -7,10 +7,9 @@ import {
   IDeleteChapterPath,
   IdType,
   IEditLessonOfChapterParams,
-  IGetChapterByIdPath,
   IGetListChaptersParams,
   ILesson,
-  IListResponseVDT,
+  IListResponseVDT
 } from '../models';
 import { get, post, put, remove } from '../utils/axiosHelper';
 import { formatStringByObj } from '../utils/common';
@@ -36,10 +35,9 @@ export const getListChaptersAPI = async (
 };
 
 export const getChapterByIdAPI = async (
-  path: IGetChapterByIdPath,
+  chapterId: IdType,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IChapter> => {
-  const { chapterId } = path;
   const url = `${REST_CHAPTER}/${chapterId}`;
 
   const response = await get(url, null, userHeaders);
