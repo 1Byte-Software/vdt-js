@@ -27,7 +27,7 @@ export const getListMenuCategoriesAPI = async (
 };
 
 export const getListCategoriesAPI = async (
-  params: IGetListCategoriesParams,
+  params?: IGetListCategoriesParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<ICategory[]> => {
   const url = `${REST_CATEGORY}`;

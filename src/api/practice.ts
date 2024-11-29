@@ -258,6 +258,7 @@ export const getListSystemScoreAPI = async (
   return response.data;
 };
 
+// #FIX_ME: What is the function name mean ?
 export const getComponentScoreByCodeAPI = async (
   path: IGetComponentScoreByCodePath,
   userHeaders?: RawAxiosRequestHeaders,

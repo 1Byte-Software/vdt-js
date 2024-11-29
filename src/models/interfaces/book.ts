@@ -47,9 +47,6 @@ export interface IDeviceTest {
   label?: string;
   text: string;
 }
-export interface IGetChapterByIdPath {
-  chapterId: IdType;
-}
 export interface ICreateBookExamPath {
   userId: JfwIdType;
   bookId: IdType;
