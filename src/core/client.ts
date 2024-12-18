@@ -14,4 +14,8 @@ export class VdtClient {
   setHeaders(headers: RawAxiosRequestHeaders) {
     _AppService.setUserHeaders(headers);
   }
+
+  getHeader(): RawAxiosRequestHeaders {
+    return _AppService.getUserHeaders$().value;
+  }
 }

@@ -3,8 +3,8 @@ export const PRODUCT_TYPE = {
   ielts: 'IELTS',
 };
 
-export const UI_TYPE = {
-  practice: '/practice',
-  admin: '/admin',
-  mockTest: '/mock-test',
-};
+export enum UI_TYPE {
+  practice = '/practice',
+  admin = '/admin',
+  mockTest = '/mock-test',
+}

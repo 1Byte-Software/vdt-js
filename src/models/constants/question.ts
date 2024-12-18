@@ -25,23 +25,35 @@ export const MARK_FILTER = {
 };
 
 export enum QUESTION_TYPE {
-  audioFileUpload = 'AUDIO-FILE-UPLOAD',
-  checkboxes = 'CHECKBOXES',
-  date = 'DATE',
+  shortAnswer = 'SHORT-ANSWER',
+  paragraph = 'PARAGRAPH',
+
+  poll = 'POLL',
+  multipleChoice = 'MULTIPLE-CHOICE',
+  singleChoice = 'SINGLE-CHOICE',
   dropDown = 'DROPDOWN',
+
+  fileUpload = 'FILE-UPLOAD',
+
+  date = 'DATE',
+  time = 'TIME',
+
   embedHighlightIncorrect = 'EMBED-HIGHLIGHT-INCORRECT',
   embedQuestionsDragDrop = 'EMBED-QUESTIONS-DRAGDROP',
   embedQuestionsDropbox = 'EMBED-QUESTIONS-DROPBOX',
   embedQuestionsEmptyBlank = 'EMBED-QUESTIONS-EMPTY-BLANK',
-  fileUpload = 'FILE-UPLOAD',
+
   linearScale = 'LINEAR-SCALE',
-  multipleChoice = 'MULTIPLE-CHOICE',
+  singleChoiceGrid = 'SINGLE-CHOICE-GRID',
   multipleChoiceGrid = 'MULTIPLE-CHOICE-GRID',
-  paragraph = 'PARAGRAPH',
   reOrderParagraph = 'REORDER-PARAGRAPH',
-  shortAnswer = 'SHORT-ANSWER',
-  singleChoice = 'SINGLE-CHOICE',
-  videoFileUpload = 'VIDEO-FILE-UPLOAD',
+  hotSpot = 'HOT-SPOT',
+  match = 'MATCH',
+  labeling = 'LABELING',
+  categorize = 'CATEGORIZE',
+  graphing = 'GRAPHING',
+  mathResponse = 'MATH-RESPONSE',
+  draw = 'DRAW',
 }
 
 export const TYPE_CATEGORY = {

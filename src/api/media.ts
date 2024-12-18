@@ -9,7 +9,7 @@ const REST = 'medias';
 const UPDATE_MEDIA_PATH = `${REST}/save-list?&type={type}&refId={lessonId}`;
 /* ========================================= End path =========================================  */
 
-export const updateMedia = async (
+export const updateMediaAPI = async (
   medias: IMedia[],
   type: string,
   lessonId: IdType,

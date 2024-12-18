@@ -2,6 +2,7 @@ import { DateType, IMedia, IdType as JfwIdType } from 'jfw-js';
 import { IdType } from '../types';
 import { ICategory } from './category';
 import { QUESTION_TYPE } from '../constants';
+import { IBaseObject } from './common';
 
 export interface ILessonType {
   code: string;
@@ -56,6 +57,7 @@ export interface ILessonGroup {
   id: IdType;
   lessonId?: IdType;
   isEmbeddedQuestions: boolean;
+  userResponseTypeInternal?: QUESTION_TYPE;
   isShuffle: boolean;
   modifiedBy?: number;
   modifiedDate?: string;
@@ -178,7 +180,7 @@ export interface ILessonForm {
   soundBeep: boolean;
 
   // categoryId?: IdType;
-  categories?: ICategory[];
+  categories: ICategory[];
 
   content?: string;
   duration: number;
@@ -209,6 +211,11 @@ export interface ILessonForm {
   description?: string;
   isSystem: boolean;
   privateNotes?: string;
+}
+
+export interface ILessonVocab extends IBaseObject {
+  lessonId: IdType;
+  vocabId: IdType;
 }
 
 export interface IGetListLessonsParams {
@@ -265,3 +272,12 @@ export interface IAddSeeAlsoPayload {
   description?: string;
   medias?: IMedia[];
 }
+
+export interface IGetLessonVocabParams {
+  id: IdType;
+}
+
+export interface ICreateLessonVocabParams extends IGetLessonVocabParams {
+  vocabIds: IdType[];
+}
+export interface IDeleteLessonVocabParams extends ICreateLessonVocabParams {}
