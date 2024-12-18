@@ -1,7 +1,7 @@
 {
   "name": "@vardytests/vdt-js",
   "description": "The Javascript package for Vardytests",
-  "version": "3.10.28",
+  "version": "3.11.17-1",
   "author": "1byte devteam",
   "license": "ISC",
   "bugs": {
@@ -20,6 +20,7 @@
     "test": "yarn build && yalc publish --push --no-scripts"
   },
   "dependencies": {
+    "1byte-react-design": "file:.yalc/1byte-react-design",
     "axios": "^1.7.7",
     "jfw-js": "^3.8.2-4.22",
     "query-string": "^9.1.0",
