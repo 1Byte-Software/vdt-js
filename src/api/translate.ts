@@ -1,5 +1,5 @@
 import { axiosInstanceAI } from '../config/axios/axiosClient';
-import { ITranslateParams } from '../models';
+import { ITranslateParams } from '@/models';
 
 const REST = 'translation';
 

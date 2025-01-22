@@ -1,5 +1,6 @@
 import { DateType, IdType as JfwIdType } from 'jfw-js';
 import { IdType } from '../types';
+import { IBaseObject } from './common';
 
 export interface ILicense {
   name: string;
@@ -54,12 +55,7 @@ export interface IGetVocabParams {
   vocab: string;
   pageSize: number;
 }
-export interface IVocab {
-  modifiedDate: DateType;
-  modifiedBy: JfwIdType;
-  createdDate: DateType;
-  createdBy: JfwIdType;
-  id: IdType;
+export interface IVocab extends IBaseObject {
   vocab: string;
   languageCode: string;
   ipa: string;

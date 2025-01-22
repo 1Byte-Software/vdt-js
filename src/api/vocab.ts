@@ -9,8 +9,8 @@ import {
   IUpdateVocabUserPath,
   IVocab,
   IVocabUser,
-} from '../models';
-import { get, post, put, remove } from '../utils/axiosHelper';
+} from '@/models';
+import { get, post, put, remove } from '@/utils/axiosHelper';
 
 const REST = 'vocabs';
 const REST_VOCAB_USER = 'vocab-users';

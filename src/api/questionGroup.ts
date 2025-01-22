@@ -1,7 +1,7 @@
 import { RawAxiosRequestHeaders } from 'axios';
-import { IdType, ILessonGroup } from '../models';
-import { post, put, remove } from '../utils/axiosHelper';
-import { formatStringByObj } from '../utils/common';
+import { IdType, IQuestionGroup } from '@/models';
+import { post, put, remove } from '@/utils/axiosHelper';
+import { formatStringByObj } from '@/utils/common';
 
 /* ========================================= */
 const OBJECT = 'question-groups';
@@ -13,9 +13,9 @@ const DELETE_QUESTION_GROUP_PATH = `${OBJECT}/{id}`;
 
 export const createQuestionGroupAPI = async (
   lessonId: IdType,
-  questionGroupData: ILessonGroup,
+  questionGroupData: IQuestionGroup,
   userHeaders?: RawAxiosRequestHeaders,
-): Promise<ILessonGroup> => {
+): Promise<IQuestionGroup> => {
   const url = formatStringByObj(CREATE_QUESTION_GROUP_PATH, { lessonId });
   const response = await post(url, questionGroupData, null, userHeaders);
 
@@ -24,9 +24,9 @@ export const createQuestionGroupAPI = async (
 
 export const updateQuestionGroupAPI = async (
   id: IdType,
-  questionGroupData: ILessonGroup,
+  questionGroupData: IQuestionGroup,
   userHeaders?: RawAxiosRequestHeaders,
-): Promise<ILessonGroup> => {
+): Promise<IQuestionGroup> => {
   const url = formatStringByObj(UPDATE_QUESTION_GROUP_PATH, { id });
   const response = await put(url, questionGroupData, null, userHeaders);
 
@@ -36,7 +36,7 @@ export const updateQuestionGroupAPI = async (
 export const deleteQuestionGroupAPI = async (
   id: IdType,
   userHeaders?: RawAxiosRequestHeaders,
-): Promise<ILessonGroup> => {
+): Promise<IQuestionGroup> => {
   const url = formatStringByObj(DELETE_QUESTION_GROUP_PATH, { id });
   const response = await remove(url, userHeaders);
 

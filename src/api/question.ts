@@ -3,11 +3,12 @@ import {
   IDeleteOptionByIdParams,
   IDeleteSolutionByIdParams,
   IdType,
-  IInnerLesson,
-  ILessonGroup,
-} from '../models';
-import { post, put, remove } from '../utils/axiosHelper';
-import { formatStringByObj } from '../utils/common';
+  IQuestion,
+  IQuestionGroup,
+} from '@/models';
+import { post, put, remove } from '@/utils/axiosHelper';
+import { formatStringByObj } from '@/utils/common';
+
 
 /* ========================================= */
 const OBJECT = 'questions';
@@ -23,9 +24,9 @@ const DELETE_SOLUTION_BY_ID = `${OBJECT}/{questionId}/solutions/{solutionId}`;
 
 export const createQuestionByQuestionGroupAPI = async (
   questionGroupId: IdType,
-  questions: IInnerLesson[],
+  questions: IQuestion[],
   userHeaders?: RawAxiosRequestHeaders,
-): Promise<ILessonGroup> => {
+): Promise<IQuestionGroup> => {
   const url = formatStringByObj(CREATE_QUESTION_BY_QUESTION_GROUP_PATH, {
     questionGroupId,
   });
@@ -36,9 +37,9 @@ export const createQuestionByQuestionGroupAPI = async (
 
 export const updateQuestionByIdAPI = async (
   id: IdType,
-  question: IInnerLesson,
+  question: IQuestion,
   userHeaders?: RawAxiosRequestHeaders,
-): Promise<ILessonGroup> => {
+): Promise<IQuestionGroup> => {
   const url = formatStringByObj(UPDATE_QUESTION_BY_ID, { id });
   const response = await put(url, question, null, userHeaders);
 

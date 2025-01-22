@@ -1,13 +1,12 @@
-import { DateType, IdType as JfwIdType, IUser } from 'jfw-js';
+import { DateType, IUser, IdType as JfwIdType } from 'jfw-js';
 import { DAY_OF_WEEK } from '../constants';
 import { IdType } from '../types';
+import { IBaseObject } from './common';
 
-export interface ICourse {
+export interface ICourse extends IBaseObject {
   categoryCode: string;
   classDtoList: string[];
   code: string;
-  createdBy: string;
-  createdDate: string;
   description: string;
   endDate: string;
   endTime: string | null;
@@ -18,8 +17,6 @@ export interface ICourse {
   isOffline: boolean;
   isPrivate: boolean;
   languageCode: string;
-  modifiedBy: string;
-  modifiedDate: string;
   name: string;
   scheduleType: string;
   scheduleValue: string;

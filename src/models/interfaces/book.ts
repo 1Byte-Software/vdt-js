@@ -2,6 +2,7 @@ import { DateType, IPaginationParams, IdType as JfwIdType } from 'jfw-js';
 import { IdType, Nullable } from '../types';
 import { IAnswer } from './answer';
 import { IChapter } from './chapter';
+import { IBaseObject } from './common';
 
 export interface IGetListBooksParams {
   name?: string;
@@ -12,8 +13,7 @@ export interface IGetListBooksParams {
   type?: string;
   categoryId?: IdType;
 }
-export interface IBook {
-  id: IdType;
+export interface IBook extends IBaseObject {
   type?: Nullable<string>;
   isFree: boolean;
   name: string;
@@ -22,10 +22,6 @@ export interface IBook {
   code: string;
   status: string;
   statusValue: string;
-  createdBy?: IdType;
-  createdDate: DateType;
-  modifiedBy?: IdType;
-  modifiedDate: DateType;
   zOrder?: number;
 }
 

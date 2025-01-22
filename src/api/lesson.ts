@@ -1,20 +1,31 @@
-import { RawAxiosRequestHeaders } from 'axios';
+import {
+  Axios,
+  AxiosError,
+  AxiosResponse,
+  RawAxiosRequestHeaders,
+} from 'axios';
+import { IErrorNotPermission, IResponseNotPermission } from 'jfw-js';
 import {
   IAddSeeAlsoPath,
   IAddSeeAlsoPayload,
+  ICreateLessonVocabParams,
+  IDeleteLessonVocabParams,
   IDownloadLessonParams,
   IdType,
+  IError,
   IGetLessonDetailByZOrderParams,
   IGetLessonDetailPath,
+  IGetLessonsFilterParams,
+  IGetLessonVocabParams,
   IGetListLessonsParams,
   ILesson,
   ILessonForm,
+  ILessonVocab,
   IListResponseVDT,
   IResponse,
-} from '../models';
-import { get, post, put, remove } from '../utils/axiosHelper';
-import { IResponseNotPermission } from 'jfw-js';
-import { formatStringByObj } from '../utils/common';
+} from '@/models';
+import { get, post, put, remove } from '@/utils/axiosHelper';
+import { formatStringByObj } from '@/utils/common';
 
 const REST = 'lessons';
 const FILTER = 'filter';
@@ -25,10 +36,33 @@ const REST_QUESTION = 'lessons';
 const REST_A_QUESTION = 'lesson';
 const UPDATE_LESSON_CATEGORY_PATH = `${REST_QUESTION}/category/{categoryId}/{lessonId}`;
 
+const REST_VOCAB = 'vocabs';
+const GET_LESSON_VOCAB_PATH = `${REST}/{id}/${REST_VOCAB}`;
+const CREATE_LESSON_VOCAB_PATH = `${REST}/{id}/${REST_VOCAB}`;
+const DELETE_LESSON_VOCAB_PATH = `${REST}/{id}/${REST_VOCAB}`;
+
 /* ========================================= */
 
+/**
+ * @deprecated
+ * Change to getLessonsFilterAPI instead
+ */
 export const getListLessonsAPI = async (
   params: IGetListLessonsParams,
+  userHeaders?: RawAxiosRequestHeaders,
+): Promise<IListResponseVDT<ILesson>> => {
+  const url = `${REST}/${FILTER}`;
+  const response = await get(url, { params }, userHeaders);
+  const { contents, ...rest } = response.data;
+
+  return {
+    contents,
+    pagination: rest,
+  };
+};
+
+export const getLessonsFilterAPI = async (
+  params: IGetLessonsFilterParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<ILesson>> => {
   const url = `${REST}/${FILTER}`;
@@ -52,14 +86,37 @@ export const getLessonDetailAPI = async (
   return response.data;
 };
 
+// export const getLessonDetailByZOrderAPI = async (
+//   params: IGetLessonDetailByZOrderParams,
+//   userHeaders?: RawAxiosRequestHeaders,
+// ): Promise<IResponse<ILesson> | IResponseNotPermission> => {
+//   const url = `${REST}`;
+//   const response = await get(url, { params }, userHeaders);
+
+//   return response;
+// };
+
 export const getLessonDetailByZOrderAPI = async (
   params: IGetLessonDetailByZOrderParams,
   userHeaders?: RawAxiosRequestHeaders,
-): Promise<IResponse<ILesson> | IResponseNotPermission> => {
-  const url = `${REST}`;
-  const response = await get(url, { params }, userHeaders);
+): Promise<ILesson> => {
+  try {
+    const url = `${REST}`;
+    const response: AxiosResponse<ILesson, IError> = await get(
+      url,
+      { params },
+      userHeaders,
+    );
 
-  return response;
+    console.debug('response', response);
+    return response.data;
+  } catch (err) {
+    if (err instanceof AxiosError) {
+      throw (err as AxiosError<IError>).response.data;
+    }
+
+    throw err;
+  }
 };
 
 export const downloadLessonAPI = async (
@@ -157,4 +214,68 @@ export const updateLessonCategoryAPI = async (
   });
 
   return await put(url, null, null, userHeaders);
+};
+
+export const getLessonVocabAPI = async (
+  params: IGetLessonVocabParams,
+  userHeaders?: RawAxiosRequestHeaders,
+): Promise<IListResponseVDT<ILessonVocab>> => {
+  const { id } = params;
+  const url = formatStringByObj(GET_LESSON_VOCAB_PATH, {
+    id,
+  });
+  const response = await get(url, { params }, userHeaders);
+  const { contents, ...rest } = response.data;
+
+  return {
+    contents,
+    pagination: rest,
+  };
+};
+
+export const createLessonVocabAPI = async (
+  payload: ICreateLessonVocabParams,
+  userHeaders?: RawAxiosRequestHeaders,
+): Promise<boolean> => {
+  const { id, vocabIds } = payload;
+
+  const url = formatStringByObj(CREATE_LESSON_VOCAB_PATH, {
+    id,
+  });
+
+  const response = await post(
+    url,
+    null,
+    {
+      params: { vocabIds },
+      paramsSerializer: {
+        indexes: null,
+      },
+    },
+    userHeaders,
+  );
+
+  return response.data;
+};
+
+export const deleteLessonVocabAPI = async (
+  payload: IDeleteLessonVocabParams,
+  userHeaders?: RawAxiosRequestHeaders,
+): Promise<boolean> => {
+  const { id, vocabIds } = payload;
+
+  const url = formatStringByObj(DELETE_LESSON_VOCAB_PATH, {
+    id,
+  });
+
+  const response = await remove(url, userHeaders, {
+    params: {
+      vocabIds,
+    },
+    paramsSerializer: {
+      indexes: null,
+    },
+  });
+
+  return response.data;
 };

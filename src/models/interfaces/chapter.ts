@@ -1,7 +1,8 @@
 import { IPaginationParams, ISortParams } from 'jfw-js';
 import { IdType } from '../types';
 import { IBaseObject } from './common';
-import { ILesson } from './lesson';
+import { ILesson } from '../lesson';
+// import { ILesson } from './lesson(Will_Delete)';
 
 export interface IGetListChaptersParams extends IPaginationParams, ISortParams {
   name?: string;

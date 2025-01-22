@@ -1,11 +1,11 @@
-import { DateType } from 'jfw-js';
+import { DateType, IdType as IdTypeJfw } from 'jfw-js';
 import { IdType } from '../types';
 
 export interface IBaseObject {
   id: IdType;
-  createdBy: string;
+  createdBy: IdTypeJfw;
   createdDate: DateType;
-  modifiedBy: string;
+  modifiedBy: IdTypeJfw;
   modifiedDate: DateType;
 }
 export interface IById {

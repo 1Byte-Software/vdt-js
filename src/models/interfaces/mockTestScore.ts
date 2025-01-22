@@ -1,7 +1,8 @@
 import { DateType } from 'jfw-js';
 import { IdType } from '../types';
 import { IUserAnswer } from './answer';
-import { ILesson } from './lesson';
+import { ILesson } from '../lesson';
+// import { ILesson } from './lesson(Will_Delete)';
 
 export interface IValueScoringType {
   scoringSystemName: string | null;
