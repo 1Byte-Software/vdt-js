@@ -1,6 +1,6 @@
 import { RawAxiosRequestHeaders } from 'axios';
 import { _AppService } from './app';
-import { VdtConfig } from '../models';
+import { VdtConfig } from '@/models';
 
 export class VdtClient {
   constructor(config: VdtConfig) {
@@ -13,5 +13,9 @@ export class VdtClient {
 
   setHeaders(headers: RawAxiosRequestHeaders) {
     _AppService.setUserHeaders(headers);
+  }
+
+  getHeader(): RawAxiosRequestHeaders {
+    return _AppService.getUserHeaders$().value;
   }
 }

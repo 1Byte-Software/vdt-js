@@ -1,5 +1,6 @@
 import { IUser, IdType as JfwIdType } from 'jfw-js';
 import { IdType } from '../types';
+import { IBaseObject } from './common';
 
 export interface ICountRaiseHandParams {
   userId: JfwIdType;
@@ -14,8 +15,7 @@ export interface ICountRaiseHandResponse {
 export interface IAssignTeacherPath {
   id: string;
 }
-export interface IRaiseHand {
-  id: IdType;
+export interface IRaiseHand extends IBaseObject {
   referenceId: IdType;
   content: string | null;
   discussionStatusEnum: string;

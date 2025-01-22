@@ -15,7 +15,7 @@ export function formatStringByObj(
 ) {
   for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      str = str.replace(`{${key}}`, obj[key].toString());
+      str = str.replace(`{${key}}`, obj[key]?.toString());
     }
   }
   return str;

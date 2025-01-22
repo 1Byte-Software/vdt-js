@@ -1,6 +1,6 @@
 import { RawAxiosRequestHeaders } from 'axios';
-import { IGetTokenPayload, ITokenResponse } from '../models';
-import { post } from '../utils/axiosHelper';
+import { IGetTokenPayload, ITokenResponse } from '@/models';
+import { post } from '@/utils/axiosHelper';
 
 const REST_TOKEN = 'token';
 const REFRESH_TOKEN = `${REST_TOKEN}/refresh-token`;

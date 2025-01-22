@@ -7,7 +7,6 @@ import {
   IAIScore,
   IAnswer,
   IAnswerSpeech,
-  IAnswerSpeeches,
   ICountAIParams,
   ICountAIPath,
   ICreatePriorityPath,
@@ -23,8 +22,8 @@ import {
   ITested,
   IUserAnswer,
   IVocabScore,
-} from '../models';
-import { get, post, remove } from '../utils/axiosHelper';
+} from '@/models';
+import { get, post, remove } from '@/utils/axiosHelper';
 
 const REST_TESTED = 'leaner/tested';
 const REST_SCORE = 'scores';
@@ -107,34 +106,34 @@ export const sendTestedAPI = async (
   return await post(url, payload, null, userHeaders);
 };
 
-export const submitSpeechAPI = async (
-  payload: IAnswerSpeech,
-  userHeaders?: RawAxiosRequestHeaders,
-) => {
-  const url = `${REST_SCORE}/${AI_SPEECH}`;
+// export const submitSpeechAPI = async (
+//   payload: IAnswerSpeech,
+//   userHeaders?: RawAxiosRequestHeaders,
+// ) => {
+//   const url = `${REST_SCORE}/${AI_SPEECH}`;
 
-  return await post(
-    url,
-    payload,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    },
-    userHeaders,
-  );
-};
+//   return await post(
+//     url,
+//     payload,
+//     {
+//       headers: {
+//         'Content-Type': 'multipart/form-data',
+//       },
+//     },
+//     userHeaders,
+//   );
+// };
 
-export const submitTextAPI = async (
-  payload: IAnswer[],
-  userHeaders?: RawAxiosRequestHeaders,
-) => {
-  const url = `${REST_SCORE}/${AI_TEXT}`;
+// export const submitTextAPI = async (
+//   payload: IAnswer[],
+//   userHeaders?: RawAxiosRequestHeaders,
+// ) => {
+//   const url = `${REST_SCORE}/${AI_TEXT}`;
 
-  return await post(url, payload, null, userHeaders);
-};
+//   return await post(url, payload, null, userHeaders);
+// };
 
-export const submitOtherValueAPI = async (
+export const scoresAPI = async (
   payload: IAnswer[],
   userHeaders?: RawAxiosRequestHeaders,
 ) => {
@@ -143,14 +142,14 @@ export const submitOtherValueAPI = async (
   return await post(url, payload, null, userHeaders);
 };
 
-export const submitAnswerSpeechesAPI = async (
-  payload: IAnswerSpeeches[],
-  userHeaders?: RawAxiosRequestHeaders,
-) => {
-  const url = `${REST_SCORE}`;
+// export const submitAnswerSpeechesAPI = async (
+//   payload: IAnswerSpeeches[],
+//   userHeaders?: RawAxiosRequestHeaders,
+// ) => {
+//   const url = `${REST_SCORE}`;
 
-  return await post(url, payload, null, userHeaders);
-};
+//   return await post(url, payload, null, userHeaders);
+// };
 
 export const countAIAPI = async (
   path: ICountAIPath,

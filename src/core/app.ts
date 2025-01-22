@@ -1,6 +1,6 @@
 import { RawAxiosRequestHeaders } from 'axios';
 import { BehaviorSubject } from 'rxjs';
-import { VdtConfig } from '../models';
+import { VdtConfig } from '@/models';
 
 class AppService {
   private static _instance: AppService;
