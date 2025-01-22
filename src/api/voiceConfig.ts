@@ -1,6 +1,6 @@
 import { RawAxiosRequestHeaders } from 'axios';
-import { IVoiceConfig } from '../models';
-import { get } from '../utils/axiosHelper';
+import { IVoiceConfig } from '@/models';
+import { get } from '@/utils/axiosHelper';
 
 const REST = 'voice-configs';
 

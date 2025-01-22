@@ -1,97 +1,36 @@
-import { DateType, IMedia, IdType as JfwIdType } from 'jfw-js';
+import { IMedia, IdType as JfwIdType } from 'jfw-js';
+import { IBaseObject, ICategory } from '../interfaces';
+import { IQuestionGroup } from '../questionGroup';
 import { IdType } from '../types';
-import { ICategory } from './category';
-import { QUESTION_TYPE } from '../constants';
-import { IBaseObject } from './common';
+import { LESSON_STATUS } from './constants';
 
-export interface ILessonType {
-  code: string;
-  createdBy: number;
-  createdDate: string;
-  description: string | null;
-  id: IdType;
-  modifiedBy: number;
-  modifiedDate: string;
-  name: string;
-}
-export interface ILessonSolution {
-  explanation: string | null;
-  id: IdType;
-  valueMedia: string | null;
-  valueText: string;
-}
-export interface ILessonOption {
-  code: string;
-  description: string | null;
-  id?: IdType | null;
-  name: string;
-  zOrder?: number;
-}
-export interface IPriority {
+export interface IPriority extends IBaseObject {
   categoryId: IdType;
-  createdBy: JfwIdType;
-  createdDate: DateType;
-  id: IdType;
   lessonId: IdType;
-  modifiedBy: JfwIdType;
-  modifiedDate: DateType;
 }
-export interface IInnerLesson {
-  code: string;
-  description: string | null;
-  explanation: string;
-  id?: IdType | null;
-  name: string;
-  zOrder: number;
-  questionOptions: ILessonOption[];
-  questionSolutions: ILessonSolution[];
-  questionType?: ILessonType;
-  userResponseType: QUESTION_TYPE;
-  medias?: IMedia[];
-}
-export interface ILessonGroup {
-  content?: string;
-  createdBy?: number;
-  createdDate?: string;
-  description: string | null;
-  id: IdType;
-  lessonId?: IdType;
-  isEmbeddedQuestions: boolean;
-  userResponseTypeInternal?: QUESTION_TYPE;
-  isShuffle: boolean;
-  modifiedBy?: number;
-  modifiedDate?: string;
-  questions: IInnerLesson[];
-  title?: string | null;
-  mediaSegmentFrom?: '';
-  zOrder?: number;
-}
+
 export interface ISource {
   id: IdType;
   sourceName?: string;
   sourceWebsite?: string;
   description?: string;
 }
-export interface ILesson {
+
+export interface ILesson extends IBaseObject {
   soundBeep: false;
   categories: ICategory[];
   content: string;
-  createdBy: number;
-  createdDate: string;
   duration: number;
   explanation: string;
   isFree: boolean;
-  id: number;
   languageId: number;
   medias: IMedia[];
   lessonOriginalSourceLink?: string;
   lessonOriginalSourceMediaLink?: string;
-  modifiedBy: number;
-  modifiedDate: string;
   practiced: boolean;
   preparationTime: number;
   priorities: IPriority[];
-  questionGroups: ILessonGroup[];
+  questionGroups: IQuestionGroup[];
   shared: boolean;
   source?: ISource;
   status: LESSON_STATUS;
@@ -130,48 +69,6 @@ export interface ILessonFilter
   ids?: string;
   categoryIds?: string;
   groupCategoryCode?: string;
-  // UserId?: number;
-  // LanguageCode?: string;
-  // Title?: string;
-  // Content?: string;
-  // Description?: string;
-  // Transcript?: string;
-  // PrivateNotes?: string;
-  // PreparationTime?: number;
-  // AllowSkipPreparationTime?: boolean;
-  // Duration?: number;
-  // AllowSkipDuration?: boolean;
-  // AllowSkipAnswer?: boolean;
-  // SoundBeep?: boolean;
-  // Shared?: boolean;
-  // SourceId?: number;
-  // ReviewedBy?: number;
-  // ApprovedBy?: number;
-  // IsSystem?: boolean;
-  // Status?: string;
-  // ZOrder?: number;
-  // IsFree?: boolean;
-  // IsPracticed?: boolean;
-  // Keyword?: string;
-  // Uncategorized?: boolean;
-  // BothPracticed?: boolean;
-  // ModifiedBy?: string;
-  // CreatedBy?: string;
-  // CreatedDateFilter?: string;
-  // ParamPageNumber?: string;
-  // ParamePageSize?: string;
-  // ParamSortDataField?: string;
-  // ParamSortDirection?: string;
-  // PageNumber?: string;
-  // PageSize?: string;
-  // SortDataField?: string;
-  // SortOrder?: string;
-}
-
-export enum LESSON_STATUS {
-  DRAFT = 'Draft',
-  ACTIVE = 'Active',
-  INACTIVE = 'Inactive',
 }
 
 export interface ILessonForm {
@@ -193,7 +90,7 @@ export interface ILessonForm {
   // practiced: boolean;
   preparationTime: number;
   // priorities: IPriority[];
-  questionGroups: ILessonGroup[];
+  questionGroups: IQuestionGroup[];
   // shared: boolean;
   // source?: ISource;
   status: LESSON_STATUS;
@@ -218,7 +115,13 @@ export interface ILessonVocab extends IBaseObject {
   vocabId: IdType;
 }
 
-export interface IGetListLessonsParams {
+/**
+ * @deprecated
+ * Use IGetLessonsFilterParams instead
+ */
+export type IGetListLessonsParams = IGetLessonsFilterParams;
+
+export interface IGetLessonsFilterParams {
   categoryIds?: string;
   title?: string;
   content?: string;
@@ -235,6 +138,7 @@ export interface IGetListLessonsParams {
   pageSize?: number;
   pageNumber?: number;
 }
+
 export interface IGetLessonDetailPath {
   questionId: IdType;
 }

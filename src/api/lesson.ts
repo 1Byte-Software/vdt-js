@@ -1,5 +1,10 @@
-import { RawAxiosRequestHeaders } from 'axios';
-import { IResponseNotPermission } from 'jfw-js';
+import {
+  Axios,
+  AxiosError,
+  AxiosResponse,
+  RawAxiosRequestHeaders,
+} from 'axios';
+import { IErrorNotPermission, IResponseNotPermission } from 'jfw-js';
 import {
   IAddSeeAlsoPath,
   IAddSeeAlsoPayload,
@@ -7,8 +12,10 @@ import {
   IDeleteLessonVocabParams,
   IDownloadLessonParams,
   IdType,
+  IError,
   IGetLessonDetailByZOrderParams,
   IGetLessonDetailPath,
+  IGetLessonsFilterParams,
   IGetLessonVocabParams,
   IGetListLessonsParams,
   ILesson,
@@ -16,9 +23,9 @@ import {
   ILessonVocab,
   IListResponseVDT,
   IResponse,
-} from '../models';
-import { get, post, put, remove } from '../utils/axiosHelper';
-import { formatStringByObj } from '../utils/common';
+} from '@/models';
+import { get, post, put, remove } from '@/utils/axiosHelper';
+import { formatStringByObj } from '@/utils/common';
 
 const REST = 'lessons';
 const FILTER = 'filter';
@@ -36,8 +43,26 @@ const DELETE_LESSON_VOCAB_PATH = `${REST}/{id}/${REST_VOCAB}`;
 
 /* ========================================= */
 
+/**
+ * @deprecated
+ * Change to getLessonsFilterAPI instead
+ */
 export const getListLessonsAPI = async (
   params: IGetListLessonsParams,
+  userHeaders?: RawAxiosRequestHeaders,
+): Promise<IListResponseVDT<ILesson>> => {
+  const url = `${REST}/${FILTER}`;
+  const response = await get(url, { params }, userHeaders);
+  const { contents, ...rest } = response.data;
+
+  return {
+    contents,
+    pagination: rest,
+  };
+};
+
+export const getLessonsFilterAPI = async (
+  params: IGetLessonsFilterParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<ILesson>> => {
   const url = `${REST}/${FILTER}`;
@@ -61,14 +86,37 @@ export const getLessonDetailAPI = async (
   return response.data;
 };
 
+// export const getLessonDetailByZOrderAPI = async (
+//   params: IGetLessonDetailByZOrderParams,
+//   userHeaders?: RawAxiosRequestHeaders,
+// ): Promise<IResponse<ILesson> | IResponseNotPermission> => {
+//   const url = `${REST}`;
+//   const response = await get(url, { params }, userHeaders);
+
+//   return response;
+// };
+
 export const getLessonDetailByZOrderAPI = async (
   params: IGetLessonDetailByZOrderParams,
   userHeaders?: RawAxiosRequestHeaders,
-): Promise<IResponse<ILesson> | IResponseNotPermission> => {
-  const url = `${REST}`;
-  const response = await get(url, { params }, userHeaders);
+): Promise<ILesson> => {
+  try {
+    const url = `${REST}`;
+    const response: AxiosResponse<ILesson, IError> = await get(
+      url,
+      { params },
+      userHeaders,
+    );
 
-  return response;
+    console.debug('response', response);
+    return response.data;
+  } catch (err) {
+    if (err instanceof AxiosError) {
+      throw (err as AxiosError<IError>).response.data;
+    }
+
+    throw err;
+  }
 };
 
 export const downloadLessonAPI = async (

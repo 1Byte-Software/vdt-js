@@ -1,7 +1,7 @@
 import { IMedia } from 'jfw-js';
-import { IdType, ILesson, IListResponseVDT } from '../models';
-import { formatStringByObj } from '../utils/common';
-import { put } from '../utils/axiosHelper';
+import { IdType, ILesson, IListResponseVDT } from '@/models';
+import { formatStringByObj } from '@/utils/common';
+import { put } from '@/utils/axiosHelper';
 import { RawAxiosRequestHeaders } from 'axios';
 
 /* ========================================= Path =========================================  */

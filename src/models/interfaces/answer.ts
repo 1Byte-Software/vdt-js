@@ -5,13 +5,14 @@ export interface ILessonOfAnswer {
   id: IdType;
   name?: string;
 }
-export interface IResponseUser {
-  valueText: string;
+export interface IResponseUserValue {
+  valueText?: string;
+  url?: string;
   timeTaken?: number;
 }
 export interface IAnswer {
   question: ILessonOfAnswer;
-  questionResponseUsers: IResponseUser[];
+  questionResponseUsers: IResponseUserValue[];
 }
 export interface ILessonDragDrop {
   id: string;
@@ -31,18 +32,19 @@ export interface ILessonReorder {
   value: string;
   questionId: number;
 }
+
+/**
+ * @deprecated Use IAnswer instead
+ */
 export interface IAnswerSpeech {
-  question: number;
-  speech: File;
-}
-export interface IAnswerSpeeches {
   question: {
     id: number;
   };
   questionResponseUsers: {
     url: string;
-  }[];
+  };
 }
+
 export interface IAnswerSpeechesBlob {
   question: {
     id: number;

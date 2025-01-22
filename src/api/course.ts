@@ -21,8 +21,8 @@ import {
   ITimetable,
   IUpdateJoinClassPath,
   IUpdateJoinClassPayload,
-} from '../models';
-import { get, post, put, remove } from '../utils/axiosHelper';
+} from '@/models';
+import { get, post, put, remove } from '@/utils/axiosHelper';
 
 const REST = 'v1/courses';
 const REST_USER = 'v1/course-users';
@@ -105,10 +105,10 @@ export const getCoursesOfUserAPI = async (
 };
 
 export const getCourseByCodeAPI = async (
-  id: IdType,
+  code: string,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<ICourse> => {
-  const url = `${REST}/${id}`;
+  const url = `${REST}/${code}`;
 
   const response = await get(url, null, userHeaders);
 
@@ -116,11 +116,11 @@ export const getCourseByCodeAPI = async (
 };
 
 export const getListUsersOfCourseAPI = async (
-  id: IdType,
+  code: string,
   params?: IPaginationParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<ICourseUser>> => {
-  const url = `${REST_USER}/${id}/${LEARNER}`;
+  const url = `${REST_USER}/${code}/${LEARNER}`;
 
   const response = await get(url, { params }, userHeaders);
 

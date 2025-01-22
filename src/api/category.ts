@@ -1,11 +1,12 @@
 import { RawAxiosRequestHeaders } from 'axios';
 import {
   ICategory,
+  IGetCategoriesParams,
   IGetListCategoriesParams,
   IGetListCategoriesPath,
-} from '../models';
-import { get } from '../utils/axiosHelper';
-import { formatStringByObj } from '../utils/common';
+} from '@/models';
+import { get } from '@/utils/axiosHelper';
+import { formatStringByObj } from '@/utils/common';
 
 const REST = 'categories';
 const MENU = 'menu';
@@ -26,8 +27,20 @@ export const getListMenuCategoriesAPI = async (
   return response.data;
 };
 
+/**
+ * @deprecated Use getCategoriesAPI instead
+ */
 export const getListCategoriesAPI = async (
   params?: IGetListCategoriesParams,
+  userHeaders?: RawAxiosRequestHeaders,
+): Promise<ICategory[]> => {
+  const url = `${REST_CATEGORY}`;
+  const response = await get(url, { params }, userHeaders);
+  return response.data;
+};
+
+export const getCategoriesAPI = async (
+  params?: IGetCategoriesParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<ICategory[]> => {
   const url = `${REST_CATEGORY}`;

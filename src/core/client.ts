@@ -1,6 +1,6 @@
 import { RawAxiosRequestHeaders } from 'axios';
 import { _AppService } from './app';
-import { VdtConfig } from '../models';
+import { VdtConfig } from '@/models';
 
 export class VdtClient {
   constructor(config: VdtConfig) {

@@ -6,8 +6,8 @@ import {
   IGetRaiseHandParams,
   IListResponseVDT,
   IRaiseHand,
-} from '../models';
-import { get, post, put, remove } from '../utils/axiosHelper';
+} from '@/models';
+import { get, post, put, remove } from '@/utils/axiosHelper';
 
 const RAISE_HAND = 'raise-hands';
 const REST_DISCUSSION = 'discussions';

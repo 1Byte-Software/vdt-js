@@ -10,9 +10,9 @@ import {
   IGetListChaptersParams,
   ILesson,
   IListResponseVDT
-} from '../models';
-import { get, post, put, remove } from '../utils/axiosHelper';
-import { formatStringByObj } from '../utils/common';
+} from '@/models';
+import { get, post, put, remove } from '@/utils/axiosHelper';
+import { formatStringByObj } from '@/utils/common';
 
 const REST_CHAPTER = 'chapters';
 const REST_LESSONS = 'lessons';

@@ -35,9 +35,9 @@ import {
   ISubmitOtherPayload,
   ISubmitSpeakingPayload,
   IUserResult,
-} from '../models';
-import { get, post, put, remove } from '../utils/axiosHelper';
-import { formatStringByObj } from '../utils/common';
+} from '@/models';
+import { get, post, put, remove } from '@/utils/axiosHelper';
+import { formatStringByObj } from '@/utils/common';
 
 const REST_BOOK = 'books';
 const REST_CHAPTER = 'chapters';

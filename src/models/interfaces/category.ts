@@ -1,19 +1,25 @@
 import { IdType } from '../types';
+import { IBaseObject } from './common';
 
-export interface IGetListCategoriesParams {
+/**
+ * @deprecated use IGetCategoriesParams instead
+ */
+export type IGetListCategoriesParams = IGetCategoriesParams;
+
+export interface IGetCategoriesParams {
   parentCategoryCode?: string;
   group?: string;
 }
+
 export interface IContribute {
   S: string;
   W: string;
   R: string;
   L: string;
 }
-export interface ICategory {
+export interface ICategory extends IBaseObject {
   code: string;
   groupCategory: string;
-  id: IdType;
   name: string;
   contributeCategoryPoint?: IContribute;
   description?: string;
