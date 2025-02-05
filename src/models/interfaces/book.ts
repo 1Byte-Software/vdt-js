@@ -72,6 +72,10 @@ export interface IUserScoresSubmit {
   question: ILessonUserScore;
   pathSpeech: string;
 }
+
+/**
+ * @deprecated Sẽ xoá interface này sau khi hoàn thành #VDT-117
+ */
 export interface ISubmitSpeakingPayload extends ISubmitPayload {
   userScores: IUserScoresSubmit[];
 }
@@ -99,6 +103,10 @@ export interface ICheckResultMockTestPath {
   bookExamId: IdType;
   userId: JfwIdType;
 }
+
+/**
+ * @deprecated Xử lý tại issue #VDT-114 do bị fix cứng chỉ dùng cho tiếng anh
+ */
 export interface IResultOverall {
   id: IdType;
   speaking: number;
@@ -115,9 +123,17 @@ export interface IResultOverall {
   book: IBook;
   modifiedDate: DateType;
 }
+
+/**
+ * @deprecated Xoá sau khi đã giải quyết xong issue #VDT-114
+ */
 export interface IGetScoreReportPath {
   bookExamId: IdType;
 }
+
+/**
+ * @deprecated Xoá sau khi đã giải quyết xong issue #VDT-114
+ */
 export interface IScoreReport {
   actualListening: number | null;
   actualReading: number | null;

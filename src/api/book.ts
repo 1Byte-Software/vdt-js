@@ -1,16 +1,8 @@
-import { RawAxiosRequestHeaders } from 'axios';
-import {
-  IPaginationParams,
-  IResponse,
-  IResponseNotPermission,
-  IdType as JfwIdType,
-} from 'jfw-js';
 import {
   IAddChaptersIntoBookParams,
   IBook,
   IBookExam,
   IBookForm,
-  IById,
   IChapter,
   ICheckCanStartParams,
   ICheckResultMockTestPath,
@@ -24,7 +16,6 @@ import {
   IGetBookByIdPath,
   IGetContinueExamParams,
   IGetListBooksExamParams,
-  IGetListBooksExamPath,
   IGetListBooksParams,
   IGetScoreReportPath,
   IGetUserResultPath,
@@ -34,10 +25,17 @@ import {
   IScoreReport,
   ISubmitOtherPayload,
   ISubmitSpeakingPayload,
-  IUserResult,
+  IUserResult
 } from '@/models';
 import { get, post, put, remove } from '@/utils/axiosHelper';
 import { formatStringByObj } from '@/utils/common';
+import { RawAxiosRequestHeaders } from 'axios';
+import {
+  IPaginationParams,
+  IResponse,
+  IResponseNotPermission,
+  IdType as JfwIdType,
+} from 'jfw-js';
 
 const REST_BOOK = 'books';
 const REST_CHAPTER = 'chapters';
@@ -107,6 +105,9 @@ export const createBookExamAPI = async (
   return response.data;
 };
 
+/**
+ * @deprecated Sẽ xoá API này sau khi hoàn thành #VDT-117
+ */
 export const submitSpeakingAPI = (
   payload: ISubmitSpeakingPayload,
   userHeaders?: RawAxiosRequestHeaders,
@@ -185,6 +186,9 @@ export const checkResultMockTestAPI = async (
   return await post(url, null, null, userHeaders);
 };
 
+/**
+ * @deprecated Xoá sau khi đã giải quyết xong issue #VDT-114
+ */
 export const getResultOverallAPI = async (
   path: ICheckResultMockTestPath,
   userHeaders?: RawAxiosRequestHeaders,
@@ -197,6 +201,9 @@ export const getResultOverallAPI = async (
   return response.data;
 };
 
+/**
+ * @deprecated Xoá sau khi đã giải quyết xong issue #VDT-114
+ */
 export const getScoreReportAPI = async (
   path: IGetScoreReportPath,
   userHeaders?: RawAxiosRequestHeaders,
