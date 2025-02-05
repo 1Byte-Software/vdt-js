@@ -1,3 +1,6 @@
+/**
+ * @deprecated Sẽ xoá sau khi giải quyết #VDT-107, #VDT-116, #VDT-114
+ */
 export const SKILLS = {
   speaking: 'SPEAKING',
   writing: 'WRITING',
@@ -6,6 +9,9 @@ export const SKILLS = {
   all: 'ALL',
 };
 
+/**
+ * @deprecated Sẽ xoá sau khi giải quyết #VDT-108, #VDT-114, 
+ */
 export const CATEGORY_PTE_CODE = {
   speaking: 'PTE-S',
   writing: 'PTE-W',
@@ -16,6 +22,7 @@ export const CATEGORY_PTE_CODE = {
   wfd: 'WFD',
 };
 
+
 export const CATEGORY_GROUP = {
   explanation: 'EXPLANATION',
   shadowing: 'SHADOWING',
@@ -23,6 +30,9 @@ export const CATEGORY_GROUP = {
   predict: 'PREDICT',
 };
 
+/**
+ * @deprecated Sẽ xoá sau khi đã xử lý hardcode ở vdt-fe
+ */
 export const CATEGORY_IELTS_CODE = {
   ieltsS1: 'S.PART1',
   ieltsS3: 'S.PART3',
