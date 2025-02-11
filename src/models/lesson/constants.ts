@@ -15,6 +15,7 @@ export enum LESSON_SORT {
   createdDate = 'CREATED_DATE',
 }
 
+// Đặt mã màu ở vdt-js liệu có đúng không ? Cân bàn luận thêm
 export enum MARK_COLOR {
   default = 'rgb(204, 204, 204)',
   haveStart = 'rgb(249, 217, 35)',
