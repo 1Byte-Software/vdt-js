@@ -22,11 +22,12 @@ export interface IChapter extends IBaseObject {
 export interface IGetListChaptersParams extends IPaginationParams, ISortParams {
   name?: string;
   status?: string;
+  
   /**
    * @deprecated Use questionTypeId instead
    */
   categoryId?: number;
-  questionTypeId: IdType;
+  questionTypeId?: IdType;
 }
 
 export interface IChapterForm {

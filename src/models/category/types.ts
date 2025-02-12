@@ -1,12 +1,7 @@
 import { IBaseObject } from '../interfaces(Will_Delete)';
-import { IdType } from '../types(Will_Delete)';;
+import { IdType } from '../types(Will_Delete)';
 
-/**
- * @deprecated use IGetCategoriesParams instead
- */
-export type IGetListCategoriesParams = IGetCategoriesParams;
-
-export interface IGetCategoriesParams {
+export interface IQueryCategoryParams {
   parentCategoryCode?: string;
   group?: string;
 }

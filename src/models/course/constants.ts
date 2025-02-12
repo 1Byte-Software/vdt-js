@@ -7,14 +7,6 @@ export const STATUS_COURSE_USER = {
   unJoin: null,
 };
 
-export const STATUS_JOIN_COURSE = {
-  join: 'Join',
-  accepted: 'Accepted',
-  maybe: 'Maybe',
-  reject: 'Reject',
-  notParticipant: 'NotParticipant',
-};
-
 export const STATUS_COURSE = {
   active: 'Active',
   inActive: 'InActive',

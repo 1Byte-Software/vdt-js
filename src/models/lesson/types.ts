@@ -61,27 +61,6 @@ export interface ISource {
   description?: string;
 }
 
-export interface ILessonFilter
-  extends Partial<
-    Omit<
-      ILesson,
-      | 'id'
-      | 'createdDate'
-      | 'modifiedDate'
-      | 'categories'
-      | 'medias'
-      | 'translations'
-      | 'lessonsSeeAlso'
-      | 'lessonOriginalSourceLink'
-      | 'lessonOriginalSourceMediaLink'
-      | 'userIdAsAppover'
-    >
-  > {
-  ids?: string;
-  categoryIds?: string;
-  groupCategoryCode?: string;
-}
-
 export interface ILessonForm extends Partial<IBaseObject> {
   questionTypes: IQuestionType[];
   questionGroups: IQuestionGroup[];
@@ -122,8 +101,8 @@ export interface IGetLessonFilterParams extends IPageable, ISortable {
    * @deprecated
    * Use IGetLessonsFilterParams instead
    */
-  categoryIds?: string;
-  questionTypeIds?: string;
+  categoryIds?: IdType;
+  questionTypeId?: IdType;
 
   languageCode?: string;
 

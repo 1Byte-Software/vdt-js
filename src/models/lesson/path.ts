@@ -7,7 +7,8 @@ export const LESSON_PATH = {
   QUERY_LESSON: REST,
   GET_LESSON_FILTER: `${REST}/filter`,
   GET_LESSON_BY_ID: `${REST}/:id`,
-  CREATE_LESSON: `${REST}/:id`,
+  GET_EXPORT: `${REST}/export`,
+  CREATE_LESSON: REST,
   UPDATE_LESSON: `${REST}/:id`,
   DELETE_LESSON: `${REST}/:id`,
 
@@ -19,10 +20,6 @@ export const LESSON_PATH = {
 
   QUESTION_TYPE: {
     UPDATE_QUESTION_TYPE: `${REST}/${REST_QUESTION_TYPE}/:questionTypeId/:lessonId`,
-  },
-
-  EXPORT: {
-    GET_EXPORT: `${REST}/export`,
   },
 
   LESSON_SEE_ALSO: {

@@ -1,72 +1,71 @@
 import { get, post, put, remove } from '@/utils/axiosHelper';
+import { generatePath } from '@/utils/common';
 import { RawAxiosRequestHeaders } from 'axios';
 import { IPaginationParams } from 'jfw-js';
 import { IListResponseVDT } from '../interfaces(Will_Delete)';
+import { COURSE_PATH } from './path';
 import {
-  IClassUser,
   ICourse,
   ICourseUser,
-  ICourseUserMutatePath,
-  ICourseUserMutatePayload,
+  ICreateCourseUserParams,
   IDashboardCourse,
+  IDeleteCourseUserParams,
   IEditCourseRolePath,
   IEditCourseRolePayload,
+  IGetCoursesAllParams,
   IGetCoursesOfUser,
-  IGetDashboardCoursesParams,
   IGetListCoursesParams,
   IGetTimetableParams,
-  IGetUsersJoinClassParams,
-  IMutateJoinClassPayload,
   ITimetable,
-  IUpdateJoinClassPath,
-  IUpdateJoinClassPayload,
+  IUpdateCourseUserParams,
 } from './types';
 
 const REST = 'v1/courses';
 const REST_USER = 'v1/course-users';
-const REST_JOIN = 'class-users';
 const REST_CLASS = 'classes';
-const ALL = 'all';
 const SEARCH = 'search';
 const COURSE = 'courses';
 const LEARNER = 'learners';
 
-export const getDashboardCoursesAPI = async (
-  params: IGetDashboardCoursesParams,
+export const geCourseAllAPI = async (
+  params: IGetCoursesAllParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IDashboardCourse> => {
-  const url = `${REST}/${ALL}`;
+  const url = COURSE_PATH.ALL;
   const response = await get(url, { params }, userHeaders);
 
   return response.data;
 };
 
 export const createCourseUserAPI = async (
-  payload: ICourseUserMutatePayload,
+  payload: ICreateCourseUserParams,
   userHeaders?: RawAxiosRequestHeaders,
 ) => {
-  const url = `${REST_USER}`;
+  const url = COURSE_PATH.V1.COURSE_USER.CREATE;
   const response = await post(url, payload, null, userHeaders);
 
   return response.data;
 };
 
-export const editCourseUserAPI = async (
-  params: ICourseUserMutatePayload,
+export const updateCourseUserAPI = async (
+  params: IUpdateCourseUserParams,
   userHeaders?: RawAxiosRequestHeaders,
 ) => {
-  const url = `${REST_USER}`;
+  const url = COURSE_PATH.V1.COURSE_USER.UPDATE;
   const response = await put(url, null, { params }, userHeaders);
 
   return response.data;
 };
 
 export const deleteCourseUserAPI = async (
-  path: ICourseUserMutatePath,
+  params: IDeleteCourseUserParams,
   userHeaders?: RawAxiosRequestHeaders,
 ) => {
-  const { userId, courseCode } = path;
-  const url = `${REST}/${courseCode}/users/${userId}`;
+  const { userId, courseCode } = params;
+  const url = generatePath(COURSE_PATH.V1.COURSE_USER.DELETE, {
+    courseCode,
+    userId,
+  });
   const response = await remove(url, userHeaders);
 
   return response.data;
@@ -142,44 +141,12 @@ export const editCourseRoleAPI = async (
   return response.data;
 };
 
-export const getUsersJoinClassAPI = async (
-  params?: IGetUsersJoinClassParams,
-  userHeaders?: RawAxiosRequestHeaders,
-): Promise<IListResponseVDT<IClassUser>> => {
-  const url = `${REST_JOIN}`;
-  const response = await get(url, { params }, userHeaders);
-
-  return response.data;
-};
-
 export const getTimetableAPI = async (
   params?: IGetTimetableParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<ITimetable> => {
   const url = `${REST_CLASS}`;
   const response = await get(url, { params }, userHeaders);
-
-  return response.data;
-};
-
-export const joinClassAPI = async (
-  payload: IMutateJoinClassPayload,
-  userHeaders?: RawAxiosRequestHeaders,
-) => {
-  const url = `${REST_JOIN}`;
-  const response = await post(url, payload, null, userHeaders);
-
-  return response.data;
-};
-
-export const updateJoinClassAPI = async (
-  path: IUpdateJoinClassPath,
-  payload: IUpdateJoinClassPayload,
-  userHeaders?: RawAxiosRequestHeaders,
-) => {
-  const { id } = path;
-  const url = `${REST_JOIN}/${id}`;
-  const response = await put(url, payload, null, userHeaders);
 
   return response.data;
 };

@@ -1,64 +1,27 @@
-import { RawAxiosRequestHeaders } from 'axios';
-import {
-  ICategory,
-  IGetCategoriesParams,
-  IGetListCategoriesParams,
-  IGetListCategoriesPath,
-} from '@/models';
+import { ICategory, IQueryCategoryParams } from '@/models';
 import { get } from '@/utils/axiosHelper';
-import { formatStringByObj } from '@/utils/common';
+import { generatePath } from '@/utils/common';
+import { RawAxiosRequestHeaders } from 'axios';
+import { CATEGORY_PATH } from './path';
 
-const REST = 'categories';
-const MENU = 'menu';
-const REST_CATEGORY = 'category';
-
-const GET_CATEGORY_BY_MENU = `${REST_CATEGORY}/menu/{code}`;
-const GET_LIST_MENU_CATEGORIES = `${REST}/${MENU}/{menuCode}`;
-
-export const getListMenuCategoriesAPI = async (
-  path: IGetListCategoriesPath,
+export const queryCategoryAPI = async (
+  params?: IQueryCategoryParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<ICategory[]> => {
-  const { menuCode } = path;
-  const url = formatStringByObj(GET_LIST_MENU_CATEGORIES, {
-    menuCode,
+  const url = CATEGORY_PATH.QUERY;
+
+  const response = await get(url, { params }, userHeaders);
+  return response.data;
+};
+
+export const getCategoryByMenuAPI = async (
+  codeCategory: string,
+  userHeaders?: RawAxiosRequestHeaders,
+): Promise<ICategory[]> => {
+  const url = generatePath(CATEGORY_PATH.GET_BY_MENU, {
+    codeCategory,
   });
+
   const response = await get(url, null, userHeaders);
-  return response.data;
-};
-
-/**
- * @deprecated Use getCategoriesAPI instead
- */
-export const getListCategoriesAPI = async (
-  params?: IGetListCategoriesParams,
-  userHeaders?: RawAxiosRequestHeaders,
-): Promise<ICategory[]> => {
-  const url = `${REST_CATEGORY}`;
-  const response = await get(url, { params }, userHeaders);
-  return response.data;
-};
-
-export const getCategoriesAPI = async (
-  params?: IGetCategoriesParams,
-  userHeaders?: RawAxiosRequestHeaders,
-): Promise<ICategory[]> => {
-  const url = `${REST_CATEGORY}`;
-  const response = await get(url, { params }, userHeaders);
-  return response.data;
-};
-
-export const getCategoryByMenuCodeAPI = async (
-  code: string,
-  userHeaders?: RawAxiosRequestHeaders,
-): Promise<ICategory[]> => {
-  const response = await get(
-    formatStringByObj(GET_CATEGORY_BY_MENU, {
-      code,
-    }),
-    null,
-    userHeaders,
-  );
-
   return response.data;
 };

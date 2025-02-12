@@ -5,6 +5,7 @@ export * from './types(Will_Delete)';
 export * from './book';
 export * from './category';
 export * from './chapter';
+export * from './classUser';
 export * from './course';
 export * from './lesson';
 export * from './media';

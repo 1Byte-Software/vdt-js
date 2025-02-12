@@ -35,7 +35,7 @@ export interface ICourse extends IBaseObject {
   timezoneValue?: string;
 }
 
-export interface IGetDashboardCoursesParams {
+export interface IGetCoursesAllParams {
   currentDate: string;
 }
 export interface IDashboardCourse {
@@ -43,13 +43,14 @@ export interface IDashboardCourse {
   previousCourses: ICourse[];
   upcomingCourses: ICourse[];
 }
-export interface ICourseUserMutatePayload {
+export interface ICreateCourseUserParams {
   userId: JfwIdType;
   courseCode: string;
   approvedBy?: JfwIdType;
   status?: string;
 }
-export interface ICourseUserMutatePath {
+export type IUpdateCourseUserParams = ICreateCourseUserParams;
+export interface IDeleteCourseUserParams {
   userId: JfwIdType;
   courseCode: string;
 }
@@ -71,11 +72,6 @@ export interface IGetCoursesOfUser {
 export interface ICourseUser extends IUser {
   userStatus: string;
   dateOfJoin: DateType;
-  user: IUser;
-}
-export interface IClassUser extends IUser {
-  classId: number;
-  userStatus: string;
   user: IUser;
 }
 export interface IEditCourseRolePath {
@@ -159,16 +155,4 @@ export interface ITimetableTableRecord {
 }
 export interface ITimetable {
   [key: string]: ITimetableTableRecord;
-}
-export interface IMutateJoinClassPayload {
-  classId: number;
-  userId: JfwIdType;
-  status: string;
-}
-export interface IUpdateJoinClassPath {
-  id: IdType;
-}
-export interface IUpdateJoinClassPayload {
-  status: string;
-  description: string;
 }

@@ -109,7 +109,7 @@ export const getLessonExportAPI = async (
   params: IGetLessonExportParams,
   userHeaders?: RawAxiosRequestHeaders,
 ) => {
-  const url = LESSON_PATH.EXPORT.GET_EXPORT;
+  const url = LESSON_PATH.GET_EXPORT;
 
   const response = await get(
     url,
