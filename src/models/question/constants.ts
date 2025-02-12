@@ -68,7 +68,7 @@ export enum USER_RESPONSE_TYPE_GROUP {
   multipleChoiceGrid = 'MULTIPLE-CHOICE-GRID', // 11
 
   embedShortAnswer = 'EMBED-SHORT-ANSWER', // 12
-  embedDragDrop = 'EMBED-DRAGDROP', // 13 (temporary use until backend fix)
+  embedDragDrop = 'EMBED-DRAG-DROP', // 13 (temporary use until backend fix)
   // embedDragDrop2 = 'EMBED-DRAG-DROP', // 13
   embedDropDown = 'EMBED-DROP-DOWN', // 14
   embedHighlight = 'EMBED-HIGHLIGHT', // 15

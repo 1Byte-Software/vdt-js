@@ -20,7 +20,6 @@
     "test": "yarn build && yalc publish --push --no-scripts"
   },
   "dependencies": {
-    "1byte-react-design": "file:.yalc/1byte-react-design",
     "@rollup/plugin-image": "^3.0.3",
     "axios": "^1.7.7",
     "jfw-js": "file:.yalc/jfw-js",

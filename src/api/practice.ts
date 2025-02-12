@@ -17,7 +17,7 @@ import {
   ISystemScore,
   ITested,
   IUserAnswer,
-  IVocabScore
+  IVocabScore,
 } from '@/models';
 import { get, post, remove } from '@/utils/axiosHelper';
 import { RawAxiosRequestHeaders } from 'axios';

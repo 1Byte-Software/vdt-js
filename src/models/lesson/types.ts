@@ -1,8 +1,53 @@
 import { IMedia, IdType as JfwIdType } from 'jfw-js';
-import { IBaseObject, ICategory } from '../interfaces';
+import { IBaseObject, IPageable, ISortable } from '../interfaces(Will_Delete)';
 import { IQuestionGroup } from '../questionGroup';
-import { IdType } from '../types';
+import { IdType } from '../types(Will_Delete)';
 import { LESSON_STATUS } from './constants';
+import { IQuestionType } from '../questionType';
+import { ICategory } from '../category';
+
+export interface ILesson extends IBaseObject {
+  soundBeep: false;
+
+  userIdAsAppover?: JfwIdType;
+  languageId: number;
+
+  /**
+   * @deprecated Use questionTypes instead
+   */
+  categories: ICategory[];
+  questionTypes: IQuestionType[];
+  medias: IMedia[];
+  priorities: IPriority[];
+  questionGroups: IQuestionGroup[];
+  lessonsSeeAlso: ILesson[];
+  translations: ILesson[];
+  source?: ISource;
+
+  title: string;
+  content: string;
+  duration: number;
+  explanation: string;
+  isFree: boolean;
+  transcript: string;
+  transcriptTranslated?: string;
+  description: string | null;
+  preparationTime: number;
+
+  lessonOriginalSourceLink?: string;
+  lessonOriginalSourceMediaLink?: string;
+  practiced: boolean;
+  shared: boolean;
+  allowSkipAnswer: boolean;
+  allowSkipPreparationTime: boolean;
+  allowSkipDuration: boolean;
+  isSystem: boolean;
+  privateNotes: string;
+
+  zorder: number;
+  status: LESSON_STATUS;
+  statusValue: string;
+}
 
 export interface IPriority extends IBaseObject {
   categoryId: IdType;
@@ -16,98 +61,28 @@ export interface ISource {
   description?: string;
 }
 
-export interface ILesson extends IBaseObject {
-  soundBeep: false;
-  categories: ICategory[];
-  content: string;
-  duration: number;
-  explanation: string;
-  isFree: boolean;
-  languageId: number;
-  medias: IMedia[];
-  lessonOriginalSourceLink?: string;
-  lessonOriginalSourceMediaLink?: string;
-  practiced: boolean;
-  preparationTime: number;
-  priorities: IPriority[];
+export interface ILessonForm extends Partial<IBaseObject> {
+  questionTypes: IQuestionType[];
   questionGroups: IQuestionGroup[];
-  shared: boolean;
-  source?: ISource;
-  status: LESSON_STATUS;
-  statusValue: string;
-  title: string;
-  userIdAsAppover?: JfwIdType;
-  zorder: number;
-  allowSkipAnswer: boolean;
-  allowSkipPreparationTime: boolean;
-  allowSkipDuration: boolean;
-  transcript: string;
-  lessonsSeeAlso: ILesson[];
-  translations: ILesson[];
-  transcriptTranslated?: string;
-  description: string | null;
-  isSystem: boolean;
-  privateNotes: string;
-}
+  medias: IMedia[];
 
-export interface ILessonFilter
-  extends Partial<
-    Omit<
-      ILesson,
-      | 'id'
-      | 'createdDate'
-      | 'modifiedDate'
-      | 'categories'
-      | 'medias'
-      | 'translations'
-      | 'lessonsSeeAlso'
-      | 'lessonOriginalSourceLink'
-      | 'lessonOriginalSourceMediaLink'
-      | 'userIdAsAppover'
-    >
-  > {
-  ids?: string;
-  categoryIds?: string;
-  groupCategoryCode?: string;
-}
-
-export interface ILessonForm {
-  id?: IdType;
-
-  soundBeep: boolean;
-
-  // categoryId?: IdType;
-  categories: ICategory[];
-
+  title?: string;
   content?: string;
   duration: number;
-  // explanation: string;
+  description?: string;
+  explanation?: string;
   isFree: boolean;
-  // languageId: number;
-  medias: IMedia[];
-  // lessonOriginalSourceLink?: string;
-  // lessonOriginalSourceMediaLink?: string;
-  // practiced: boolean;
   preparationTime: number;
-  // priorities: IPriority[];
-  questionGroups: IQuestionGroup[];
-  // shared: boolean;
-  // source?: ISource;
-  status: LESSON_STATUS;
-  // statusValue: string;
-  title?: string;
-  // userIdAsAppover?: IdType;
-  zOrder?: number | null;
+  transcript?: string;
   allowSkipAnswer: boolean;
   allowSkipPreparationTime: boolean;
   allowSkipDuration: boolean;
-  transcript?: string;
-  // lessonsSeeAlso: ILesson[];
-  // translations: ILesson[];
-  // transcriptTranslated?: string;
-  description?: string;
+  soundBeep: boolean;
+
   isSystem: boolean;
   privateNotes?: string;
+  status: LESSON_STATUS;
+  zOrder?: number | null;
 }
 
 export interface ILessonVocab extends IBaseObject {
@@ -117,52 +92,48 @@ export interface ILessonVocab extends IBaseObject {
 
 /**
  * @deprecated
- * Use IGetLessonsFilterParams instead
+ * Use IQueryLessonParams instead
  */
-export type IGetListLessonsParams = IGetLessonsFilterParams;
+export type IGetListLessonsParams = IGetLessonFilterParams;
 
-export interface IGetLessonsFilterParams {
-  categoryIds?: string;
+export interface IGetLessonFilterParams extends IPageable, ISortable {
+  /**
+   * @deprecated
+   * Use IGetLessonsFilterParams instead
+   */
+  categoryIds?: IdType;
+  questionTypeId?: IdType;
+
+  languageCode?: string;
+
   title?: string;
   content?: string;
   keyword?: string;
-  languageCode?: string;
-  zOrder?: number;
   status?: string;
   isFree?: boolean;
   isPracticed?: boolean;
   shared?: boolean;
   timeType?: string;
-  sortDataField?: string;
-  sortOrder?: string;
-  pageSize?: number;
-  pageNumber?: number;
+  zOrder?: number;
 }
 
-export interface IGetLessonDetailPath {
-  questionId: IdType;
-}
-export interface IGetLessonDetailByZOrderParams {
-  categoryCode: string;
+export interface IQueryLessonParams {
+  /**
+   * @deprecated Use questionTypeCode instead
+   */
+  categoryCode?: string;
+
+  questionTypeCode: string;
   zOrder: number;
 }
-export interface ISetPriorityRequest {
-  priority: string;
-  lessonId: number;
-}
+
 export interface ICreatePriorityPath {
   lessonId: number;
   categoryId: number;
   userId: JfwIdType;
 }
-export interface IDeletePriorityPath {
-  id: IdType;
-}
-export interface IDownloadLessonParams {
+export interface IGetLessonExportParams {
   categoryCode: string;
-}
-export interface IAddSeeAlsoPath {
-  questionId?: number;
 }
 export interface IAddSeeAlsoPayload {
   content: string;
@@ -177,11 +148,8 @@ export interface IAddSeeAlsoPayload {
   medias?: IMedia[];
 }
 
-export interface IGetLessonVocabParams {
+export interface ICreateLessonVocabParams {
   id: IdType;
-}
-
-export interface ICreateLessonVocabParams extends IGetLessonVocabParams {
   vocabIds: IdType[];
 }
 export interface IDeleteLessonVocabParams extends ICreateLessonVocabParams {}
