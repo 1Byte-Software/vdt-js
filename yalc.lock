@@ -1,12 +1,8 @@
 {
   "version": "v1",
   "packages": {
-    "1byte-react-design": {
-      "signature": "67d3d813ff5cd9a6ee664dc481a47e94",
-      "file": true
-    },
     "jfw-js": {
-      "signature": "92a164cfc74a0123c1b1bba76119b3f5",
+      "signature": "29481a69f8e35d134809f2e33d8a2ebb",
       "file": true,
       "replaced": "^3.8.2-4.22"
     }

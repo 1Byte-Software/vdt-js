@@ -1,12 +1,8 @@
-import { RawAxiosRequestHeaders } from 'axios';
-import { IResponse, IResponseNotPermission, IById as JfwIById } from 'jfw-js';
-import { axiosInstanceAI } from '../config/axios/axiosClient';
 import {
   IAddScorePath,
   IAddScorePayload,
   IAIScore,
   IAnswer,
-  IAnswerSpeech,
   ICountAIParams,
   ICountAIPath,
   ICreatePriorityPath,
@@ -24,6 +20,9 @@ import {
   IVocabScore,
 } from '@/models';
 import { get, post, remove } from '@/utils/axiosHelper';
+import { RawAxiosRequestHeaders } from 'axios';
+import { IResponse, IResponseNotPermission, IById as JfwIById } from 'jfw-js';
+import { axiosInstanceAI } from '../config/axios/axiosClient';
 
 const REST_TESTED = 'leaner/tested';
 const REST_SCORE = 'scores';
@@ -32,8 +31,6 @@ const REST_AI_SPEAKING = 'pte/speaking';
 const REST_WORD = 'words';
 const PRIORITY = 'priorities';
 const LESSON = 'lesson';
-const AI_SPEECH = 'ai-speech';
-const AI_TEXT = 'ai-text';
 const COUNT_AI = 'count-practice-ai-score';
 const ANSWER = 'answers';
 const BY_GROUP_CODE = 'by-response-group-code';
@@ -105,33 +102,6 @@ export const sendTestedAPI = async (
 
   return await post(url, payload, null, userHeaders);
 };
-
-// export const submitSpeechAPI = async (
-//   payload: IAnswerSpeech,
-//   userHeaders?: RawAxiosRequestHeaders,
-// ) => {
-//   const url = `${REST_SCORE}/${AI_SPEECH}`;
-
-//   return await post(
-//     url,
-//     payload,
-//     {
-//       headers: {
-//         'Content-Type': 'multipart/form-data',
-//       },
-//     },
-//     userHeaders,
-//   );
-// };
-
-// export const submitTextAPI = async (
-//   payload: IAnswer[],
-//   userHeaders?: RawAxiosRequestHeaders,
-// ) => {
-//   const url = `${REST_SCORE}/${AI_TEXT}`;
-
-//   return await post(url, payload, null, userHeaders);
-// };
 
 export const scoresAPI = async (
   payload: IAnswer[],

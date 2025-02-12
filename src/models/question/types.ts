@@ -1,6 +1,6 @@
 import { IMedia } from 'jfw-js';
-import { IBaseObject } from '../interfaces';
-import { IdType } from '../types';
+import { IBaseObject } from '../interfaces(Will_Delete)';
+import { IdType } from '../types(Will_Delete)';;
 import { GROUP_USER_RESPONSE_TYPE, USER_RESPONSE_TYPE } from './constants';
 
 export interface IQuestion extends IBaseObject {
