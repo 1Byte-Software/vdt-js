@@ -1,7 +1,8 @@
-import { RawAxiosRequestHeaders } from 'axios';
-import { IById, IdType, ILesson, IListResponseVDT } from '@/models';
+import { IById, ILesson } from '@/models';
 import { get, post, put, remove } from '@/utils/axiosHelper';
 import { formatStringByObj } from '@/utils/common';
+import { RawAxiosRequestHeaders } from 'axios';
+import { IdType, IListResponseVDT } from '../base';
 import {
   IAddLessonsIntoChapterParams,
   IChapter,

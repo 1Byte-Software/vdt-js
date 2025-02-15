@@ -1,16 +1,16 @@
-import { RawAxiosRequestHeaders } from 'axios';
 import {
   ICreateVocabPayload,
   ICreateVocabUserPayload,
   IGetExactlyVocabPath,
   IGetVocabParams,
   IGetVocabUserParams,
-  IListResponseVDT,
   IUpdateVocabUserPath,
   IVocab,
   IVocabUser,
 } from '@/models';
 import { get, post, put, remove } from '@/utils/axiosHelper';
+import { RawAxiosRequestHeaders } from 'axios';
+import { IListResponseVDT } from '../base';
 
 const REST = 'vocabs';
 const REST_VOCAB_USER = 'vocab-users';

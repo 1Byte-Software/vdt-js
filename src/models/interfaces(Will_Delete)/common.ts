@@ -1,5 +1,5 @@
 import { DateType, IdType as IdTypeJfw } from 'jfw-js';
-import { IdType } from '../types(Will_Delete)';
+import { IdType } from '../base';
 
 export interface IBaseObject {
   id: IdType;

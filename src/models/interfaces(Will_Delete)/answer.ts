@@ -1,5 +1,4 @@
-import { DateType, IIssue, IMedia, IUser, IdType as JfwIdType } from 'jfw-js';
-import { IdType } from '../types(Will_Delete)';
+import { IdType } from '../base';
 
 export interface ILessonOfAnswer {
   id: IdType;
@@ -54,112 +53,7 @@ export interface IAnswerSpeechesBlob {
   }[];
 }
 
-export interface IGetUserAnswerParams {
-  lessonId: number;
-  pageNumber: number;
-  pageSize: number;
-  typeQuery?: string;
-  communityIds?: string | number | undefined;
-  responseGroupId?: IdType;
-  responseGroupCode?: string;
-}
-export interface IResultOverview {
-  maxScore?: number;
-  media?: string;
-  score?: number;
-  showScoreInfo: boolean;
-  valueResponses?: string[];
-  displayScore?: number;
-  medias?: IMedia[];
-  numberDecimalPlace?: number;
-}
-export interface IScoreDetail {
-  component: string;
-  score: number | string;
-  suggestion: string | null;
-  description: string | null;
-  maxScore?: number;
-  status: string;
-  privateNotes: string;
-  displayScore: number;
-  name: string;
-}
-export interface IAIDetails {
-  data: string;
-}
-export interface IResultScores {
-  id: IdType;
-  displayScore: number;
-  scoreDetails: IScoreDetail[];
-  score: number;
-  scoringSystemName: string | null;
-  scoringSystemVersion: string | null;
-  description?: string | null;
-  status: string;
-  createdDate: DateType;
-  sourceUrl?: string;
-  responseAIDetails?: IAIDetails[];
-}
-export interface ILessonResponseUsers {
-  id: IdType;
-  responseGroupId: IdType;
-  responseGroupCode: string;
-  resultScores?: IResultScores[];
-  valueText: string | null;
-  valueMedia: string | null;
-}
-export interface IUserAnswer {
-  createdDate: DateType;
-  issueId: string;
-  resultOverview: IResultOverview;
-  questionResponseUsers: ILessonResponseUsers[];
-  discussionSubs: IIssue[];
-  status: string;
-  user?: IUser;
-  description: string | null;
-  issue?: IIssue;
-}
-export interface IScoringAIPayload {
-  lessonId: IdType;
-  responseGroupId: IdType;
-}
-export interface IPhoneme {
-  value: string;
-  pronunciation: number;
-}
-export interface IPhonic {
-  spell: string;
-  phoneme: string[];
-  overall: number;
-}
-export interface ISpeechGenerated {
-  word: string;
-  label: string;
-  phonemes?: IPhoneme[];
-  phonics?: IPhonic[];
-  pronunciation: number;
-}
 export interface IWFDGenerated {
   value: string;
   label: string;
-}
-export interface IAddScoreDetail {
-  component: string;
-  score: number;
-  suggestion: string;
-}
-export interface IAddScorePath {
-  responseGroupId: IdType;
-}
-export interface IAddScorePayload {
-  userId: JfwIdType;
-  scoringSystemName: string;
-  scoringSystemVersion: string;
-  questionId: IdType;
-  scoreDetails: IAddScoreDetail[];
-  description?: string;
-  sourceUrl?: string;
-}
-export interface IGetComponentScoreByCodePath {
-  code: string;
 }

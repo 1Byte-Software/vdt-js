@@ -1,8 +1,7 @@
 import { DateType } from 'jfw-js';
-import { IdType } from '../types(Will_Delete)';;
-import { IUserAnswer } from './answer';
+import { IdType } from '../base';;
 import { ILesson } from '../lesson';
-// import { ILesson } from './lesson(Will_Delete)';
+import { IUserScoreAnswer } from '../userScore';
 
 export interface IValueScoringType {
   scoringSystemName: string | null;
@@ -25,5 +24,5 @@ export interface IUserResult {
   chapterId: IdType;
   lesson: ILesson;
   practiceTime: DateType;
-  resultAnswerUser: IUserAnswer | null;
+  resultAnswerUser: IUserScoreAnswer | null;
 }

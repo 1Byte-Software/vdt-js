@@ -1,17 +1,24 @@
 export * from './constants(Will_Delete)';
 export * from './interfaces(Will_Delete)';
-export * from './types(Will_Delete)';
 
+export * from './base';
+
+export * from './ai';
 export * from './book';
+export * from './bookExam';
 export * from './category';
 export * from './chapter';
 export * from './classUser';
 export * from './course';
 export * from './lesson';
+export * from './lessonSeen';
 export * from './media';
+export * from './pte';
 export * from './question';
 export * from './questionGroup';
 export * from './questionType';
 export * from './raiseHand';
+export * from './token';
+export * from './userScore';
 export * from './vocab';
 export * from './voiceConfig';

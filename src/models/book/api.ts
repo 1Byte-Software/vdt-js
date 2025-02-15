@@ -7,9 +7,9 @@ import {
   IResponseNotPermission,
   IdType as JfwIdType,
 } from 'jfw-js';
+import { IdType, IListResponseVDT } from '../base';
 import { IChapter } from '../chapter';
-import { IListResponseVDT, IUserResult } from '../interfaces(Will_Delete)';
-import { IdType } from '../types(Will_Delete)';
+import { IUserResult } from '../interfaces(Will_Delete)';
 import { BOOK_PATH } from './path';
 import {
   IAddChaptersIntoBookParams,

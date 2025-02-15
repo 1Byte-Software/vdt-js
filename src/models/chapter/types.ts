@@ -1,5 +1,5 @@
 import { IPaginationParams, ISortParams } from 'jfw-js';
-import { IdType } from '../types(Will_Delete)';;
+import { IdType } from '../base';;
 import { ILesson } from '../lesson';
 import { IBaseObject } from '../interfaces(Will_Delete)';
 

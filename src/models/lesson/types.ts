@@ -1,7 +1,7 @@
 import { IMedia, IdType as JfwIdType } from 'jfw-js';
 import { IBaseObject, IPageable, ISortable } from '../interfaces(Will_Delete)';
 import { IQuestionGroup } from '../questionGroup';
-import { IdType } from '../types(Will_Delete)';
+import { IdType } from '../base';
 import { LESSON_STATUS } from './constants';
 import { IQuestionType } from '../questionType';
 import { ICategory } from '../category';
@@ -127,11 +127,6 @@ export interface IQueryLessonParams {
   zOrder: number;
 }
 
-export interface ICreatePriorityPath {
-  lessonId: number;
-  categoryId: number;
-  userId: JfwIdType;
-}
 export interface IGetLessonExportParams {
   categoryCode: string;
 }
@@ -153,3 +148,11 @@ export interface ICreateLessonVocabParams {
   vocabIds: IdType[];
 }
 export interface IDeleteLessonVocabParams extends ICreateLessonVocabParams {}
+
+export interface ICreateLessonPriorityParams {
+  lessonId: IdType;
+  categoryId: IdType;
+  userId: JfwIdType;
+}
+
+export type IDeleteLessonPriorityParams = ICreateLessonPriorityParams;
