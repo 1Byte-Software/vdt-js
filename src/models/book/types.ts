@@ -1,12 +1,8 @@
 import { DateType, IPaginationParams, IdType as JfwIdType } from 'jfw-js';
-import { IdType } from '../base';
+import { IBaseObject, IdType, IPageable, ISortable } from '../base';
 import { IChapter } from '../chapter';
-import {
-  IAnswer,
-  IBaseObject,
-  IPageable,
-  ISortable,
-} from '../interfaces(Will_Delete)';
+import { ILesson } from '../lesson';
+import { IAnswer, IUserScoreAnswer } from '../userScore';
 
 export interface IBook extends IBaseObject {
   chapters?: IChapter[];
@@ -99,10 +95,6 @@ export interface ILessonUserScore {
 export interface IUserScoresSubmit {
   question: ILessonUserScore;
   pathSpeech: string;
-}
-
-export interface ISubmitOtherPayload extends ISubmitPayload {
-  userScores: IAnswer | IAnswer[];
 }
 
 export interface ISubmitBookExamRecordParams extends ISubmitPayload {
@@ -208,3 +200,10 @@ export interface IAddChaptersIntoBookParams {
 
 export interface IUpdateChaptersOfBookParams
   extends IAddChaptersIntoBookParams {}
+
+export interface IUserResult {
+  chapterId: IdType;
+  lesson: ILesson;
+  practiceTime: DateType;
+  resultAnswerUser: IUserScoreAnswer | null;
+}

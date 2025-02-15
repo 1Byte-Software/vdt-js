@@ -1,10 +1,9 @@
 import { IMedia, IdType as JfwIdType } from 'jfw-js';
-import { IBaseObject, IPageable, ISortable } from '../interfaces(Will_Delete)';
-import { IQuestionGroup } from '../questionGroup';
-import { IdType } from '../base';
-import { LESSON_STATUS } from './constants';
-import { IQuestionType } from '../questionType';
+import { IBaseObject, IdType, IPageable, ISortable } from '../base';
 import { ICategory } from '../category';
+import { IQuestionGroup } from '../questionGroup';
+import { IQuestionType } from '../questionType';
+import { LESSON_STATUS } from './constants';
 
 export interface ILesson extends IBaseObject {
   soundBeep: false;

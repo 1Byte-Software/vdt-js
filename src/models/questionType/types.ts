@@ -1,4 +1,4 @@
-import { IBaseObject } from '../interfaces(Will_Delete)';
+import { IBaseObject } from '../base';
 
 export interface IQuestionType extends IBaseObject {
   code: string | null;

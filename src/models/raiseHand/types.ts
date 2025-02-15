@@ -1,7 +1,5 @@
 import { IUser, IdType as JfwIdType } from 'jfw-js';
-import { IdType } from '../base';;
-import { IBaseObject } from '../interfaces(Will_Delete)';
-
+import { IBaseObject, IdType } from '../base';
 export interface IRaiseHand extends IBaseObject {
   lessonId: IdType;
   categoryId: IdType;

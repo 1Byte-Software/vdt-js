@@ -3,11 +3,9 @@ import { generatePath } from '@/utils/common';
 import { RawAxiosRequestHeaders } from 'axios';
 import { IResponseNotPermission, IdType as JfwIdType } from 'jfw-js';
 import { IListResponseVDT, IResponse } from '../base';
-import {
-  IAnswer,
-} from '../interfaces(Will_Delete)';
 import { USER_SCORE_PATH } from './paths';
 import {
+  IAnswer,
   ICreateScoreHumanParams,
   IGetCountPracticeAIScoreParams,
   IGetUserScoreAnswerParams,

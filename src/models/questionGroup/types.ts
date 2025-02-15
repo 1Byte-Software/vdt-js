@@ -1,7 +1,5 @@
-import { IBaseObject } from '../interfaces(Will_Delete)';
+import { IBaseObject, IdType } from '../base';
 import { IQuestion } from '../question';
-import { IdType } from '../base';;
-
 export interface IQuestionGroup extends IBaseObject {
   lessonId?: IdType;
   content?: string;

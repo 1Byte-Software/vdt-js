@@ -1,6 +1,5 @@
 import { DateType, IUser, IdType as JfwIdType } from 'jfw-js';
-import { IdType } from '../base';
-import { IBaseObject } from '../interfaces(Will_Delete)';
+import { IBaseObject, IdType } from '../base';
 import { DAY_OF_WEEK } from './constants';
 
 export interface ICourse extends IBaseObject {

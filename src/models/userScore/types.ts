@@ -1,6 +1,5 @@
 import { DateType, IIssue, IMedia, IUser, IdType as JfwIdType } from 'jfw-js';
-import { IdType } from '../base';
-import { IPageable } from '../interfaces(Will_Delete)';
+import { IdType, IPageable } from '../base';
 import { SCORE_COMPONENTS, TYPE_QUERY } from './constants';
 
 export interface IGetCountPracticeAIScoreParams {
@@ -104,4 +103,20 @@ export interface IScoreHumanDetail {
 export interface ISystemScore {
   systemName: string;
   quantity: string;
+}
+
+export interface ILessonOfAnswer {
+  id: IdType;
+  name?: string;
+}
+
+export interface IResponseUserValue {
+  valueText?: string;
+  url?: string;
+  timeTaken?: number;
+}
+
+export interface IAnswer {
+  question: ILessonOfAnswer;
+  questionResponseUsers: IResponseUserValue[];
 }

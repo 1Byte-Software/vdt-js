@@ -1,4 +1,4 @@
-import { IById, ILesson } from '@/models';
+import { ILesson } from '@/models';
 import { get, post, put, remove } from '@/utils/axiosHelper';
 import { formatStringByObj } from '@/utils/common';
 import { RawAxiosRequestHeaders } from 'axios';
@@ -72,11 +72,11 @@ export const deleteChapterAPI = async (
 };
 
 export const getLessonsOfChapterAPI = async (
-  path: IById,
+  id: IdType,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<ILesson[]> => {
   const url = formatStringByObj(REST_LESSONS_OF_BOOK, {
-    id: path.id,
+    id,
   });
 
   const response = await get(url, null, userHeaders);

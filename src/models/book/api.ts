@@ -9,7 +9,6 @@ import {
 } from 'jfw-js';
 import { IdType, IListResponseVDT } from '../base';
 import { IChapter } from '../chapter';
-import { IUserResult } from '../interfaces(Will_Delete)';
 import { BOOK_PATH } from './path';
 import {
   IAddChaptersIntoBookParams,
@@ -28,6 +27,7 @@ import {
   IScoreReport,
   ISubmitBookExamRecordParams,
   IUpdateChaptersOfBookParams,
+  IUserResult,
 } from './types';
 
 const REST_BOOK = 'books';
