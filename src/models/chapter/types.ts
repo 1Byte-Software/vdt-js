@@ -1,7 +1,6 @@
 import { IPaginationParams, ISortParams } from 'jfw-js';
-import { IdType } from '../types(Will_Delete)';;
+import { IBaseObject, IdType } from '../base';
 import { ILesson } from '../lesson';
-import { IBaseObject } from '../interfaces(Will_Delete)';
 
 export interface IChapter extends IBaseObject {
   /**
@@ -22,7 +21,7 @@ export interface IChapter extends IBaseObject {
 export interface IGetListChaptersParams extends IPaginationParams, ISortParams {
   name?: string;
   status?: string;
-  
+
   /**
    * @deprecated Use questionTypeId instead
    */

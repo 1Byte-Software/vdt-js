@@ -1,20 +1,20 @@
 import {
   IAddSeeAlsoPayload,
+  ICreateLessonPriorityParams,
   ICreateLessonVocabParams,
+  IDeleteLessonPriorityParams,
   IDeleteLessonVocabParams,
-  IdType,
-  IError,
   IGetLessonExportParams,
   IGetLessonFilterParams,
   ILesson,
   ILessonForm,
   ILessonVocab,
-  IListResponseVDT,
   IQueryLessonParams,
 } from '@/models';
 import { get, post, put, remove } from '@/utils/axiosHelper';
 import { generatePath } from '@/utils/common';
 import { AxiosError, AxiosResponse, RawAxiosRequestHeaders } from 'axios';
+import { IdType, IError, IListResponseVDT } from '../base';
 import { LESSON_PATH } from './path';
 
 /**
@@ -25,7 +25,7 @@ export const queryLessonAPI = async (
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<ILesson> => {
   try {
-    const url = LESSON_PATH.QUERY_LESSON;
+    const url = LESSON_PATH.QUERY;
     const response: AxiosResponse<ILesson, IError> = await get(
       url,
       { params },
@@ -46,7 +46,7 @@ export const getLessonFilterAPI = async (
   params: IGetLessonFilterParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<ILesson>> => {
-  const url = LESSON_PATH.GET_LESSON_FILTER;
+  const url = LESSON_PATH.FILTER;
 
   const response = await get(url, { params }, userHeaders);
   const { contents, ...rest } = response.data;
@@ -61,7 +61,7 @@ export const getLessonByIdAPI = async (
   id: IdType,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<ILesson> => {
-  const url = generatePath(LESSON_PATH.GET_LESSON_BY_ID, {
+  const url = generatePath(LESSON_PATH.GET_BY_ID, {
     id,
   });
 
@@ -74,7 +74,7 @@ export const createLessonAPI = async (
   payload: ILessonForm,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<number> => {
-  const url = LESSON_PATH.CREATE_LESSON;
+  const url = LESSON_PATH.CREATE;
 
   const response = await post(url, payload, null, userHeaders);
 
@@ -85,7 +85,7 @@ export const deleteLessonAPI = async (
   id: IdType,
   userHeaders?: RawAxiosRequestHeaders,
 ) => {
-  const url = generatePath(LESSON_PATH.DELETE_LESSON, { id });
+  const url = generatePath(LESSON_PATH.DELETE, { id });
 
   return await remove(url, userHeaders);
 };
@@ -95,7 +95,7 @@ export const updateLessonAPI = async (
   payload: ILessonForm,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<null> => {
-  const url = generatePath(LESSON_PATH.UPDATE_LESSON, { id });
+  const url = generatePath(LESSON_PATH.UPDATE, { id });
 
   const response = await put(url, payload, null, userHeaders);
 
@@ -109,7 +109,7 @@ export const getLessonExportAPI = async (
   params: IGetLessonExportParams,
   userHeaders?: RawAxiosRequestHeaders,
 ) => {
-  const url = LESSON_PATH.GET_EXPORT;
+  const url = LESSON_PATH.EXPORT;
 
   const response = await get(
     url,
@@ -223,4 +223,32 @@ export const deleteLessonVocabAPI = async (
   });
 
   return response.data;
+};
+
+export const createLessonPriorityAPI = async (
+  path: ICreateLessonPriorityParams,
+  userHeaders?: RawAxiosRequestHeaders,
+) => {
+  const { categoryId, lessonId, userId } = path;
+  const url = generatePath(LESSON_PATH.PRIORITY.CREATE, {
+    id: lessonId,
+    priorityId: categoryId,
+    userId,
+  });
+
+  return await post(url, null, null, userHeaders);
+};
+
+export const deleteLessonPriorityAPI = async (
+  path: IDeleteLessonPriorityParams,
+  userHeaders?: RawAxiosRequestHeaders,
+) => {
+  const { categoryId, lessonId, userId } = path;
+  const url = generatePath(LESSON_PATH.PRIORITY.DELETE, {
+    id: lessonId,
+    priorityId: categoryId,
+    userId,
+  });
+
+  return await remove(url, userHeaders);
 };

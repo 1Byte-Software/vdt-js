@@ -3,8 +3,8 @@ import axios, {
   InternalAxiosRequestConfig,
   RawAxiosRequestHeaders,
 } from 'axios';
-import { _AppService } from '../../core/app';
-import { API_DOMAIN, MODE_VALUES } from '../../models';
+import { _AppService } from '../../core/app/app';
+import { API_DOMAIN, MODE_VALUES } from '@/core';
 
 let axiosInstanceVdt: ReturnType<typeof axiosInstance>;
 let axiosInstanceAI: ReturnType<typeof axiosInstance>;

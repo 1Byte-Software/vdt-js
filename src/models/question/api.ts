@@ -1,13 +1,13 @@
-import { RawAxiosRequestHeaders } from 'axios';
 import {
   IDeleteOptionByIdParams,
   IDeleteSolutionByIdParams,
-  IdType,
   IQuestion,
   IQuestionGroup,
 } from '@/models';
 import { post, put, remove } from '@/utils/axiosHelper';
 import { formatStringByObj } from '@/utils/common';
+import { RawAxiosRequestHeaders } from 'axios';
+import { IdType } from '../base';
 
 /* ========================================= */
 const OBJECT = 'questions';

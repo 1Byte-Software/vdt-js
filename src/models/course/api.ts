@@ -2,7 +2,7 @@ import { get, post, put, remove } from '@/utils/axiosHelper';
 import { generatePath } from '@/utils/common';
 import { RawAxiosRequestHeaders } from 'axios';
 import { IPaginationParams } from 'jfw-js';
-import { IListResponseVDT } from '../interfaces(Will_Delete)';
+import { IListResponseVDT } from '../base';
 import { COURSE_PATH } from './path';
 import {
   ICourse,

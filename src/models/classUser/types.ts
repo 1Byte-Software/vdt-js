@@ -1,6 +1,5 @@
 import { IUser, IdType as JfwIdType } from 'jfw-js';
-import { IPageable, ISortable } from '../interfaces(Will_Delete)';
-import { IdType } from '../types(Will_Delete)';
+import { IdType, IPageable, ISortable } from '../base';
 
 export interface IQueryClassUserParams extends IPageable, ISortable {
   classId?: IdType;

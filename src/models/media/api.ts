@@ -1,8 +1,9 @@
-import { IMedia } from 'jfw-js';
-import { IdType, ILesson, IListResponseVDT } from '@/models';
-import { formatStringByObj } from '@/utils/common';
+import { ILesson } from '@/models';
 import { put } from '@/utils/axiosHelper';
+import { formatStringByObj } from '@/utils/common';
 import { RawAxiosRequestHeaders } from 'axios';
+import { IMedia } from 'jfw-js';
+import { IdType, IListResponseVDT } from '../base';
 
 /* ========================================= Path =========================================  */
 const REST = 'medias';

@@ -1,4 +1,4 @@
-import { IBaseObject } from '../interfaces(Will_Delete)';
+import { IBaseObject } from '../base';
 
 export interface IVoiceConfig extends IBaseObject {
   authCode: string;
@@ -9,7 +9,7 @@ export interface IVoiceConfig extends IBaseObject {
   isHuman: boolean;
   pitch: number;
   speed: number;
-  
+
   zOrder: number;
   status: string;
 }

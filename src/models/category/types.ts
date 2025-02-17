@@ -1,5 +1,4 @@
-import { IBaseObject } from '../interfaces(Will_Delete)';
-import { IdType } from '../types(Will_Delete)';
+import { IBaseObject, IdType } from '../base';
 
 export interface IQueryCategoryParams {
   parentCategoryCode?: string;

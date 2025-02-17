@@ -1,12 +1,12 @@
 import { get, post, put, remove } from '@/utils/axiosHelper';
 import { RawAxiosRequestHeaders } from 'axios';
-import { IListResponseVDT } from '../interfaces(Will_Delete)';
+import { IListResponseVDT } from '../base';
 import {
-    IAssignTeacherPath,
-    ICountRaiseHandParams,
-    ICountRaiseHandResponse,
-    IGetRaiseHandParams,
-    IRaiseHand,
+  IAssignTeacherPath,
+  ICountRaiseHandParams,
+  ICountRaiseHandResponse,
+  IGetRaiseHandParams,
+  IRaiseHand,
 } from './types';
 
 const RAISE_HAND = 'raise-hands';
