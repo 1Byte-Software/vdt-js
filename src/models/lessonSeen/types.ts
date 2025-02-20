@@ -1,5 +1,5 @@
 import { IdType } from '../base';
-import { DateType, IdType as JfwIdType } from 'jfw-js';
+import { DateType, IdType as JfwIdType } from '@jframeworks/jfw-js';
 
 export interface ILessonSeen {
   description: string;

@@ -1,10 +1,9 @@
 {
   "version": "v1",
   "packages": {
-    "jfw-js": {
-      "signature": "29481a69f8e35d134809f2e33d8a2ebb",
-      "file": true,
-      "replaced": "^3.8.2-4.22"
+    "@jframeworks/jfw-js": {
+      "signature": "d902972f5938848c162378eb992243fc",
+      "file": true
     }
   }
 }

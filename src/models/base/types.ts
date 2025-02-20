@@ -1,5 +1,5 @@
-import { IPagination } from 'jfw-js';
-import { DateType, IdType as IdTypeJfw } from 'jfw-js';
+import { IPagination } from '@jframeworks/jfw-js';
+import { DateType, IdType as IdTypeJfw } from '@jframeworks/jfw-js';
 
 export type IdType = number;
 

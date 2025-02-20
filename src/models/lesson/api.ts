@@ -12,7 +12,7 @@ import {
   IQueryLessonParams,
 } from '@/models';
 import { get, post, put, remove } from '@/utils/axiosHelper';
-import { generatePath } from '@/utils/common';
+import { generatePath } from '@/utils/path';
 import { AxiosError, AxiosResponse, RawAxiosRequestHeaders } from 'axios';
 import { IdType, IError, IListResponseVDT } from '../base';
 import { LESSON_PATH } from './path';

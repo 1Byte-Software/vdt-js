@@ -1,4 +1,4 @@
-import { IUser, IdType as JfwIdType } from 'jfw-js';
+import { IUser, IdType as JfwIdType } from '@jframeworks/jfw-js';
 import { IdType, IPageable, ISortable } from '../base';
 
 export interface IQueryClassUserParams extends IPageable, ISortable {

@@ -1,4 +1,4 @@
-import { DateType, IIssue, IMedia, IUser, IdType as JfwIdType } from 'jfw-js';
+import { DateType, IIssue, IMedia, IUser, IdType as JfwIdType } from '@jframeworks/jfw-js';
 import { IdType, IPageable } from '../base';
 import { SCORE_COMPONENTS, TYPE_QUERY } from './constants';
 

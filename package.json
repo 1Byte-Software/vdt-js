@@ -20,9 +20,10 @@
     "test": "yarn build && yalc publish --push --no-scripts"
   },
   "dependencies": {
+    "@jframeworks/jfw-js": "file:.yalc/@jframeworks/jfw-js",
     "@rollup/plugin-image": "^3.0.3",
     "axios": "^1.7.7",
-    "jfw-js": "file:.yalc/jfw-js",
+    "jfw-js": "^3.8.2-4.22",
     "query-string": "^9.1.0",
     "rollup": "^4.22.0",
     "rollup-plugin-typescript2": "^0.36.0",
