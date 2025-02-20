@@ -1,6 +1,6 @@
 import { ICategory, IQueryCategoryParams } from '@/models';
 import { get } from '@/utils/axiosHelper';
-import { generatePath } from '@/utils/common';
+import { generatePath } from '@/utils/path';
 import { RawAxiosRequestHeaders } from 'axios';
 import { CATEGORY_PATH } from './path';
 

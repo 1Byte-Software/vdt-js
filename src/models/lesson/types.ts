@@ -1,4 +1,4 @@
-import { IMedia, IdType as JfwIdType } from 'jfw-js';
+import { IMedia, IdType as JfwIdType } from '@jframeworks/jfw-js';
 import { IBaseObject, IdType, IPageable, ISortable } from '../base';
 import { ICategory } from '../category';
 import { IQuestionGroup } from '../questionGroup';
@@ -61,6 +61,7 @@ export interface ISource {
 }
 
 export interface ILessonForm extends Partial<IBaseObject> {
+  questionTypeId?: IdType;
   questionTypes: IQuestionType[];
   questionGroups: IQuestionGroup[];
   medias: IMedia[];

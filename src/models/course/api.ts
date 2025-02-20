@@ -1,7 +1,7 @@
 import { get, post, put, remove } from '@/utils/axiosHelper';
-import { generatePath } from '@/utils/common';
+import { generatePath } from '@/utils/path';
 import { RawAxiosRequestHeaders } from 'axios';
-import { IPaginationParams } from 'jfw-js';
+import { IPageable } from '@jframeworks/jfw-js';
 import { IListResponseVDT } from '../base';
 import { COURSE_PATH } from './path';
 import {
@@ -114,7 +114,7 @@ export const getCourseByCodeAPI = async (
 
 export const getListUsersOfCourseAPI = async (
   code: string,
-  params?: IPaginationParams,
+  params?: IPageable,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<ICourseUser>> => {
   const url = `${REST_USER}/${code}/${LEARNER}`;

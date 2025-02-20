@@ -1,4 +1,4 @@
-import { DateType, IUser, IdType as JfwIdType } from 'jfw-js';
+import { DateType, IUser, IdType as JfwIdType } from '@jframeworks/jfw-js';
 import { IBaseObject, IdType } from '../base';
 import { DAY_OF_WEEK } from './constants';
 
