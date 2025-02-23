@@ -2,7 +2,7 @@
   "version": "v1",
   "packages": {
     "@jframeworks/jfw-js": {
-      "signature": "d902972f5938848c162378eb992243fc",
+      "signature": "53a3953dfab9399593bf544a3ed8d300",
       "file": true
     }
   }
