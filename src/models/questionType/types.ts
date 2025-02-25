@@ -1,10 +1,18 @@
-import { IBaseObject } from '../base';
+import { IBaseObject, IdType } from '../base';
 
 export interface IQuestionType extends IBaseObject {
-  code: string | null;
-  parentCode: string | null;
-  name: string | null;
-  description: string | null;
+    certificationId: IdType;
+
+    code: string;
+    parentCode: string | null;
+
+    name: string;
+    description: string | null;
+    links: string | null;
+    tags: string | null;
+    zOrder: number | null;
 }
+
+export interface IQuestionTypeForm extends Partial<IQuestionType> {}
 
 export interface IGetQuestionTypesParams {}
