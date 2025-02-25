@@ -1,7 +1,6 @@
-import { IPaginationParams, ISortParams } from 'jfw-js';
-import { IdType } from '../types(Will_Delete)';;
+import { IPageable, ISortable } from '@jframeworks/jfw-js';
+import { IBaseObject, IdType } from '../base';
 import { ILesson } from '../lesson';
-import { IBaseObject } from '../interfaces(Will_Delete)';
 
 export interface IChapter extends IBaseObject {
   /**
@@ -19,10 +18,10 @@ export interface IChapter extends IBaseObject {
   lessons: ILesson[] | null;
 }
 
-export interface IGetListChaptersParams extends IPaginationParams, ISortParams {
+export interface IQueryChapterParams extends IPageable, ISortable {
   name?: string;
   status?: string;
-  
+
   /**
    * @deprecated Use questionTypeId instead
    */
@@ -49,10 +48,6 @@ export interface IChapterForm {
 export interface ILessonFormOfChapter {
   lessonId?: IdType;
   zOrder?: number;
-}
-
-export interface IDeleteChapterPath {
-  chapterId: IdType;
 }
 
 export interface IAddLessonsIntoChapterParams {

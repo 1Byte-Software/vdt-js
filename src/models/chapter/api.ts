@@ -1,26 +1,22 @@
-import { RawAxiosRequestHeaders } from 'axios';
-import { IById, IdType, ILesson, IListResponseVDT } from '@/models';
+import { ILesson } from '@/models';
 import { get, post, put, remove } from '@/utils/axiosHelper';
-import { formatStringByObj } from '@/utils/common';
+import { generatePath } from '@/utils/path';
+import { RawAxiosRequestHeaders } from 'axios';
+import { IdType, IListResponseVDT } from '../base';
+import { CHAPTER_PATH } from './path';
 import {
   IAddLessonsIntoChapterParams,
   IChapter,
   IChapterForm,
-  IDeleteChapterPath,
   IEditLessonOfChapterParams,
-  IGetListChaptersParams,
+  IQueryChapterParams,
 } from './types';
 
-const REST_CHAPTER = 'chapters';
-const REST_LESSONS = 'lessons';
-
-const REST_LESSONS_OF_BOOK = `${REST_CHAPTER}/{id}/${REST_LESSONS}`;
-
-export const getListChaptersAPI = async (
-  params: IGetListChaptersParams,
+export const queryChapterAPI = async (
+  params: IQueryChapterParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<IChapter>> => {
-  const url = REST_CHAPTER;
+  const url = CHAPTER_PATH.QUERY;
   const response = await get(url, { params }, userHeaders);
 
   const { contents, ...rest } = response.data;
@@ -35,17 +31,21 @@ export const getChapterByIdAPI = async (
   chapterId: IdType,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IChapter> => {
-  const url = `${REST_CHAPTER}/${chapterId}`;
+  const url = generatePath(CHAPTER_PATH.GET_BY_ID, {
+    id: chapterId,
+  });
 
   const response = await get(url, null, userHeaders);
   return response.data;
 };
 
-export const editChapterAPI = async (
+export const updateChapterAPI = async (
   chapter: IChapterForm,
   userHeaders?: RawAxiosRequestHeaders,
 ) => {
-  const url = `${REST_CHAPTER}/${chapter.id}`;
+  const url = generatePath(CHAPTER_PATH.UPDATE_BY_ID, {
+    id: chapter.id,
+  });
 
   return await put(url, chapter, null, userHeaders);
 };
@@ -54,7 +54,7 @@ export const createChapterAPI = async (
   chapter: IChapterForm,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IdType> => {
-  const url = `${REST_CHAPTER}`;
+  const url = CHAPTER_PATH.CREATE;
 
   const response = await post(url, chapter, null, userHeaders);
 
@@ -62,20 +62,21 @@ export const createChapterAPI = async (
 };
 
 export const deleteChapterAPI = async (
-  path: IDeleteChapterPath,
+  chapterId: IdType,
   userHeaders?: RawAxiosRequestHeaders,
 ) => {
-  const { chapterId } = path;
-  const url = `${REST_CHAPTER}/${chapterId}`;
+  const url = generatePath(CHAPTER_PATH.GET_BY_ID, {
+    id: chapterId,
+  });
   return await remove(url, userHeaders);
 };
 
 export const getLessonsOfChapterAPI = async (
-  path: IById,
+  chapterId: IdType,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<ILesson[]> => {
-  const url = formatStringByObj(REST_LESSONS_OF_BOOK, {
-    id: path.id,
+  const url = generatePath(CHAPTER_PATH.LESSON.GET_BY_CHAPTER_ID, {
+    chapterId,
   });
 
   const response = await get(url, null, userHeaders);
@@ -88,8 +89,8 @@ export const addLessonIntoChapterAPI = async (
   userHeaders?: RawAxiosRequestHeaders,
 ) => {
   const { chapterId, lessonIds } = path;
-  const url = formatStringByObj(REST_LESSONS_OF_BOOK, {
-    id: chapterId,
+  const url = generatePath(CHAPTER_PATH.LESSON.ADD_INTO_CHAPTER, {
+    chapterId,
   });
 
   return await post(url, lessonIds, null, userHeaders);
@@ -100,8 +101,8 @@ export const editLessonInChapterAPI = async (
   userHeaders?: RawAxiosRequestHeaders,
 ) => {
   const { chapterId, lessonIds } = path;
-  const url = formatStringByObj(REST_LESSONS_OF_BOOK, {
-    id: chapterId,
+  const url = generatePath(CHAPTER_PATH.LESSON.EDIT_IN_CHAPTER, {
+    chapterId,
   });
 
   return await put(url, lessonIds, null, userHeaders);

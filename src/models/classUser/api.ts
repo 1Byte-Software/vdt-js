@@ -1,7 +1,6 @@
 import { get, post, put } from '@/utils/axiosHelper';
 import { RawAxiosRequestHeaders } from 'axios';
-import { IListResponseVDT } from '../interfaces(Will_Delete)';
-import { IdType } from '../types(Will_Delete)';
+import { IdType, IListResponseVDT } from '../base';
 import { CLASS_USER_PATH } from './path';
 import {
   IClassUser,

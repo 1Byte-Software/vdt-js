@@ -1,3 +1,2 @@
-export * from './api';
+export * from './core';
 export * from './models';
-export * from './core/client';

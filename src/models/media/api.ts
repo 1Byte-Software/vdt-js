@@ -1,27 +1,25 @@
-import { IMedia } from 'jfw-js';
-import { IdType, ILesson, IListResponseVDT } from '@/models';
-import { formatStringByObj } from '@/utils/common';
+import { ILesson } from '@/models';
 import { put } from '@/utils/axiosHelper';
 import { RawAxiosRequestHeaders } from 'axios';
-
-/* ========================================= Path =========================================  */
-const REST = 'medias';
-const MEDIA_SAVE_LIST_PATH = `${REST}/save-list?&type={type}&refId={lessonId}`;
-/* ========================================= End path =========================================  */
-
-/**
- * @deprecated Use mediaSaveListAPI instead
- */
-export const updateMediaAPI = () => {};
+import { IListResponseVDT } from '../base';
+import { MEDIA_PATH } from './path';
+import { IMediaSaveListParams } from './types';
 
 export const mediaSaveListAPI = async (
-  medias: IMedia[],
-  type: string,
-  lessonId: IdType,
+  params: IMediaSaveListParams,
   userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<ILesson>> => {
-  const url = formatStringByObj(MEDIA_SAVE_LIST_PATH, { type, lessonId });
-  const response = await put(url, medias, null, userHeaders);
+  const { medias, ...restParams } = params;
+  const url = MEDIA_PATH.SAVE_LIST;
+
+  const response = await put(
+    url,
+    medias,
+    {
+      params: restParams,
+    },
+    userHeaders,
+  );
 
   const { contents, ...rest } = response.data;
 

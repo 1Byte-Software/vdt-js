@@ -1,8 +1,6 @@
-import { IMedia } from 'jfw-js';
-import { IBaseObject } from '../interfaces(Will_Delete)';
-import { IdType } from '../types(Will_Delete)';;
+import { IMedia } from '@jframeworks/jfw-js';
+import { IBaseObject, IdType } from '../base';
 import { GROUP_USER_RESPONSE_TYPE, USER_RESPONSE_TYPE } from './constants';
-
 export interface IQuestion extends IBaseObject {
   code: string;
   description: string | null;
@@ -31,12 +29,12 @@ export interface IQuestionOption {
 
 export interface IDeleteOptionByIdParams {
   questionId: IdType;
-  optionId: IdType;
+  questionOptionId: IdType;
 }
 
 export interface IDeleteSolutionByIdParams {
   questionId: IdType;
-  solutionId: IdType;
+  questionSolutionId: IdType;
 }
 
 export type UserResponseTypeGroup = {
@@ -54,4 +52,9 @@ export type UserResponseTypeItem = {
 export enum SCOPE_USER_RESPONSE_TYPE {
   question = 'question',
   questionGroup = 'questionGroup',
+}
+
+export interface ICreateQuestionByQuestionGroupParams {
+  questionGroupId: IdType;
+  questions: IQuestion[];
 }

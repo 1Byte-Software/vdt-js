@@ -1,10 +1,9 @@
-import { DateType, IdType as JfwIdType } from 'jfw-js';
-import { IdType } from '../types(Will_Delete)';;
-import { IBaseObject } from '../interfaces(Will_Delete)';
+import { IdType as JfwIdType } from '@jframeworks/jfw-js';
+import { IBaseObject, IdType } from '../base';
 
 export interface IVocab extends IBaseObject {
   languageCode: string;
-  
+
   vocab: string;
   ipa: string;
   definition: string;

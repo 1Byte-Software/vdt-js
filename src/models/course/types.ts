@@ -1,7 +1,6 @@
-import { DateType, IUser, IdType as JfwIdType } from 'jfw-js';
-import { DAY_OF_WEEK } from '../constants(Will_Delete)';
-import { IdType } from '../types(Will_Delete)';;
-import { IBaseObject } from '../interfaces(Will_Delete)';
+import { DateType, IUser, IdType as JfwIdType } from '@jframeworks/jfw-js';
+import { IBaseObject, IdType } from '../base';
+import { DAY_OF_WEEK } from './constants';
 
 export interface ICourse extends IBaseObject {
   teacher?: IUser;
