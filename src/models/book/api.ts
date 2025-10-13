@@ -1,10 +1,6 @@
-import { get, post, put, remove } from '@/utils/axiosHelper';
-import { generatePath } from '@/utils/path';
-import {
-    IPageable,
-    IResponse,
-    IdType as JfwIdType
-} from '@jframeworks/jfw-js';
+import { get, post, put, remove } from '../../utils/axiosHelper';
+import { generatePath } from '../../utils/path';
+import { IPageable, IdType as JfwIdType } from '@jframework/jfw-js';
 import { RawAxiosRequestHeaders } from 'axios';
 import { IdType, IListResponseVDT } from '../base';
 import { IChapter } from '../chapter';
@@ -104,10 +100,11 @@ export const getBookExamRecordByUserIdAPI = async (
     return response.data;
 };
 
+// #REFACTOR_VDT
 export const createBookExamRecordForBookAPI = async (
     params: ICreateBookExamRecordForBookParams,
-    userHeaders?: RawAxiosRequestHeaders,
-): Promise<IResponse<IBookExam>> => {
+    userHeaders?: RawAxiosRequestHeaders, // Promise<IResponse<IBookExam>>
+): Promise<any> => {
     const { userId, bookId } = params;
     const url = generatePath(BOOK_PATH.BOOK_EXAM_RECORD.CREATE, {
         userId,

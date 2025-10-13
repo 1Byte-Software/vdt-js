@@ -1,4 +1,4 @@
-import { DateType, IIssue, IMedia, IUser, IdType as JfwIdType } from '@jframeworks/jfw-js';
+import { DateType, IIssue, IUser, IdType as JfwIdType } from '@jframework/jfw-js';
 import { IdType, IPageable } from '../base';
 import { SCORE_COMPONENTS, TYPE_QUERY } from './constants';
 
@@ -25,7 +25,11 @@ export interface IResultOverview {
   showScoreInfo: boolean;
   valueResponses?: string[];
   displayScore?: number;
-  medias?: IMedia[];
+
+  // #REFACTOR_VDT
+  // medias?: IMedia[];
+  // medias?: any[];
+
   numberDecimalPlace?: number;
 }
 

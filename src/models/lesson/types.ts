@@ -1,4 +1,4 @@
-import { IMedia, IdType as JfwIdType } from '@jframeworks/jfw-js';
+import { IdType as JfwIdType } from '@jframework/jfw-js';
 import { IBaseObject, IdType, IPageable, ISortable } from '../base';
 import { ICategory } from '../category';
 import { IQuestionGroup } from '../questionGroup';
@@ -16,7 +16,9 @@ export interface ILesson extends IBaseObject {
      */
     categories: ICategory[];
     questionTypes: IQuestionType[];
-    medias: IMedia[];
+    // medias: IMedia[];
+    // #REFACTOR_VDT
+    medias: unknown[];
     priorities: IPriority[];
     questionGroups: IQuestionGroup[];
     lessonsSeeAlso: ILesson[];
@@ -64,7 +66,8 @@ export interface ILessonForm extends Partial<IBaseObject> {
     questionTypeId?: IdType;
     questionTypes: IQuestionType[];
     questionGroups: IQuestionGroup[];
-    medias: IMedia[];
+    // #REFACTOR_VDT
+    medias: unknown[];
 
     title?: string;
     content?: string;
@@ -136,7 +139,8 @@ export interface IAddSeeAlsoPayload {
     ];
     languageCode?: string;
     description?: string;
-    medias?: IMedia[];
+    // #REFACTOR_VDT
+    medias: unknown[];
 }
 
 export interface ICreateLessonVocabParams {

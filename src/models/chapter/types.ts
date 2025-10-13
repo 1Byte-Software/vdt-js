@@ -1,4 +1,4 @@
-import { IPageable, ISortable } from '@jframeworks/jfw-js';
+import { IPageable, ISortable } from '@jframework/jfw-js';
 import { IBaseObject, IdType } from '../base';
 import { ILesson } from '../lesson';
 

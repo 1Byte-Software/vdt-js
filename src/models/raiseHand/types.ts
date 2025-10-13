@@ -1,4 +1,4 @@
-import { IUser, IdType as JfwIdType } from '@jframeworks/jfw-js';
+import { IUser, IdType as JfwIdType } from '@jframework/jfw-js';
 import { IBaseObject, IdType } from '../base';
 export interface IRaiseHand extends IBaseObject {
   lessonId: IdType;

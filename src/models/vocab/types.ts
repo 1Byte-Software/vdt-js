@@ -1,4 +1,4 @@
-import { IdType as JfwIdType } from '@jframeworks/jfw-js';
+import { IdType as JfwIdType } from '@jframework/jfw-js';
 import { IBaseObject, IdType } from '../base';
 
 export interface IVocab extends IBaseObject {

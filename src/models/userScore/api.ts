@@ -1,6 +1,4 @@
-import { get, post, remove } from '@/utils/axiosHelper';
-import { generatePath } from '@/utils/path';
-import { IdType as JfwIdType } from '@jframeworks/jfw-js';
+import { IdType as JfwIdType } from '@jframework/jfw-js';
 import { RawAxiosRequestHeaders } from 'axios';
 import { IListResponseVDT, IResponse } from '../base';
 import { USER_SCORE_PATH } from './paths';
@@ -12,6 +10,8 @@ import {
     ISystemScore,
     IUserScoreAnswer,
 } from './types';
+import { get, post, remove } from '../../utils/axiosHelper';
+import { generatePath } from '../../utils/path';
 
 export const scoreAPI = async (
     payload: IAnswer[],

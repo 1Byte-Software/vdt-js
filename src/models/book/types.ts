@@ -1,4 +1,4 @@
-import { DateType, IPageable, IdType as JfwIdType } from '@jframeworks/jfw-js';
+import { DateType, IPageable, IdType as JfwIdType } from '@jframework/jfw-js';
 import {
     IBaseObject,
     IdType,

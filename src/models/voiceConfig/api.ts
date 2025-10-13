@@ -1,4 +1,4 @@
-import { get } from '@/utils/axiosHelper';
+import { get } from '../../utils/axiosHelper';
 import { RawAxiosRequestHeaders } from 'axios';
 import { IVoiceConfig } from './types';
 
