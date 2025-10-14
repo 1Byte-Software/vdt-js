@@ -124,3 +124,8 @@ export interface IAnswer {
   question: ILessonOfAnswer;
   questionResponseUsers: IResponseUserValue[];
 }
+
+export interface IScoreAIParams {
+  lessonId: IdType;
+  responseGroupId: IdType;
+}

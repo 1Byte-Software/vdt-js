@@ -1,5 +1,7 @@
 import { IdType as JfwIdType } from '@jframework/jfw-js';
 import { RawAxiosRequestHeaders } from 'axios';
+import { get, post, remove } from '../../utils/axiosHelper';
+import { generatePath } from '../../utils/path';
 import { IListResponseVDT, IResponse } from '../base';
 import { USER_SCORE_PATH } from './paths';
 import {
@@ -7,11 +9,10 @@ import {
     ICreateScoreHumanParams,
     IGetCountPracticeAIScoreParams,
     IGetUserScoreAnswerParams,
+    IScoreAIParams,
     ISystemScore,
     IUserScoreAnswer,
 } from './types';
-import { get, post, remove } from '../../utils/axiosHelper';
-import { generatePath } from '../../utils/path';
 
 export const scoreAPI = async (
     payload: IAnswer[],
@@ -77,14 +78,21 @@ export const deleteUserScoreByResponseGroupCodeAPI = async (
 };
 
 export const scoreAIAPI = async (
-    payload: FormData,
+    params: IScoreAIParams,
     userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IResponse<boolean>> => {
     const url = USER_SCORE_PATH.SCORE_AI;
+    const formData = new FormData();
+
+    if (params) {
+        Object.keys(params).forEach((key) => {
+            formData.append(key, params[key] as string);
+        });
+    }
 
     return await post(
         url,
-        payload,
+        formData,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',

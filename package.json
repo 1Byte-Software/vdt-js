@@ -4,12 +4,7 @@
     "version": "4.1.12-8",
     "author": "1byte devteam",
     "license": "ISC",
-    "main": "dist/index.js",
-    "module": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "files": [
-        "dist"
-    ],
+    "main": "src/index.ts",
     "bugs": {
         "url": "https://github.com/1Byte-Software/vdt-js/issues"
     },
@@ -22,7 +17,7 @@
         "build": "rollup -c",
         "watch": "npm run build -- --watch src",
         "prepublishOnly": "npm run build",
-        "test": "pnpm build && yalc publish --push --no-scripts",
+        "test": "yalc publish --push --no-scripts --files .",
         "test:publish": "pnpm install --no-frozen-lockfile && rollup -c",
         "tsc": "tsc -p tsconfig.json"
     },
