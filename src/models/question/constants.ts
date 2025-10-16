@@ -38,11 +38,11 @@ export enum USER_RESPONSE_TYPE_GROUP {
     singleChoiceGrid = 'SINGLE-CHOICE-GRID', // 10
     multipleChoiceGrid = 'MULTIPLE-CHOICE-GRID', // 11
 
-    embedShortAnswer = 'EMBED-SHORT-ANSWER', // 12
-    embedDragDrop = 'EMBED-DRAG-DROP', // 13 (temporary use until backend fix)
+    embedShortAnswer = 'EMBEDDED-SHORT-ANSWER', // 12
+    embedDragDrop = 'EMBEDDED-DRAGDROP', // 13 (temporary use until backend fix)
     // embedDragDrop2 = 'EMBED-DRAG-DROP', // 13
-    embedDropDown = 'EMBED-DROP-DOWN', // 14
-    embedHighlight = 'EMBED-HIGHLIGHT', // 15
+    embedDropDown = 'EMBEDDED-DROP-DOWN', // 14
+    embedHighlight = 'EMBEDDED-HIGHLIGHT', // 15
 
     labeling = 'LABELING', // 18
     categorize = 'CATEGORIZE', // 19
