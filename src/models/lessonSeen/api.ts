@@ -1,5 +1,5 @@
-import { get, post, remove } from '@/utils/axiosHelper';
-import { generatePath } from '@/utils/path';
+import { get, post, remove } from '../../utils/axiosHelper';
+import { generatePath } from '../../utils/path';
 import { RawAxiosRequestHeaders } from 'axios';
 import { IdType, IListResponseVDT } from '../base';
 import { LESSON_SEEN_PATH } from './paths';

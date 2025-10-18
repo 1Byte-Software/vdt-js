@@ -1,9 +1,10 @@
-import { IMedia, IdType as JfwIdType } from '@jframeworks/jfw-js';
+import { IdType as JfwIdType } from '@jframework/jfw-js';
 import { IBaseObject, IdType, IPageable, ISortable } from '../base';
 import { ICategory } from '../category';
 import { IQuestionGroup } from '../questionGroup';
 import { IQuestionType } from '../questionType';
 import { LESSON_STATUS } from './constants';
+import { IMedia } from '../media';
 
 export interface ILesson extends IBaseObject {
     soundBeep: false;
@@ -64,7 +65,8 @@ export interface ILessonForm extends Partial<IBaseObject> {
     questionTypeId?: IdType;
     questionTypes: IQuestionType[];
     questionGroups: IQuestionGroup[];
-    medias: IMedia[];
+    // #REFACTOR_VDT
+    medias: unknown[];
 
     title?: string;
     content?: string;
@@ -96,7 +98,9 @@ export interface ILessonVocab extends IBaseObject {
  */
 export type IGetListLessonsParams = IGetLessonFilterParams;
 
-export interface IGetLessonFilterParams extends IPageable, ISortable {
+export interface IGetLessonFilterParams
+    extends IPageable,
+        ISortable<'zOrder' | 'title'> {
     categoryIds?: string;
     questionTypeId?: IdType;
 
@@ -136,7 +140,8 @@ export interface IAddSeeAlsoPayload {
     ];
     languageCode?: string;
     description?: string;
-    medias?: IMedia[];
+    // #REFACTOR_VDT
+    medias: unknown[];
 }
 
 export interface ICreateLessonVocabParams {

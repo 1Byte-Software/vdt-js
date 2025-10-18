@@ -1,5 +1,5 @@
-import { get, post, put, remove } from '@/utils/axiosHelper';
-import { generatePath } from '@/utils/path';
+import { get, post, put, remove } from '../../utils/axiosHelper';
+import { generatePath } from '../../utils/path';
 import { RawAxiosRequestHeaders } from 'axios';
 import { IdType } from '../base';
 import { QUESTION_TYPE_PATH } from './path';

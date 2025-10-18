@@ -1,4 +1,4 @@
-import { get, post, put, remove } from '@/utils/axiosHelper';
+import { get, post, put, remove } from '../../utils/axiosHelper';
 import { RawAxiosRequestHeaders } from 'axios';
 import { IListResponseVDT } from '../base';
 import {

@@ -9,10 +9,10 @@ export enum LESSON_TIME_TYPE {
   month = 'THIS-MONTH',
 }
 
-export enum LESSON_SORT {
-  order = 'ZORDER',
-  title = 'TITLE',
-  createdDate = 'CREATED_DATE',
+export enum LessonSort {
+  Order = 'zOrder',
+  Title = 'title',
+  CreatedDate = 'created_date',
 }
 
 // Đặt mã màu ở vdt-js liệu có đúng không ? Cân bàn luận thêm

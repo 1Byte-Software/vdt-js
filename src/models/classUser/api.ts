@@ -1,4 +1,4 @@
-import { get, post, put } from '@/utils/axiosHelper';
+import { get, post, put } from '../../utils/axiosHelper';
 import { RawAxiosRequestHeaders } from 'axios';
 import { IdType, IListResponseVDT } from '../base';
 import { CLASS_USER_PATH } from './path';
