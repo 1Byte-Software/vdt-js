@@ -4,6 +4,7 @@ import { ICategory } from '../category';
 import { IQuestionGroup } from '../questionGroup';
 import { IQuestionType } from '../questionType';
 import { LESSON_STATUS } from './constants';
+import { IMedia } from '../media';
 
 export interface ILesson extends IBaseObject {
     soundBeep: false;
@@ -16,9 +17,7 @@ export interface ILesson extends IBaseObject {
      */
     categories: ICategory[];
     questionTypes: IQuestionType[];
-    // medias: IMedia[];
-    // #REFACTOR_VDT
-    medias: unknown[];
+    medias: IMedia[];
     priorities: IPriority[];
     questionGroups: IQuestionGroup[];
     lessonsSeeAlso: ILesson[];
@@ -99,7 +98,9 @@ export interface ILessonVocab extends IBaseObject {
  */
 export type IGetListLessonsParams = IGetLessonFilterParams;
 
-export interface IGetLessonFilterParams extends IPageable, ISortable {
+export interface IGetLessonFilterParams
+    extends IPageable,
+        ISortable<'zOrder' | 'title'> {
     categoryIds?: string;
     questionTypeId?: IdType;
 

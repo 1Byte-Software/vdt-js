@@ -54,6 +54,8 @@ export enum USER_RESPONSE_TYPE_GROUP {
     hotSpot = 'HOT-SPOT', // 23
 }
 
+export const EMBEDDED_QUESTION_OTHER_CODE = 'orther';
+
 export const USER_RESPONSE_TYPE = {
     ...USER_RESPONSE_TYPE_QUESTION,
     ...USER_RESPONSE_TYPE_GROUP,

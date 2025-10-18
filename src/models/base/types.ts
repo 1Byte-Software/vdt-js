@@ -1,4 +1,5 @@
 import { IdType as IdTypeJfw } from '@jframework/jfw-js';
+import { SortOrder } from '../../core/query/constants';
 
 export type IdType = number;
 
@@ -18,14 +19,29 @@ export interface IPageable {
     pageNumber?: number;
 }
 
-export interface ISortable {
-    sortDataField?: string;
-    sortOrder?: string;
+export interface ISortable<T extends string = string> {
+    /**
+     * The sort data field of the data.
+     */
+    sortDataField?: 'id' | 'created_date' | T;
+
+    /**
+     * The sort order of the data.
+     */
+    sortOrder?: SortOrder;
+}
+
+export interface IPagination {
+    totalItems: number;
+    totalPractices?: number;
+    totalPages?: number;
+    pageNumber?: number;
+    pageSize?: number;
 }
 
 export interface IListResponseVDT<T> {
     contents: T[];
-    pagination: IPageable | null;
+    pagination: IPagination | null;
 }
 export interface IResponse<T> {
     statusCode?: number;
