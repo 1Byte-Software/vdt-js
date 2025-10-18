@@ -1,105 +1,105 @@
 import {
-  ICreateVocabPayload,
-  ICreateVocabUserPayload,
-  IGetExactlyVocabPath,
-  IGetVocabParams,
-  IGetVocabUserParams,
-  IUpdateVocabUserPath,
-  IVocab,
-  IVocabUser,
-} from '@/models';
-import { get, post, put, remove } from '@/utils/axiosHelper';
+    ICreateVocabPayload,
+    ICreateVocabUserPayload,
+    IGetExactlyVocabPath,
+    IGetVocabParams,
+    IGetVocabUserParams,
+    IUpdateVocabUserPath,
+    IVocab,
+    IVocabUser,
+} from '../../models';
 import { RawAxiosRequestHeaders } from 'axios';
 import { IListResponseVDT } from '../base';
+import { get, post, put, remove } from '../../utils/axiosHelper';
 
 const REST = 'vocabs';
 const REST_VOCAB_USER = 'vocab-users';
 const BY_VOCAB = 'by-vocab';
 
 export const getVocabAPI = async (
-  params: IGetVocabParams,
-  userHeaders?: RawAxiosRequestHeaders,
+    params: IGetVocabParams,
+    userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<IVocab>> => {
-  const url = `${REST}`;
+    const url = `${REST}`;
 
-  const response = await get(url, { params }, userHeaders);
+    const response = await get(url, { params }, userHeaders);
 
-  const { contents, ...rest } = response.data;
+    const { contents, ...rest } = response.data;
 
-  return {
-    contents,
-    pagination: rest,
-  };
+    return {
+        contents,
+        pagination: rest,
+    };
 };
 
 export const createVocabAPI = async (
-  payload: ICreateVocabPayload,
-  userHeaders?: RawAxiosRequestHeaders,
+    payload: ICreateVocabPayload,
+    userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IVocab> => {
-  const url = `${REST}`;
+    const url = `${REST}`;
 
-  const response = await post(url, payload, null, userHeaders);
+    const response = await post(url, payload, null, userHeaders);
 
-  return response.data;
+    return response.data;
 };
 
 export const getVocabUserAPI = async (
-  params: IGetVocabUserParams,
-  userHeaders?: RawAxiosRequestHeaders,
+    params: IGetVocabUserParams,
+    userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<IVocabUser>> => {
-  const url = `${REST_VOCAB_USER}`;
-  const response = await get(url, { params }, userHeaders);
+    const url = `${REST_VOCAB_USER}`;
+    const response = await get(url, { params }, userHeaders);
 
-  const { contents, ...rest } = response.data;
+    const { contents, ...rest } = response.data;
 
-  return {
-    contents,
-    pagination: rest,
-  };
+    return {
+        contents,
+        pagination: rest,
+    };
 };
 
 export const createVocabUserAPI = async (
-  payload: ICreateVocabUserPayload,
-  userHeaders?: RawAxiosRequestHeaders,
+    payload: ICreateVocabUserPayload,
+    userHeaders?: RawAxiosRequestHeaders,
 ) => {
-  const url = `${REST_VOCAB_USER}`;
+    const url = `${REST_VOCAB_USER}`;
 
-  const response = await post(url, payload, null, userHeaders);
+    const response = await post(url, payload, null, userHeaders);
 
-  return response.data;
+    return response.data;
 };
 
 export const updateVocabUserAPI = async (
-  path: IUpdateVocabUserPath,
-  payload: ICreateVocabUserPayload,
-  userHeaders?: RawAxiosRequestHeaders,
+    path: IUpdateVocabUserPath,
+    payload: ICreateVocabUserPayload,
+    userHeaders?: RawAxiosRequestHeaders,
 ) => {
-  const { vocabUserId } = path;
-  const url = `${REST_VOCAB_USER}/${vocabUserId}`;
+    const { vocabUserId } = path;
+    const url = `${REST_VOCAB_USER}/${vocabUserId}`;
 
-  const response = await put(url, payload, null, userHeaders);
+    const response = await put(url, payload, null, userHeaders);
 
-  return response.data;
+    return response.data;
 };
 
 export const deleteVocabUserAPI = async (
-  path: IUpdateVocabUserPath,
-  userHeaders?: RawAxiosRequestHeaders,
+    path: IUpdateVocabUserPath,
+    userHeaders?: RawAxiosRequestHeaders,
 ) => {
-  const { vocabUserId } = path;
-  const url = `${REST_VOCAB_USER}/${vocabUserId}`;
+    const { vocabUserId } = path;
+    const url = `${REST_VOCAB_USER}/${vocabUserId}`;
 
-  return await remove(url, userHeaders);
+    return await remove(url, userHeaders);
 };
 
 export const getExactlyVocab = async (
-  path: IGetExactlyVocabPath,
-  userHeaders?: RawAxiosRequestHeaders,
+    path: IGetExactlyVocabPath,
+    userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IVocab> => {
-  const { vocab } = path;
-  const url = `${REST}/${BY_VOCAB}/${vocab}`;
+    const { vocab } = path;
+    const url = `${REST}/${BY_VOCAB}/${vocab}`;
 
-  const response = await get(url, null, userHeaders);
+    const response = await get(url, null, userHeaders);
 
-  return response.data;
+    return response.data;
 };

@@ -1,7 +1,7 @@
-import { get, post, put, remove } from '@/utils/axiosHelper';
-import { generatePath } from '@/utils/path';
+import { get, post, put, remove } from '../../utils/axiosHelper';
+import { generatePath } from '../../utils/path';
 import { RawAxiosRequestHeaders } from 'axios';
-import { IPageable } from '@jframeworks/jfw-js';
+import { IPageable } from '@jframework/jfw-js';
 import { IListResponseVDT } from '../base';
 import { COURSE_PATH } from './path';
 import {

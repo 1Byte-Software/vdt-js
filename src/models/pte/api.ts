@@ -1,5 +1,5 @@
-import { post } from '@/utils/axiosHelper';
-import { generatePath } from '@/utils/path';
+import { post } from '../../utils/axiosHelper';
+import { generatePath } from '../../utils/path';
 import { RawAxiosRequestHeaders } from 'axios';
 import { PTE_PATH } from './path';
 import { IPteSpeaking } from './types';

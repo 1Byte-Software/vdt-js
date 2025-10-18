@@ -1,4 +1,4 @@
-import { post } from '@/utils/axiosHelper';
+import { post } from '../../utils/axiosHelper';
 import { RawAxiosRequestHeaders } from 'axios';
 import { TOKEN_PATH } from './path';
 import { IGetTokenPayload, ITokenResponse } from './types';

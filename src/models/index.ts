@@ -7,6 +7,7 @@ export * from './category';
 export * from './chapter';
 export * from './classUser';
 export * from './course';
+export * from './issueType';
 export * from './lesson';
 export * from './lessonSeen';
 export * from './media';

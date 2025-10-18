@@ -1,9 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "@jframeworks/jfw-js": {
-      "signature": "426b0b530552b9a5827a4b4840e38b48",
-      "file": true
-    }
-  }
-}

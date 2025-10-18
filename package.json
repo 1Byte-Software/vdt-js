@@ -1,39 +1,41 @@
 {
-  "name": "@vardytests/vdt-js",
-  "description": "The Javascript package for Vardytests",
-  "version": "4.1.12-8",
-  "author": "1byte devteam",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/1Byte-Software/vdt-js/issues"
-  },
-  "homepage": "https://github.com/1Byte-Software/vdt-js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/1Byte-Software/vdt-js.git"
-  },
-  "main": "dist/index.js",
-  "scripts": {
-    "build": "rollup -c",
-    "watch": "npm run build -- --watch src",
-    "prepublishOnly": "npm run build",
-    "test": "yarn build && yalc publish --push --no-scripts"
-  },
-  "dependencies": {
-    "@jframeworks/jfw-js": "file:.yalc/@jframeworks/jfw-js",
-    "@rollup/plugin-image": "^3.0.3",
-    "axios": "^1.7.7",
-    "jfw-js": "^3.8.2-4.22",
-    "query-string": "^9.1.0",
-    "rollup": "^4.22.0",
-    "rollup-plugin-typescript2": "^0.36.0",
-    "rxjs": "^7.8.1"
-  },
-  "devDependencies": {
-    "@types/node": "^22.5.5",
-    "prettier": "^3.3.3",
-    "rollup-plugin-copy": "^3.5.0",
-    "rollup-plugin-string": "^3.0.0",
-    "typescript": "^5.6.2"
-  }
+    "name": "@vardytests/vdt-js",
+    "description": "The Javascript package for Vardytests",
+    "version": "4.2.0",
+    "author": "1byte devteam",
+    "license": "ISC",
+    "main": "src/index.ts",
+    "bugs": {
+        "url": "https://github.com/1Byte-Software/vdt-js/issues"
+    },
+    "homepage": "https://github.com/1Byte-Software/vdt-js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/1Byte-Software/vdt-js.git"
+    },
+    "scripts": {
+        "build": "rollup -c",
+        "watch": "npm run build -- --watch src",
+        "prepublishOnly": "npm run build",
+        "test": "yalc publish --push --no-scripts --files .",
+        "test:publish": "pnpm install --no-frozen-lockfile && rollup -c",
+        "tsc": "tsc -p tsconfig.json"
+    },
+    "dependencies": {
+        "@jframework/jfw-js": "^6.6.0",
+        "@rollup/plugin-image": "^3.0.3",
+        "axios": "^1.7.7",
+        "query-string": "^9.1.0",
+        "rollup": "^4.22.0",
+        "rollup-plugin-typescript2": "^0.36.0",
+        "rxjs": "^7.8.1"
+    },
+    "devDependencies": {
+        "@types/node": "^22.5.5",
+        "prettier": "^3.3.3",
+        "rollup-plugin-copy": "^3.5.0",
+        "rollup-plugin-string": "^3.0.0",
+        "tslib": "^2.8.1",
+        "typescript": "^5.6.2"
+    }
 }
