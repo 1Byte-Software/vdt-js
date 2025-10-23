@@ -1,4 +1,4 @@
 
 export enum VDTIssueType {
-    LessonProblem = 'LESSON_PROBLEM'
+    LessonProblem = 'LESSON-PROBLEM'
 }
