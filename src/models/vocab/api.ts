@@ -92,11 +92,10 @@ export const deleteVocabUserAPI = async (
     return await remove(url, userHeaders);
 };
 
-export const getExactlyVocab = async (
-    path: IGetExactlyVocabPath,
+export const getVocabByVocab = async (
+    vocab: string,
     userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IVocab> => {
-    const { vocab } = path;
     const url = `${REST}/${BY_VOCAB}/${vocab}`;
 
     const response = await get(url, null, userHeaders);
