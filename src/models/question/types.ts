@@ -1,4 +1,5 @@
 import { IBaseObject, IdType } from '../base';
+import { IMedia } from '../media';
 import { GROUP_USER_RESPONSE_TYPE, USER_RESPONSE_TYPE } from './constants';
 export interface IQuestion extends IBaseObject {
     code: string;
@@ -9,8 +10,7 @@ export interface IQuestion extends IBaseObject {
     questionOptions: IQuestionOption[];
     questionSolutions: IQuestionSolution[];
     userResponseType: USER_RESPONSE_TYPE;
-    // #REFACTOR_VDT
-    medias: unknown[];
+    medias: IMedia[];
 }
 
 export interface IQuestionSolution extends IBaseObject {
