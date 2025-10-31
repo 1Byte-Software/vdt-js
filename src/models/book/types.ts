@@ -97,13 +97,8 @@ export interface ILessonUserScore {
     id: IdType;
 }
 
-export interface IUserScoresSubmit {
-    question: ILessonUserScore;
-    pathSpeech: string;
-}
-
 export interface ISubmitBookExamRecordParams extends ISubmitPayload {
-    userScores: IAnswer | IAnswer[] | IUserScoresSubmit[];
+    userScores: IAnswer[];
 }
 
 export interface IContinueBookExamSubmissionParams {
