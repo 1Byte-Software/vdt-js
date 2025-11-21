@@ -2,16 +2,23 @@ import { IdType as IdTypeJfw } from '@jframework/jfw-js';
 import { SortOrder } from '../../core/query/constants';
 
 export type IdType = number;
+export type IdHashType = string;
 
 export type DateType = Date | string;
 
 export interface IBaseObject {
     id: IdType;
+    _id?: IdHashType | null;
 
-    createdBy: IdTypeJfw;
+    modifiedDate?: DateType | null;
+
+    modifiedBy?: IdTypeJfw | null;
+    _modifiedBy?: IdTypeJfw | null;
+
     createdDate: DateType;
-    modifiedBy: IdTypeJfw;
-    modifiedDate: DateType;
+
+    createdBy?: IdTypeJfw | null;
+    _createdBy?: IdTypeJfw | null;
 }
 
 export interface IPageable {

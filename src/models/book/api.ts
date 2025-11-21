@@ -1,7 +1,7 @@
-import { get, post, put, remove } from '../../utils/axiosHelper';
-import { generatePath } from '../../utils/path';
 import { IPageable, IdType as JfwIdType } from '@jframework/jfw-js';
 import { RawAxiosRequestHeaders } from 'axios';
+import { get, post, put, remove } from '../../utils/axiosHelper';
+import { generatePath } from '../../utils/path';
 import { IdType, IListResponseVDT } from '../base';
 import { IChapter } from '../chapter';
 import { BOOK_PATH } from './path';
@@ -9,6 +9,7 @@ import {
     IAddChaptersIntoBookParams,
     IBook,
     IBookExam,
+    IBookExamRecord,
     IBookForm,
     ICheckResultBookExamRecordParams,
     IContinueBookExamSubmissionParams,
@@ -104,7 +105,7 @@ export const getBookExamRecordByUserIdAPI = async (
 export const createBookExamRecordForBookAPI = async (
     params: ICreateBookExamRecordForBookParams,
     userHeaders?: RawAxiosRequestHeaders, // Promise<IResponse<IBookExam>>
-): Promise<any> => {
+): Promise<IBookExamRecord> => {
     const { userId, bookId } = params;
     const url = generatePath(BOOK_PATH.BOOK_EXAM_RECORD.CREATE, {
         userId,

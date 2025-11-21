@@ -1,30 +1,43 @@
 import { IBaseObject, IdType } from '../base';
 import { IMedia } from '../media';
+import { IQuestionType } from '../questionType';
 import { GROUP_USER_RESPONSE_TYPE, USER_RESPONSE_TYPE } from './constants';
+
 export interface IQuestion extends IBaseObject {
+    questionGroupId?: IdType | null;
     code: string;
-    description: string | null;
-    explanation: string;
     name: string;
+    description: string;
+    explanation: string;
+    lessonSourceMediaLink: string;
+    lessonSourceImageLink: string;
+    duration?: number | null;
+    medias: IMedia[];
     zOrder: number;
+    userResponseType: USER_RESPONSE_TYPE;
+
+    isShuffleOptions?: boolean | null;
+    questionType: IQuestionType;
     questionOptions: IQuestionOption[];
     questionSolutions: IQuestionSolution[];
-    userResponseType: USER_RESPONSE_TYPE;
-    medias: IMedia[];
 }
 
-export interface IQuestionSolution extends IBaseObject {
-    explanation: string | null;
-    valueMedia: string | null;
+export interface IQuestionSolution {
+    id?: IdType | null;
+    questionId?: IdType | null;
     valueText: string;
+    valueMedia?: string | null;
+    explanation?: string | null;
+    description?: string | null;
 }
 
 export interface IQuestionOption {
+    id?: IdType | null;
+    questionId?: IdType | null;
     code: string;
-    description: string | null;
-    id: IdType;
-    name: string;
-    zOrder?: number;
+    name?: string | null;
+    description?: string | null;
+    zOrder?: number | null;
 }
 
 export interface IDeleteOptionByIdParams {
@@ -45,7 +58,7 @@ export type UserResponseTypeGroup = {
 export type UserResponseTypeItem = {
     type: USER_RESPONSE_TYPE;
     scope: SCOPE_USER_RESPONSE_TYPE;
-    icon: string;
+    icon: any;
     disabled?: boolean;
 };
 

@@ -137,7 +137,7 @@ authClient.setHeaders(userHeaders);
   - [getScoreReportAPI]
   - [getUserResultAPI]
   - [checkCanStartAPI]
-  - [getListQuestionsOfChapterAPI]
+- [getListQuestionsOfChapterAPI]
   - [getChaptersOfBookAPI]
   - [addChapterIntoBookAPI]
   - [editChapterInBookAPI]

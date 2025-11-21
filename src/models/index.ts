@@ -3,6 +3,7 @@ export * from './base';
 export * from './ai';
 export * from './book';
 export * from './bookExam';
+export * from './bookType';
 export * from './category';
 export * from './chapter';
 export * from './classUser';

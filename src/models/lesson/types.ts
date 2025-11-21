@@ -1,52 +1,57 @@
 import { IdType as JfwIdType } from '@jframework/jfw-js';
 import { IBaseObject, IdType, IPageable, ISortable } from '../base';
-import { ICategory } from '../category';
+import { IMedia } from '../media';
 import { IQuestionGroup } from '../questionGroup';
 import { IQuestionType } from '../questionType';
-import { LESSON_STATUS } from './constants';
-import { IMedia } from '../media';
+import { LESSON_STATUS, LessonStatus, TranslationStatus } from './constants';
+import { IQuestion } from '../question';
 
-export interface ILesson extends IBaseObject {
-    soundBeep: false;
-
-    userIdAsAppover?: JfwIdType;
-    languageId: number;
-
-    /**
-     * @deprecated Use questionTypes instead
-     */
-    categories: ICategory[];
-    questionTypes: IQuestionType[];
-    medias: IMedia[];
-    priorities: IPriority[];
-    questionGroups: IQuestionGroup[];
-    lessonsSeeAlso: ILesson[];
-    translations: ILesson[];
-    source?: ISource;
-
+export interface IBaseLesson extends IBaseObject {
+    sourceId?: IdType | null;
+    languageCode: string;
     title: string;
     content: string;
-    duration: number;
-    explanation: string;
-    isFree: boolean;
+    description: string;
     transcript: string;
-    transcriptTranslated?: string;
-    description: string | null;
-    preparationTime: number;
-
-    lessonOriginalSourceLink?: string;
-    lessonOriginalSourceMediaLink?: string;
-    practiced: boolean;
-    shared: boolean;
-    allowSkipAnswer: boolean;
-    allowSkipPreparationTime: boolean;
-    allowSkipDuration: boolean;
-    isSystem: boolean;
     privateNotes: string;
+    preparationTime: number | null;
+    allowSkipPreparationTime?: boolean | null;
+    duration?: number | null;
+    allowSkipDuration?: boolean | null;
+    allowSkipAnswer?: boolean | null;
+    soundBeep?: boolean | null;
+    shared?: boolean | null;
+    reviewBy?: JfwIdType | null;
+    approveBy?: JfwIdType | null;
+    isSystem: boolean;
 
-    zorder: number;
-    status: LESSON_STATUS;
-    statusValue: string;
+    brandId: JfwIdType;
+
+    status?: LessonStatus | null;
+    zorder?: number | null;
+    isFree?: boolean;
+
+    questionTypes: IQuestionType[];
+}
+
+export interface ILesson extends IBaseLesson {
+    orderChapterLesson?: number | null;
+    questionGroups: IQuestionGroup[];
+    medias: IMedia[];
+    priorities: IPriority[];
+    practiced: boolean;
+    translations: ITranslation[];
+    lessonsSeeAlso: ILesson[];
+    source: ISource;
+}
+
+export interface ITranslation extends IBaseObject {
+    lessonId: IdType;
+    languageCode: string;
+    transcriptTranslated: string;
+    description: string;
+    zOrder?: string | null;
+    status?: TranslationStatus | null;
 }
 
 export interface IPriority extends IBaseObject {
@@ -54,38 +59,17 @@ export interface IPriority extends IBaseObject {
     lessonId: IdType;
 }
 
-export interface ISource {
-    id: IdType;
-    sourceName?: string;
-    sourceWebsite?: string;
-    description?: string;
+export interface ISource extends IBaseObject {
+    sourceName: string;
+    sourceWebsite: string;
+    description: string;
 }
 
-export interface ILessonForm extends Partial<IBaseObject> {
-    questionTypeId?: IdType;
-    questionTypes: IQuestionType[];
-    questionGroups: IQuestionGroup[];
-    // #REFACTOR_VDT
-    medias: unknown[];
-
-    title?: string;
-    content?: string;
-    duration: number;
-    description?: string;
-    explanation?: string;
-    isFree: boolean;
-    preparationTime: number;
-    transcript?: string;
-    allowSkipAnswer: boolean;
-    allowSkipPreparationTime: boolean;
-    allowSkipDuration: boolean;
-    soundBeep: boolean;
-
-    isSystem: boolean;
-    privateNotes?: string;
-    status: LESSON_STATUS;
-    zOrder?: number | null;
+export interface ICreateLessonParams extends ILesson {
+    questions?: IQuestion[];
 }
+
+export interface IUpdateLessonParams extends IBaseLesson {}
 
 export interface ILessonVocab extends IBaseObject {
     lessonId: IdType;

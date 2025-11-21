@@ -8,6 +8,7 @@ import {
 import { IChapter } from '../chapter';
 import { ILesson } from '../lesson';
 import { IAnswer, IUserScoreAnswer } from '../userScore';
+import { BookExamStatus } from '../bookExam';
 
 export interface IBook extends IBaseObject {
     chapters?: IChapter[];
@@ -24,6 +25,32 @@ export interface IBook extends IBaseObject {
     statusValue: string;
 }
 
+/**
+ * Represents an exam record associated with a specific book.
+ *
+ * @remarks
+ * This interface is **based on inferred data** rather than official backend documentation.
+ * The types (especially for score-related fields) are assumed to be `number | null`
+ * based on observed data patterns and naming conventions.
+ */
+export interface IBookExamRecord extends IBaseObject {
+    bookId: IdType;
+    code: string;
+    status: BookExamStatus;
+
+    speaking?: number | null;
+    writing?: number | null;
+    reading?: number | null;
+    listening?: number | null;
+    grammar?: number | null;
+    pronunciation?: number | null;
+    oralFluency?: number | null;
+    writtenDiscourse?: number | null;
+    spelling?: number | null;
+    vocabulary?: number | null;
+    overallScore?: number | null;
+}
+
 export interface IQueryBookParams extends IPageable, ISortable {
     /**
      * @deprecated Use questionTypeId instead
@@ -32,7 +59,8 @@ export interface IQueryBookParams extends IPageable, ISortable {
     questionTypeId?: IdType;
 
     name?: string;
-    type?: string;
+
+    bookTypeId?: string;
 
     status?: string;
 }
@@ -98,7 +126,7 @@ export interface ILessonUserScore {
 }
 
 export interface ISubmitBookExamRecordParams extends ISubmitPayload {
-    userScores: IAnswer[];
+    userScores?: IAnswer[] | null;
 }
 
 export interface IContinueBookExamSubmissionParams {
