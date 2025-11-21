@@ -2,7 +2,7 @@ import { RawAxiosRequestHeaders } from 'axios';
 import { get, post, put, remove } from '../../utils/axiosHelper';
 import { generatePath } from '../../utils/path';
 import { IdType, IListResponseVDT } from '../base';
-import { ILesson } from '../lesson';
+import { IBaseLesson } from '../lesson';
 import { CHAPTER_PATH } from './path';
 import {
     IAddLessonsIntoChapterParams,
@@ -74,7 +74,7 @@ export const deleteChapterAPI = async (
 export const getLessonsOfChapterAPI = async (
     chapterId: IdType,
     userHeaders?: RawAxiosRequestHeaders,
-): Promise<ILesson[]> => {
+): Promise<IBaseLesson[]> => {
     const url = generatePath(CHAPTER_PATH.LESSON.GET_BY_CHAPTER_ID, {
         chapterId,
     });

@@ -121,6 +121,7 @@ export interface IResponseUserValue {
 }
 
 export interface IAnswer {
+  pathSpeech?: string | null;
   question: ILessonOfAnswer;
   questionResponseUsers: IResponseUserValue[];
 }
