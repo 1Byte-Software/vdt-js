@@ -1,37 +1,8 @@
 import { JFWError } from '@jframework/jfw-js';
 import { HttpStatusCode } from 'axios';
 import { DateType, IdType } from '../../models';
-import { SortOrder } from './constants';
 
 //#region Query params types
-export interface IPageable {
-    /**
-     * The page size of the pagination.
-     * @remarks int32
-     * @defaultValue 200
-     */
-    pageSize?: number;
-
-    /**
-     * The page number of the pagination.
-     * @remarks int32
-     * @defaultValue 0
-     */
-    pageNumber?: number;
-}
-
-export interface ISortable<T extends string = string> {
-    /**
-     * The sort data field of the data.
-     */
-    sortDataField?: 'id' | 'createdDate' | T;
-
-    /**
-     * The sort order of the data.
-     */
-    sortOrder?: SortOrder;
-}
-
 export interface ICreatedDateFilter {
     /**
      * The created date from.

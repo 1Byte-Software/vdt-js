@@ -5,6 +5,7 @@ import { IdType, IError, IListResponseVDT } from '../base';
 import { LESSON_PATH } from './path';
 import {
     IAddSeeAlsoPayload,
+    ICreateLessonParams,
     ICreateLessonPriorityParams,
     ICreateLessonVocabParams,
     IDeleteLessonPriorityParams,
@@ -12,9 +13,9 @@ import {
     IGetLessonExportParams,
     IGetLessonFilterParams,
     ILesson,
-    ILessonForm,
     ILessonVocab,
     IQueryLessonParams,
+    IUpdateLessonParams,
 } from './types';
 
 /**
@@ -71,12 +72,12 @@ export const getLessonByIdAPI = async (
 };
 
 export const createLessonAPI = async (
-    payload: ILessonForm,
+    params: ICreateLessonParams,
     userHeaders?: RawAxiosRequestHeaders,
 ): Promise<number> => {
     const url = LESSON_PATH.CREATE;
 
-    const response = await post(url, payload, null, userHeaders);
+    const response = await post(url, params, null, userHeaders);
 
     return response.data;
 };
@@ -92,12 +93,12 @@ export const deleteLessonAPI = async (
 
 export const updateLessonAPI = async (
     id: IdType,
-    payload: ILessonForm,
+    params: IUpdateLessonParams,
     userHeaders?: RawAxiosRequestHeaders,
 ): Promise<null> => {
     const url = generatePath(LESSON_PATH.UPDATE, { id });
 
-    const response = await put(url, payload, null, userHeaders);
+    const response = await put(url, params, null, userHeaders);
 
     return response.data;
 };
