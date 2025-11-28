@@ -9,14 +9,33 @@ import {
     IChapter,
     IChapterForm,
     IEditLessonOfChapterParams,
+    IGetChapterParams,
     IQueryChapterParams,
 } from './types';
 
+/**
+ * @deprecated Use  getChaptersAPI instead
+ */
 export const queryChapterAPI = async (
     params: IQueryChapterParams,
     userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<IChapter>> => {
     const url = CHAPTER_PATH.QUERY;
+    const response = await get(url, { params }, userHeaders);
+
+    const { contents, ...rest } = response.data;
+
+    return {
+        contents,
+        pagination: rest,
+    };
+};
+
+export const getChaptersAPI = async (
+    params: IGetChapterParams,
+    userHeaders?: RawAxiosRequestHeaders,
+): Promise<IListResponseVDT<IChapter>> => {
+    const url = CHAPTER_PATH.GET_CHAPTERS;
     const response = await get(url, { params }, userHeaders);
 
     const { contents, ...rest } = response.data;

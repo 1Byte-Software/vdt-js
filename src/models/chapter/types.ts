@@ -3,57 +3,62 @@ import { IBaseObject, IdType } from '../base';
 import { ILesson } from '../lesson';
 
 export interface IChapter extends IBaseObject {
-  /**
-   * @deprecated Use questionTypeId instead
-   */
-  categoryId: IdType;
-  questionTypeId: IdType;
+    /**
+     * @deprecated Use questionTypeId instead
+     */
+    categoryId: IdType;
+    questionTypeId: IdType;
 
-  name: string;
-  description: string;
-  duration: number;
+    name: string;
+    description: string;
+    duration: number;
 
-  status: string;
-  statusValue: string;
-  lessons: ILesson[] | null;
+    status: string;
+    statusValue: string;
+    lessons: ILesson[] | null;
 }
 
-export interface IQueryChapterParams extends IPageable, ISortable {
-  name?: string;
-  status?: string;
+export interface IGetChapterParams extends IPageable, ISortable {
+    name?: string;
+    status?: string;
 
-  /**
-   * @deprecated Use questionTypeId instead
-   */
-  categoryId?: number;
-  questionTypeId?: IdType;
+    /**
+     * @deprecated Use questionTypeId instead
+     */
+    categoryId?: number;
+    questionTypeId?: IdType;
 }
+
+/**
+ * @deprecated use IGetChapterParams instead
+ */
+export type IQueryChapterParams = IGetChapterParams;
 
 export interface IChapterForm {
-  id?: IdType;
-  /**
-   * @deprecated Use questionTypeId instead
-   */
-  categoryId?: IdType;
-  questionTypeId: IdType;
+    id?: IdType;
+    /**
+     * @deprecated Use questionTypeId instead
+     */
+    categoryId?: IdType;
+    questionTypeId: IdType;
 
-  name: string;
-  // description: string;
-  // duration: number;
-  // orderBookChapter: number;
-  status: string;
-  lessons: ILesson[];
+    name: string;
+    // description: string;
+    // duration: number;
+    // orderBookChapter: number;
+    status: string;
+    lessons: ILesson[];
 }
 
 export interface ILessonFormOfChapter {
-  lessonId?: IdType;
-  zOrder?: number;
+    lessonId?: IdType;
+    zOrder?: number;
 }
 
 export interface IAddLessonsIntoChapterParams {
-  chapterId: IdType;
-  lessonIds: ILessonFormOfChapter[];
+    chapterId: IdType;
+    lessonIds: ILessonFormOfChapter[];
 }
 
 export interface IEditLessonOfChapterParams
-  extends IAddLessonsIntoChapterParams {}
+    extends IAddLessonsIntoChapterParams {}
