@@ -1,6 +1,7 @@
 import { IPageable, ISortable } from '@jframework/jfw-js';
 import { IBaseObject, IdType } from '../base';
 import { ILesson } from '../lesson';
+import { ChapterStatus } from './constants';
 
 export interface IChapter extends IBaseObject {
     /**
@@ -13,14 +14,14 @@ export interface IChapter extends IBaseObject {
     description: string;
     duration: number;
 
-    status: string;
+    status: ChapterStatus;
     statusValue: string;
     lessons: ILesson[] | null;
 }
 
-export interface IGetChapterParams extends IPageable, ISortable {
+export interface IGetChaptersParams extends IPageable, ISortable {
     name?: string;
-    status?: string;
+    status?: ChapterStatus;
 
     /**
      * @deprecated Use questionTypeId instead
@@ -32,7 +33,7 @@ export interface IGetChapterParams extends IPageable, ISortable {
 /**
  * @deprecated use IGetChapterParams instead
  */
-export type IQueryChapterParams = IGetChapterParams;
+export type IQueryChapterParams = IGetChaptersParams;
 
 export interface IChapterForm {
     id?: IdType;
@@ -46,7 +47,7 @@ export interface IChapterForm {
     // description: string;
     // duration: number;
     // orderBookChapter: number;
-    status: string;
+    status: ChapterStatus;
     lessons: ILesson[];
 }
 

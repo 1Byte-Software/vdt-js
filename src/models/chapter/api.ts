@@ -9,7 +9,7 @@ import {
     IChapter,
     IChapterForm,
     IEditLessonOfChapterParams,
-    IGetChapterParams,
+    IGetChaptersParams,
     IQueryChapterParams,
 } from './types';
 
@@ -32,7 +32,7 @@ export const queryChapterAPI = async (
 };
 
 export const getChaptersAPI = async (
-    params: IGetChapterParams,
+    params: IGetChaptersParams,
     userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<IChapter>> => {
     const url = CHAPTER_PATH.GET_CHAPTERS;
