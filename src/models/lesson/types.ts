@@ -42,7 +42,7 @@ export interface ILesson extends IBaseLesson {
     practiced: boolean;
     translations: ITranslation[];
     lessonsSeeAlso: ILesson[];
-    source: ISource;
+    source?: ISource | null;
 }
 
 export interface ITranslation extends IBaseObject {
