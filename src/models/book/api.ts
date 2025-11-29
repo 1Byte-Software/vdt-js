@@ -16,9 +16,9 @@ import {
     IContinueExam,
     ICreateBookExamRecordForBookParams,
     IGetBookExamRecordByUserId,
+    IGetBooksParams,
     IGetResultBookExamRecordParams,
     IGetScoreDetailBookExamRecordParams,
-    IQueryBookParams,
     IResultOverall,
     IScoreReport,
     ISubmitBookExamRecordParams,
@@ -26,11 +26,11 @@ import {
     IUserResult,
 } from './types';
 
-export const queryBookAPI = async (
-    params: IQueryBookParams,
+export const getBooksAPI = async (
+    params: IGetBooksParams,
     userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<IBook>> => {
-    const url = BOOK_PATH.QUERY;
+    const url = BOOK_PATH.GET_BOOKS;
     const response = await get(url, { params }, userHeaders);
 
     const { contents, ...rest } = response.data;
@@ -40,6 +40,11 @@ export const queryBookAPI = async (
         pagination: rest,
     };
 };
+
+/**
+ * @deprecated use getBooksAPI instead
+ */
+export const queryBookAPI = getBooksAPI;
 
 export const getBookByIdAPI = async (
     bookId: IdType,

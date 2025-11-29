@@ -2,18 +2,19 @@ import { DateType, IPageable, IdType as JfwIdType } from '@jframework/jfw-js';
 import {
     IBaseObject,
     IdType,
-    IPageable as IVDTPageable,
     ISortable,
+    IPageable as IVDTPageable,
 } from '../base';
+import { BookExamStatus } from '../bookExam';
 import { IChapter } from '../chapter';
 import { ILesson } from '../lesson';
 import { IAnswer, IUserScoreAnswer } from '../userScore';
-import { BookExamStatus } from '../bookExam';
+import { BookStatus, BookType } from './constants';
 
 export interface IBook extends IBaseObject {
     chapters?: IChapter[];
 
-    type?: string | null;
+    type?: BookType | null;
     code: string;
 
     name: string;
@@ -21,7 +22,7 @@ export interface IBook extends IBaseObject {
     isFree: boolean;
 
     zOrder?: number;
-    status: string;
+    status: BookStatus;
     statusValue: string;
 }
 
@@ -51,7 +52,12 @@ export interface IBookExamRecord extends IBaseObject {
     overallScore?: number | null;
 }
 
-export interface IQueryBookParams extends IPageable, ISortable {
+/**
+ * @deprecated use IGetBooksParams instead
+ */
+export type IQueryBookParams = IGetBooksParams;
+
+export interface IGetBooksParams extends IPageable, ISortable {
     /**
      * @deprecated Use questionTypeId instead
      */
@@ -62,7 +68,7 @@ export interface IQueryBookParams extends IPageable, ISortable {
 
     bookTypeId?: string;
 
-    status?: string;
+    status?: BookStatus;
 }
 
 export interface IBookForm {
@@ -73,10 +79,10 @@ export interface IBookForm {
     code?: string;
 
     name?: string;
-    type?: string | null;
+    type?: BookType | null;
 
     isFree?: boolean;
-    status: string;
+    status: BookStatus;
 }
 
 export interface IDeviceTest {
