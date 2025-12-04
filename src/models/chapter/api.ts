@@ -5,31 +5,12 @@ import { IdType, IListResponseVDT } from '../base';
 import { IBaseLesson } from '../lesson';
 import { CHAPTER_PATH } from './path';
 import {
-    IAddLessonsIntoChapterParams,
     IChapter,
-    IChapterForm,
-    IEditLessonOfChapterParams,
+    ICreateChapterParams,
     IGetChaptersParams,
-    IQueryChapterParams,
+    ILessonItemParams,
+    IUpdateChapterParams
 } from './types';
-
-/**
- * @deprecated Use  getChaptersAPI instead
- */
-export const queryChapterAPI = async (
-    params: IQueryChapterParams,
-    userHeaders?: RawAxiosRequestHeaders,
-): Promise<IListResponseVDT<IChapter>> => {
-    const url = CHAPTER_PATH.QUERY;
-    const response = await get(url, { params }, userHeaders);
-
-    const { contents, ...rest } = response.data;
-
-    return {
-        contents,
-        pagination: rest,
-    };
-};
 
 export const getChaptersAPI = async (
     params: IGetChaptersParams,
@@ -59,23 +40,24 @@ export const getChapterByIdAPI = async (
 };
 
 export const updateChapterAPI = async (
-    chapter: IChapterForm,
+    chapterId: IdType,
+    params: IUpdateChapterParams,
     userHeaders?: RawAxiosRequestHeaders,
 ) => {
     const url = generatePath(CHAPTER_PATH.UPDATE_BY_ID, {
-        id: chapter.id,
+        id: chapterId,
     });
 
-    return await put(url, chapter, null, userHeaders);
+    return await put(url, params, null, userHeaders);
 };
 
 export const createChapterAPI = async (
-    chapter: IChapterForm,
+    params: ICreateChapterParams,
     userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IdType> => {
     const url = CHAPTER_PATH.CREATE;
 
-    const response = await post(url, chapter, null, userHeaders);
+    const response = await post(url, params, null, userHeaders);
 
     return response.data;
 };
@@ -103,26 +85,36 @@ export const getLessonsOfChapterAPI = async (
     return response.data;
 };
 
-export const addLessonIntoChapterAPI = async (
-    path: IAddLessonsIntoChapterParams,
+export const addLessonsIntoChapterAPI = async (
+    chapterId: IdType,
+    lessonIds: IdType[],
     userHeaders?: RawAxiosRequestHeaders,
 ) => {
-    const { chapterId, lessonIds } = path;
     const url = generatePath(CHAPTER_PATH.LESSON.ADD_INTO_CHAPTER, {
         chapterId,
     });
 
-    return await post(url, lessonIds, null, userHeaders);
+    return await post(
+        url,
+        null,
+        {
+            params: { lessonIds },
+            paramsSerializer: {
+                indexes: true,
+            },
+        },
+        userHeaders,
+    );
 };
 
-export const editLessonInChapterAPI = async (
-    path: IEditLessonOfChapterParams,
+export const updateLessonsOfChapterAPI = async (
+    chapterId: IdType,
+    lessonItems: ILessonItemParams[],
     userHeaders?: RawAxiosRequestHeaders,
 ) => {
-    const { chapterId, lessonIds } = path;
     const url = generatePath(CHAPTER_PATH.LESSON.EDIT_IN_CHAPTER, {
         chapterId,
     });
 
-    return await put(url, lessonIds, null, userHeaders);
+    return await put(url, lessonItems, null, userHeaders);
 };

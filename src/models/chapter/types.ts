@@ -1,22 +1,23 @@
 import { IPageable, ISortable } from '@jframework/jfw-js';
-import { IBaseObject, IdType } from '../base';
-import { ILesson } from '../lesson';
+import {
+    IBaseObject,
+    IdType,
+    StripCreateFields,
+    StripUpdateFields,
+} from '../base';
+import { IBaseLesson } from '../lesson';
 import { ChapterStatus } from './constants';
 
 export interface IChapter extends IBaseObject {
-    /**
-     * @deprecated Use questionTypeId instead
-     */
-    categoryId: IdType;
     questionTypeId: IdType;
 
-    name: string;
-    description: string;
-    duration: number;
-
-    status: ChapterStatus;
-    statusValue: string;
-    lessons: ILesson[] | null;
+    name?: string | null;
+    duration?: number | null;
+    status?: number | null;
+    statusValue?: ChapterStatus | null;
+    description?: string | null;
+    orderBookChapter: number;
+    lessons: IBaseLesson[];
 }
 
 export interface IGetChaptersParams extends IPageable, ISortable {
@@ -30,36 +31,23 @@ export interface IGetChaptersParams extends IPageable, ISortable {
     questionTypeId?: IdType;
 }
 
-/**
- * @deprecated use IGetChapterParams instead
- */
-export type IQueryChapterParams = IGetChaptersParams;
-
-export interface IChapterForm {
-    id?: IdType;
-    /**
-     * @deprecated Use questionTypeId instead
-     */
-    categoryId?: IdType;
-    questionTypeId: IdType;
-
-    name: string;
-    // description: string;
-    // duration: number;
-    // orderBookChapter: number;
-    status: ChapterStatus;
-    lessons: ILesson[];
+export interface ICreateChapterParams
+    extends Omit<
+        StripCreateFields<IChapter>,
+        'lessons' | 'orderBookChapter' | 'status'
+    > {
+    status?: ChapterStatus | null;
 }
 
-export interface ILessonFormOfChapter {
-    lessonId?: IdType;
-    zOrder?: number;
+export interface IUpdateChapterParams
+    extends Omit<
+        StripUpdateFields<IChapter>,
+        'lessons' | 'orderBookChapter' | 'status'
+    > {
+    status?: ChapterStatus | null;
 }
 
-export interface IAddLessonsIntoChapterParams {
-    chapterId: IdType;
-    lessonIds: ILessonFormOfChapter[];
+export interface ILessonItemParams {
+    lessonId: IdType;
+    zOrder?: number | null;
 }
-
-export interface IEditLessonOfChapterParams
-    extends IAddLessonsIntoChapterParams {}
