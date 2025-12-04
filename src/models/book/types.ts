@@ -4,26 +4,31 @@ import {
     IdType,
     ISortable,
     IPageable as IVDTPageable,
+    StripCreateFields,
+    StripUpdateFields,
 } from '../base';
 import { BookExamStatus } from '../bookExam';
+import { IBookType } from '../bookType';
 import { IChapter } from '../chapter';
 import { ILesson } from '../lesson';
 import { IAnswer, IUserScoreAnswer } from '../userScore';
 import { BookStatus, BookType } from './constants';
 
 export interface IBook extends IBaseObject {
-    chapters?: IChapter[];
+    bookType?: IBookType | null;
 
+    code?: string | null;
+    name?: string | null;
+
+    /**
+     * @deprecated Use BookType instead
+     */
     type?: BookType | null;
-    code: string;
-
-    name: string;
-    description?: string;
-    isFree: boolean;
-
-    zOrder?: number;
-    status: BookStatus;
-    statusValue: string;
+    thumbnailUrl?: string | null;
+    description?: string | null;
+    zOrder?: number | null;
+    status?: BookStatus | null;
+    isFree?: boolean | null;
 }
 
 /**
@@ -71,19 +76,19 @@ export interface IGetBooksParams extends IPageable, ISortable {
     status?: BookStatus;
 }
 
-export interface IBookForm {
-    id?: IdType;
+export interface ICreateBookParams {
+    bookTypeId?: IdType | null;
 
-    chapters?: IChapter[];
+    code?: string | null;
+    name?: string | null;
 
-    code?: string;
-
-    name?: string;
-    type?: BookType | null;
-
-    isFree?: boolean;
-    status: BookStatus;
+    thumbnailUrl?: string | null;
+    description?: string | null;
+    zOrder?: number | null;
+    status?: BookStatus | null;
+    isFree?: boolean | null;
 }
+export interface IUpdateBookParams extends ICreateBookParams {}
 
 export interface IDeviceTest {
     icon?: string;
@@ -223,17 +228,11 @@ export interface IGetScoreDetailBookExamRecordParams {
     userId: JfwIdType;
     categoryId: IdType;
 }
-export interface IChapterFormOfBook {
+
+export interface IChapterItemParams {
     chapterId?: IdType;
     zOrder?: number;
 }
-export interface IAddChaptersIntoBookParams {
-    bookId: IdType;
-    chapterIds: IChapterFormOfBook[];
-}
-
-export interface IUpdateChaptersOfBookParams
-    extends IAddChaptersIntoBookParams {}
 
 export interface IUserResult {
     chapterId: IdType;

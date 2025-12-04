@@ -6,15 +6,15 @@ import { IdType, IListResponseVDT } from '../base';
 import { IChapter } from '../chapter';
 import { BOOK_PATH } from './path';
 import {
-    IAddChaptersIntoBookParams,
     IBook,
     IBookExam,
     IBookExamRecord,
-    IBookForm,
+    IChapterItemParams,
     ICheckResultBookExamRecordParams,
     IContinueBookExamSubmissionParams,
     IContinueExam,
     ICreateBookExamRecordForBookParams,
+    ICreateBookParams,
     IGetBookExamRecordByUserId,
     IGetBooksParams,
     IGetResultBookExamRecordParams,
@@ -22,8 +22,8 @@ import {
     IResultOverall,
     IScoreReport,
     ISubmitBookExamRecordParams,
-    IUpdateChaptersOfBookParams,
-    IUserResult,
+    IUpdateBookParams,
+    IUserResult
 } from './types';
 
 export const getBooksAPI = async (
@@ -60,25 +60,26 @@ export const getBookByIdAPI = async (
 };
 
 export const createBookAPI = async (
-    book: IBookForm,
+    params: ICreateBookParams,
     userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IdType> => {
     const url = BOOK_PATH.CREATE;
 
-    const response = await post(url, book, null, userHeaders);
+    const response = await post(url, params, null, userHeaders);
 
     return response.data;
 };
 
 export const updateBookAPI = async (
-    book: IBookForm,
+    bookId: IdType,
+    params: IUpdateBookParams,
     userHeaders?: RawAxiosRequestHeaders,
 ) => {
     const url = generatePath(BOOK_PATH.UPDATE_BY_ID, {
-        id: book.id,
+        id: bookId,
     });
 
-    return await put(url, book, null, userHeaders);
+    return await put(url, params, null, userHeaders);
 };
 
 export const deleteBookAPI = async (
@@ -256,27 +257,26 @@ export const getChapterOfBookAPI = async (
     return response.data;
 };
 
-export const addChapterIntoBookAPI = async (
-    params: IAddChaptersIntoBookParams,
+export const addChaptersIntoBookAPI = async (
+    bookId: IdType,
+    chapterItems: IChapterItemParams[],
     userHeaders?: RawAxiosRequestHeaders,
 ) => {
-    const { bookId, chapterIds } = params;
-
     const url = generatePath(BOOK_PATH.CHAPTERS.ADD, {
         id: bookId,
     });
 
-    return await post(url, chapterIds, null, userHeaders);
+    return await post(url, chapterItems, null, userHeaders);
 };
 
-export const updateChapterInBookAPI = async (
-    path: IUpdateChaptersOfBookParams,
+export const updateChaptersOfBookAPI = async (
+    bookId: IdType,
+    chapterItems: IChapterItemParams[],
     userHeaders?: RawAxiosRequestHeaders,
 ) => {
-    const { bookId, chapterIds } = path;
     const url = generatePath(BOOK_PATH.CHAPTERS.UPDATE, {
         id: bookId,
     });
 
-    return await put(url, chapterIds, null, userHeaders);
+    return await put(url, chapterItems, null, userHeaders);
 };

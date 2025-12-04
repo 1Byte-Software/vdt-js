@@ -9,6 +9,7 @@ export enum BOOK_STATUS {
 }
 
 export enum BookStatus {
+    All = 'All',
     Active = 'Active',
     Inactive = 'Inactive',
     Draft = 'Draft',
