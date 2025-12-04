@@ -3,7 +3,7 @@ import { IMedia } from '../media';
 import { IQuestionType } from '../questionType';
 import { GROUP_USER_RESPONSE_TYPE, USER_RESPONSE_TYPE } from './constants';
 
-export interface IQuestion extends IBaseObject {
+export interface IQuestion extends IBaseObject, IQuestionAnswer {
     questionGroupId?: IdType | null;
     code: string;
     name: string;
@@ -17,7 +17,10 @@ export interface IQuestion extends IBaseObject {
     userResponseType: USER_RESPONSE_TYPE;
 
     isShuffleOptions?: boolean | null;
-    questionType: IQuestionType;
+    questionType?: IQuestionType | null;
+}
+
+export interface IQuestionAnswer {
     questionOptions: IQuestionOption[];
     questionSolutions: IQuestionSolution[];
 }

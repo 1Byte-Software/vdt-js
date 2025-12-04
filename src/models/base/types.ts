@@ -4,7 +4,7 @@ import { SortOrder } from '../../core/query/constants';
 export type IdType = number;
 export type IdHashType = string;
 
-export type DateType = Date | string;
+export type DateType = string;
 
 export interface IBaseObject {
     id: IdType;
@@ -62,3 +62,20 @@ export interface IError {
     message: string;
     path: string | null;
 }
+
+export type StripCreateFields<T extends IBaseObject> = Omit<
+    T,
+    keyof IBaseObject
+> & {
+    createdDate?: IBaseObject['createdDate'];
+    createdBy?: IBaseObject['createdBy'];
+    _createdBy?: IBaseObject['_createdBy'];
+};
+export type StripUpdateFields<T extends IBaseObject> = Omit<
+    T,
+    keyof IBaseObject
+> & {
+    modifiedDate?: IBaseObject['modifiedDate'];
+    modifiedBy?: IBaseObject['modifiedBy'];
+    _modifiedBy?: IBaseObject['_modifiedBy'];
+};

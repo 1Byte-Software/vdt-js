@@ -1,11 +1,11 @@
-import { IPageable } from '@jframework/jfw-js';
-import { IBaseObject, IdType, ISortable } from '../base';
+import { IBaseObject } from '../base';
+import { BookTypeStatus } from './constants';
 
 export interface IBookType extends IBaseObject {
-    parentBookTypeId: number | null;
+    parentBookTypeId?: number | null;
     name: string;
-    description: string | null;
+    description?: string | null;
     zOrder: number;
-    status: 'Active' | 'Inactive' | string;
+    status?: BookTypeStatus | null;
     items: IBookType[];
 }

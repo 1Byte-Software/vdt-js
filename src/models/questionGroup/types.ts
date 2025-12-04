@@ -1,9 +1,14 @@
-import { IBaseObject, IdType } from '../base';
+import {
+    IBaseObject,
+    IdType,
+    StripCreateFields,
+    StripUpdateFields,
+} from '../base';
 import { IQuestion } from '../question';
 export interface IQuestionGroup extends IBaseObject {
     lessonId: IdType;
     title: string;
-    content: string;
+    content?: string | null;
     description: string;
     mediaSegmentFrom: string;
     isEmbeddedQuestions?: boolean | null;
@@ -11,3 +16,8 @@ export interface IQuestionGroup extends IBaseObject {
     zOrder?: number | null;
     questions: IQuestion[];
 }
+
+export interface ICreateQuestionGroupParams
+    extends StripCreateFields<IQuestionGroup> {}
+export interface IUpdateQuestionGroupParams
+    extends StripUpdateFields<IQuestionGroup> {}

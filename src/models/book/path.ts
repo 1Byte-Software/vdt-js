@@ -5,7 +5,13 @@ const REST_BOOK_EXAM_REPORT = 'book-exam-report';
 const REST_CHAPTERS = 'chapters';
 
 export const BOOK_PATH = {
+  /**
+   * @deprecated use GET_BOOKS instead
+   */
   QUERY: REST,
+
+  GET_BOOKS: REST,
+
   CREATE: REST,
   GET_BY_ID: `${REST}/:id`,
   UPDATE_BY_ID: `${REST}/:id`,

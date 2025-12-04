@@ -2,27 +2,33 @@ import { DateType, IPageable, IdType as JfwIdType } from '@jframework/jfw-js';
 import {
     IBaseObject,
     IdType,
-    IPageable as IVDTPageable,
     ISortable,
+    IPageable as IVDTPageable,
+    StripCreateFields,
+    StripUpdateFields,
 } from '../base';
+import { BookExamStatus } from '../bookExam';
+import { IBookType } from '../bookType';
 import { IChapter } from '../chapter';
 import { ILesson } from '../lesson';
 import { IAnswer, IUserScoreAnswer } from '../userScore';
-import { BookExamStatus } from '../bookExam';
+import { BookStatus, BookType } from './constants';
 
 export interface IBook extends IBaseObject {
-    chapters?: IChapter[];
+    bookType?: IBookType | null;
 
-    type?: string | null;
-    code: string;
+    code?: string | null;
+    name?: string | null;
 
-    name: string;
-    description?: string;
-    isFree: boolean;
-
-    zOrder?: number;
-    status: string;
-    statusValue: string;
+    /**
+     * @deprecated Use BookType instead
+     */
+    type?: BookType | null;
+    thumbnailUrl?: string | null;
+    description?: string | null;
+    zOrder?: number | null;
+    status?: BookStatus | null;
+    isFree?: boolean | null;
 }
 
 /**
@@ -51,7 +57,12 @@ export interface IBookExamRecord extends IBaseObject {
     overallScore?: number | null;
 }
 
-export interface IQueryBookParams extends IPageable, ISortable {
+/**
+ * @deprecated use IGetBooksParams instead
+ */
+export type IQueryBookParams = IGetBooksParams;
+
+export interface IGetBooksParams extends IPageable, ISortable {
     /**
      * @deprecated Use questionTypeId instead
      */
@@ -62,22 +73,22 @@ export interface IQueryBookParams extends IPageable, ISortable {
 
     bookTypeId?: string;
 
-    status?: string;
+    status?: BookStatus;
 }
 
-export interface IBookForm {
-    id?: IdType;
+export interface ICreateBookParams {
+    bookTypeId?: IdType | null;
 
-    chapters?: IChapter[];
+    code?: string | null;
+    name?: string | null;
 
-    code?: string;
-
-    name?: string;
-    type?: string | null;
-
-    isFree?: boolean;
-    status: string;
+    thumbnailUrl?: string | null;
+    description?: string | null;
+    zOrder?: number | null;
+    status?: BookStatus | null;
+    isFree?: boolean | null;
 }
+export interface IUpdateBookParams extends ICreateBookParams {}
 
 export interface IDeviceTest {
     icon?: string;
@@ -217,17 +228,11 @@ export interface IGetScoreDetailBookExamRecordParams {
     userId: JfwIdType;
     categoryId: IdType;
 }
-export interface IChapterFormOfBook {
+
+export interface IChapterItemParams {
     chapterId?: IdType;
     zOrder?: number;
 }
-export interface IAddChaptersIntoBookParams {
-    bookId: IdType;
-    chapterIds: IChapterFormOfBook[];
-}
-
-export interface IUpdateChaptersOfBookParams
-    extends IAddChaptersIntoBookParams {}
 
 export interface IUserResult {
     chapterId: IdType;
