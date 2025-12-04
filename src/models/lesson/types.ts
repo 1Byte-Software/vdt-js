@@ -1,20 +1,26 @@
 import { IdType as JfwIdType } from '@jframework/jfw-js';
-import { IBaseObject, IdType, IPageable, ISortable } from '../base';
-import { IMedia } from '../media';
-import { IQuestionGroup } from '../questionGroup';
+import {
+    IBaseObject,
+    IdType,
+    IPageable,
+    ISortable,
+    StripCreateFields,
+    StripUpdateFields,
+} from '../base';
+import { ICreateMediaParams, IMedia } from '../media';
+import { ICreateQuestionGroupParams, IQuestionGroup } from '../questionGroup';
 import { IQuestionType } from '../questionType';
-import { LESSON_STATUS, LessonStatus, TranslationStatus } from './constants';
-import { IQuestion } from '../question';
+import { LessonStatus, TranslationStatus } from './constants';
 
 export interface IBaseLesson extends IBaseObject {
     sourceId?: IdType | null;
-    languageCode: string;
-    title: string;
-    content: string;
-    description: string;
-    transcript: string;
-    privateNotes: string;
-    preparationTime: number | null;
+    languageCode?: string | null;
+    title?: string | null;
+    content?: string | null;
+    description?: string | null;
+    transcript?: string | null;
+    privateNotes?: string | null;
+    preparationTime?: number | null;
     allowSkipPreparationTime?: boolean | null;
     duration?: number | null;
     allowSkipDuration?: boolean | null;
@@ -23,9 +29,7 @@ export interface IBaseLesson extends IBaseObject {
     shared?: boolean | null;
     reviewBy?: JfwIdType | null;
     approveBy?: JfwIdType | null;
-    isSystem: boolean;
-
-    brandId: JfwIdType;
+    isSystem?: boolean | null;
 
     status?: LessonStatus | null;
     zorder?: number | null;
@@ -42,7 +46,7 @@ export interface ILesson extends IBaseLesson {
     practiced: boolean;
     translations: ITranslation[];
     lessonsSeeAlso: ILesson[];
-    source: ISource;
+    source?: ISource | null;
 }
 
 export interface ITranslation extends IBaseObject {
@@ -65,11 +69,13 @@ export interface ISource extends IBaseObject {
     description: string;
 }
 
-export interface ICreateLessonParams extends ILesson {
-    questions?: IQuestion[];
+export interface ICreateLessonParams
+    extends Omit<StripCreateFields<ILesson>, 'questionGroups' | 'medias'> {
+    questionGroups: ICreateQuestionGroupParams[];
+    medias: ICreateMediaParams[];
 }
 
-export interface IUpdateLessonParams extends IBaseLesson {}
+export interface IUpdateLessonParams extends StripUpdateFields<IBaseLesson> {}
 
 export interface ILessonVocab extends IBaseObject {
     lessonId: IdType;

@@ -3,10 +3,10 @@ import { put } from '../../utils/axiosHelper';
 import { IListResponseVDT } from '../base';
 import { ILesson } from '../lesson';
 import { MEDIA_PATH } from './path';
-import { IMediaSaveListParams } from './types';
+import { ISaveMediaListParams } from './types';
 
-export const mediaSaveListAPI = async (
-    params: IMediaSaveListParams,
+export const saveMediaListAPI = async (
+    params: ISaveMediaListParams,
     userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IListResponseVDT<ILesson>> => {
     const { medias, ...restParams } = params;
