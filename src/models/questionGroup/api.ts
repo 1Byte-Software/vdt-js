@@ -3,28 +3,32 @@ import { post, put, remove } from '../../utils/axiosHelper';
 import { generatePath } from '../../utils/path';
 import { IdType } from '../base';
 import { QUESTION_GROUP_PATH } from './path';
-import { IQuestionGroup } from './types';
+import {
+    ICreateQuestionGroupParams,
+    IQuestionGroup,
+    IUpdateQuestionGroupParams,
+} from './types';
 
 export const createQuestionGroupAPI = async (
     lessonId: IdType,
-    questionGroupData: IQuestionGroup,
+    params: ICreateQuestionGroupParams,
     userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IQuestionGroup> => {
     const url = generatePath(QUESTION_GROUP_PATH.CREATE, {
         lessonId,
     });
-    const response = await post(url, questionGroupData, null, userHeaders);
+    const response = await post(url, params, null, userHeaders);
 
     return response.data;
 };
 
 export const updateQuestionGroupAPI = async (
     id: IdType,
-    questionGroupData: IQuestionGroup,
+    params: IUpdateQuestionGroupParams,
     userHeaders?: RawAxiosRequestHeaders,
 ): Promise<IQuestionGroup> => {
     const url = generatePath(QUESTION_GROUP_PATH.UPDATE, { id });
-    const response = await put(url, questionGroupData, null, userHeaders);
+    const response = await put(url, params, null, userHeaders);
 
     return response.data;
 };
