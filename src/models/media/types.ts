@@ -1,10 +1,14 @@
-import { IBaseObject, IdType } from '../base';
+import {
+    IBaseObject,
+    IdType,
+    StripCreateFields,
+    StripUpdateFields,
+} from '../base';
 import { MediaStatus } from './constants';
 
-export interface IMediaSaveListParams {
-    lessonId: IdType;
-    // #REFACTOR_VDT
-    medias: unknown[];
+export interface ISaveMediaListParams {
+    refId: IdType;
+    medias: IUpdateMediaParams[];
     type: string;
 }
 
@@ -20,3 +24,6 @@ export interface IMedia extends IBaseObject {
     status?: MediaStatus | null;
     zOrder?: number | null;
 }
+
+export interface ICreateMediaParams extends StripCreateFields<IMedia> {}
+export interface IUpdateMediaParams extends Omit<StripUpdateFields<IMedia>, 'status'> {}
