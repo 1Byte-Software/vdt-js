@@ -3,7 +3,7 @@ name: Publish to npm
 on:
   push:
     tags:
-      - '[0-9]+.[0-9]+.[0-9]+' 
+      - '[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   publish:
@@ -13,21 +13,35 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9 
-
-      - name: Setup Node.js
+      # 1) Setup Node and write .npmrc with auth token (so pnpm/npm can use it)
+      - name: Setup Node.js (create .npmrc with token)
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           registry-url: 'https://registry.npmjs.org/'
+          auth-token: ${{ secrets.NPM_TOKEN }}
 
-      - name: Install dependencies
+      # 2) Install pnpm CLI
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install dependencies (pnpm)
         run: pnpm install --frozen-lockfile
 
-      - name: Publish to npm
+      # Debug: kiểm tra token & user (rất hữu ích để thấy ngay nếu bị 403)
+      - name: Verify whoami with registry
+        run: pnpm whoami --registry=https://registry.npmjs.org/
+        # env không bắt buộc nếu setup-node đã tạo .npmrc, nhưng giữ để an toàn:
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Optional: build step (bật nếu bạn cần)
+      # - name: Build
+      #   run: pnpm build
+
+      - name: Publish to npm (pnpm)
         run: pnpm publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
