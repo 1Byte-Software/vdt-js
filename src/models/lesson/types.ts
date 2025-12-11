@@ -92,27 +92,40 @@ export interface IGetLessonFilterParams
     extends IPageable,
         ISortable<'zOrder' | 'title'> {
     categoryIds?: string;
-    questionTypeId?: IdType;
 
-    languageCode?: string;
-
-    title?: string;
-    content?: string;
-    keyword?: string;
-    status?: string;
-    isFree?: boolean;
-    isPracticed?: boolean;
-    shared?: boolean;
-    timeType?: string;
-    zOrder?: number;
+    ids?: number[] | null;
+    questionTypeId?: number | null;
+    brandId?: string | null;
+    categoryIDs?: string | null;
+    groupCategoryCode?: string | null;
+    userId?: number | null;
+    languageCode?: string | null;
+    title?: string | null;
+    content?: string | null;
+    description?: string | null;
+    transcript?: string | null;
+    privateNotes?: string | null;
+    preparationTime?: number | null;
+    allowSkipPreparationTime?: boolean | null;
+    duration?: number | null;
+    allowSkipDuration?: boolean | null;
+    allowSkipAnswer?: boolean | null;
+    soundBeep?: boolean | null;
+    shared?: boolean | null;
+    sourceId?: number | null;
+    reviewedBy?: number | null;
+    approvedBy?: number | null;
+    isSystem?: boolean | null;
+    status?: LessonStatus | null; // nếu có enum LessonStatus thì sẽ thay bằng LessonStatus
+    zOrder?: number | null;
+    isFree?: boolean | null;
+    isPracticed?: boolean | null;
+    keyword?: string | null;
+    bothPracticed?: boolean | null;
+    uncategorized?: boolean | null;
 }
 
 export interface IQueryLessonParams {
-    /**
-     * @deprecated Use questionTypeCode instead
-     */
-    categoryCode?: string;
-
     questionTypeCode: string;
     zOrder: number;
 }
